@@ -12,12 +12,6 @@ public class WeaponScript : MonoBehaviour
     {
         attackValue = regularDamage;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider c)
     {
         // Make sure that the collider is NOT a trigger. We don't want to register doubble hit's on characters that has a weapon attack trigger active when we hit them.
@@ -63,11 +57,11 @@ public class WeaponScript : MonoBehaviour
                         {
                             if (playerBlock.isBlocking)
                             {
-                                playerStamina.StaminaDamage(regularDamage);
+                                playerStamina.StaminaDamage(attackValue);
                             }
                             else
                             {
-                                playerHealth.TakeDamage(regularDamage);
+                                playerHealth.TakeDamage(attackValue);
                             }
                         }
                         else Debug.LogError("Some scripts are missing. Make sure Health.cs, Stamina.cs and PlayerBlock.cs are attatched to the player!");

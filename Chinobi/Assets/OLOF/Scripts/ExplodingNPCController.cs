@@ -39,7 +39,7 @@ public class ExplodingNPCController : MonoBehaviour
         health = GetComponent<Health>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent.SetDestination(patrolPoints[patrolIndex].position);
-        coll = transform.GetComponentInChildren<MeshCollider>();
+        coll = transform.GetComponent<Collider>();
 
     }
 

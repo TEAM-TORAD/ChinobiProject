@@ -17,6 +17,7 @@ public class WaspNPCScript : MonoBehaviour
     public float walkSpeed = 2, runSpeed = 5, detectionDistance = 3, reachedTargetDistance = 0.3f, hooverDistanceMax = 2.5f, hooverDistanceMin = 1.5f;
     public int explosionDamageValue = 20;
     public Transform[] patrolPoints;
+    public Collider aliveCollider, deadCollider;
 
     // Handled by logic
     [HideInInspector]
@@ -42,6 +43,8 @@ public class WaspNPCScript : MonoBehaviour
 
         // Set destination to the first patrol point in the array
         agent.SetDestination(patrolPoints[patrolIndex].position);
+        aliveCollider.enabled = true;
+        deadCollider.enabled = false;
 
     }
 
@@ -99,7 +102,9 @@ public class WaspNPCScript : MonoBehaviour
         RB.isKinematic = false;
         RB.useGravity = true;
         //RB.AddForce(transform.forward * velocity, ForceMode.Impulse);
-        transform.GetComponentInParent<Collider>().enabled = false;
+        aliveCollider.enabled = false;
+        deadCollider.enabled = true;
+
     }
     public void TakeDamage(int value)
     {

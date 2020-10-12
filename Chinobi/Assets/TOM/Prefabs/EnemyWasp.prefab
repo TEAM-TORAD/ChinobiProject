@@ -182,6 +182,8 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
+  aliveCollider: {fileID: 438677059}
+  deadCollider: {fileID: 1455257619}
   aware: 0
   alive: 1
   isAttacking: 0
@@ -211,11 +213,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 596469407544818831}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.85
-  m_Height: 3
+  m_Enabled: 1
+  m_Radius: 1.2
+  m_Height: 4.787011
   m_Direction: 1
-  m_Center: {x: -0.27, y: 2.16, z: 0}
+  m_Center: {x: -0.53999996, y: 1.2664943, z: 5.6843534e-16}
 --- !u!114 &1603881337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,10 +241,10 @@ BoxCollider:
   m_GameObject: {fileID: 9083229707478176778}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.021897646, y: 0.011760188, z: 0.026738845}
-  m_Center: {x: -0.005755352, y: -0.00025739463, z: 0.018249597}
+  m_Size: {x: 0.021714985, y: 0.024420587, z: 0.00804016}
+  m_Center: {x: -0.004449834, y: 0.006729117, z: 0.0031737003}
 --- !u!95 &326084455922325037
 Animator:
   serializedVersion: 3

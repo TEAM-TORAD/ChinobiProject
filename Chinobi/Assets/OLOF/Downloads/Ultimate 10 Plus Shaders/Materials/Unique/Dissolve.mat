@@ -22,10 +22,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Dissolve
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _ENVIRONMENTREFLECTIONS_OFF _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3050
   stringTagMap:
     RenderType: Transparent
@@ -84,24 +84,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
-    - _Blend: 0
+    - _Blend: 2
     - _BumpScale: 1
     - _Cull: 0
     - _Cutoff: 0
     - _DetailNormalMapScale: 1
-    - _DstBlend: 10
+    - _DstBlend: 1
     - _EdgeWidth: 0.16
-    - _EnvironmentReflections: 1
+    - _EnvironmentReflections: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.248
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _Smoothness: 0.694
+    - _ReceiveShadows: 0
+    - _Smoothness: 0.568
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
@@ -110,7 +110,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.8301887, g: 0.12833554, b: 0.07440361, a: 0.3254902}
+    - _BaseColor: {r: 0.8301887, g: 0.1283355, b: 0.07440359, a: 0.36862746}
     - _Color: {r: 0.8301887, g: 0.12833562, b: 0.07440368, a: 0.41960785}
     - _EdgeColor: {r: 0.38679248, g: 0.15411359, b: 0.016420428, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
