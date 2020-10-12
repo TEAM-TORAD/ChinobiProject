@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     float turnSmoothVelocity;
     private PlayerJump jump;
 
+    public bool faceCameraDirection = true;
+
     private void Awake()
     {
         // Get Player RigidBody from Self
@@ -32,9 +34,14 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.I)) SetAutoFaceCamera();
         MovePlayer();
     }
-
+    public void SetAutoFaceCamera()
+    {
+        if (faceCameraDirection) faceCameraDirection = false;
+        else faceCameraDirection = true;
+    }
     public void MovePlayer()
     {
         #region Player Movement and Rotation
@@ -45,13 +52,14 @@ public class PlayerMovement : MonoBehaviour
         //move position
         moveDirection = new Vector3(inputLeftRight, 0f, inputForwardBack).normalized;
         //change rotation
-       
+
         PlayerSpeed();
+
         float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        if (faceCameraDirection || inputForwardBack != 0 || inputLeftRight != 0) transform.rotation = Quaternion.Euler(0f, angle, 0f);
         Vector3 moveCamDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        rb.MovePosition(transform.position + moveCamDirection.normalized * playerSpeed * currentSpeed * Time.deltaTime);   
+        rb.MovePosition(transform.position + moveCamDirection.normalized * playerSpeed * currentSpeed * Time.deltaTime);
 
         #endregion
     }
