@@ -68,7 +68,7 @@ public class Health : MonoBehaviour
             if(transform.CompareTag("WaspNPC"))
             {
                 //transform.GetComponentInChildren<Animator>().SetTrigger("Die");
-                transform.GetComponent<WaspAI>().Die();
+                transform.GetComponent<WaspNPCScript>().Die();
             }
         }
         else
@@ -83,6 +83,10 @@ public class Health : MonoBehaviour
                 }
             }
             else if (transform.CompareTag("ExplodingNPC"))
+            {
+
+            }
+            else if(transform.CompareTag("WaspNPC"))
             {
 
             }

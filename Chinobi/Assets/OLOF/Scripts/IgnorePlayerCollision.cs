@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class IgnorePlayerCollision : MonoBehaviour
 {
-    private CharacterController CC;
     // Start is called before the first frame update
     void Start()
     {
-        CC = GetComponent<CharacterController>();
-        CC.detectCollisions = false;
-        //Ignore the collisions between Player layer and Wasp layer
-        Physics.IgnoreLayerCollision(8, 9);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (GetComponentInChildren<Rigidbody>() != null)
+        {
+            GetComponentInChildren<Rigidbody>().detectCollisions = false;
+            //Ignore the collisions between Player layer and Wasp layer
+            Physics.IgnoreLayerCollision(8, 9);
+        }
     }
 }

@@ -33,22 +33,19 @@ public class WeaponScript : MonoBehaviour
                         c.attachedRigidbody.GetComponent<ExplodingNPCController>().TakeDamage(attackValue);
                         Debug.Log("Exploding NPC has " + c.attachedRigidbody.GetComponent<Health>().health + " health left.");
                     }
-                }
-                else
-                {
-                    if (c.transform.CompareTag("WaspNPC"))
+                    if (c.attachedRigidbody.CompareTag("WaspNPC"))
                     {
                         Debug.Log("Player hit Wasp NPC");
-                        Health waspHealth = c.transform.GetComponent<Health>();
+                        Health waspHealth = c.attachedRigidbody.GetComponentInParent<Health>();
                         waspHealth.TakeDamage(regularDamage);
                         Debug.Log("Wasp NPC has " + waspHealth.health + " health left.");
                     }
-                    else
-                    {
-                        if (c.attachedRigidbody != null) Debug.Log("Player hit (tag on attachedRigidbody) " + c.attachedRigidbody.tag + ". Name " + c.attachedRigidbody.name); // Debug Test
-                        else if (c.transform.tag != null) Debug.Log("Player hit (tag on transform) " + c.transform.tag); // Debug test
-                        else Debug.Log("Player hit (name) " + c.transform.name); // Debug test
-                    }
+                }
+                else
+                {
+                    if (c.attachedRigidbody != null) Debug.Log("Player hit (tag on attachedRigidbody) " + c.attachedRigidbody.tag + ". Name " + c.attachedRigidbody.name); // Debug Test
+                    else if (c.transform.tag != null) Debug.Log("Player hit (tag on transform) " + c.transform.tag); // Debug test
+                    else Debug.Log("Player hit (name) " + c.transform.name); // Debug test
                 }
             }
             else // If an enemy is holding the weapon, attack friendlies
