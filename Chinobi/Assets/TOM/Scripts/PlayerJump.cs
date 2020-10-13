@@ -27,7 +27,6 @@ public class PlayerJump : MonoBehaviour
     public void Update()
     {
         GroundCheck();
-        
 
         if (isGrounded)
         {

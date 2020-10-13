@@ -55,11 +55,16 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerSpeed();
 
+        bool rotateCamera = (faceCameraDirection || inputForwardBack != 0 || inputLeftRight != 0);
         float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        if (faceCameraDirection || inputForwardBack != 0 || inputLeftRight != 0) transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        Vector3 moveCamDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        rb.MovePosition(transform.position + moveCamDirection.normalized * playerSpeed * currentSpeed * Time.deltaTime);
+        // Vector3 moveCamDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        if (rotateCamera) 
+        {
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
+
+        rb.MovePosition(transform.position + /*moveCamDirection.normalized*/ transform.forward.normalized * playerSpeed * currentSpeed * Time.deltaTime);
 
         #endregion
     }
