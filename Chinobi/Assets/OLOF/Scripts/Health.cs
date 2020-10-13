@@ -32,11 +32,28 @@ public class Health : MonoBehaviour
             //Take Damage (testing purposes)
             TakeDamage(10);
         }
-        if (healthCriticalRunning)
+        if(transform.CompareTag("Player"))
         {
-            lerpedColor = Color.Lerp(greyColor, redColor, Mathf.PingPong(Time.time, 1.25f));
-            healthImageBG.color = lerpedColor;
+            if ((float)health / maxHealth < 0.2f)
+            {
+                lerpedColor = Color.Lerp(greyColor, redColor, Mathf.PingPong(Time.time, 1.25f));
+                healthImageBG.color = lerpedColor;
+            }
+            else
+            {
+                healthImageBG.color = greyColor;
+            }
         }
+    }
+    public void AddHealth(int value)
+    {
+        health += value;
+        if (health > maxHealth) health = maxHealth;
+        if(transform.CompareTag("Player"))
+        {
+            healthImage.fillAmount = (float)health / maxHealth;
+        }
+        
     }
     public void ResetHealth(int _health, int _maxHealth)
     {
@@ -45,8 +62,6 @@ public class Health : MonoBehaviour
         if (transform.CompareTag("Player"))
         {
             healthImage.fillAmount = (float)health / maxHealth;
-            if ((float)health / maxHealth < 0.2f) healthCriticalRunning = false;
-            else healthCriticalRunning = true;
         }
     }
 
@@ -75,14 +90,8 @@ public class Health : MonoBehaviour
         {
             // Take damage
             Debug.Log(transform.name + " took " + value + " in damage.");
-            if (transform.CompareTag("Player"))
-            {
-                if ((float)health / maxHealth < 0.2f)
-                {
-                    healthCriticalRunning = true;
-                }
-            }
-            else if (transform.CompareTag("ExplodingNPC"))
+            
+            if (transform.CompareTag("ExplodingNPC"))
             {
 
             }
