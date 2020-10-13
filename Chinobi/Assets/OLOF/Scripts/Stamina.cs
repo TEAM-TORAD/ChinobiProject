@@ -17,6 +17,16 @@ public class Stamina : MonoBehaviour
     private Image staminaImage;
     //private Color lerpedColor; // Not currently used
     // Start is called before the first frame update
+
+    public float minForceFieldScale = 2f;
+    public float maxForceFieldScale = 3f;
+
+    [SerializeField]
+    private Transform forceFieldTransform;
+
+    
+    private float deltaForceFieldScale => maxForceFieldScale - minForceFieldScale;
+
     void Start()
     {
         
@@ -45,8 +55,17 @@ public class Stamina : MonoBehaviour
             {
                 staminaImage.fillAmount = (float)stamina / maxStamina;
             }
+            UpdateForceFieldSize();
 
         
+    }
+
+    private void UpdateForceFieldSize()
+    {
+        float actualStaminaPercent = stamina / maxStamina;
+        float forceFieldSize = minForceFieldScale + deltaForceFieldScale * actualStaminaPercent;
+
+        forceFieldTransform.localScale = Vector3.one * forceFieldSize;
     }
 
     private void RegenerateStamina()
