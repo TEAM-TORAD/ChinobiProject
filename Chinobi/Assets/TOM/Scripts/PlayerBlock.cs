@@ -10,7 +10,6 @@ public class PlayerBlock : MonoBehaviour
     public GameObject blockSphere;
     public GameObject onSphereDrained;
     private MeshRenderer thisMesh;
-    
 
     //http://gyanendushekhar.com/2018/09/16/change-material-and-its-properties-at-runtime-unity-tutorial/
     public void Start()
@@ -19,7 +18,6 @@ public class PlayerBlock : MonoBehaviour
         stamina = GetComponent<Stamina>();
         thisMesh = blockSphere.GetComponent<MeshRenderer>();
         blockSphere.SetActive(false);
-        
     }
 
     public void Update()
@@ -43,11 +41,6 @@ public class PlayerBlock : MonoBehaviour
             isBlocking = true;
             stamina.usingStamina = true;
             blockSphere.SetActive(true);
-            
-        }
-        else
-        {
-            
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
