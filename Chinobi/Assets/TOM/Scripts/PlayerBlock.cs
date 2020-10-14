@@ -55,10 +55,4 @@ public class PlayerBlock : MonoBehaviour
 
         blockSphere.SetActive(false);
     }
-    IEnumerator ActivateShield()
-    {
-        float timeToChange = 2.0f;
-
-        return null;
-    }
 }
