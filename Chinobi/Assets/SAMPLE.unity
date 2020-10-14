@@ -830,8 +830,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2880843715077515463, guid: 73c3c6508f07a32409259cf89863cb21, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73c3c6508f07a32409259cf89863cb21, type: 3}
 --- !u!1 &1567440542
 GameObject:
@@ -1642,21 +1641,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.9998346
       objectReference: {fileID: 0}
-    - target: {fileID: 1914590580937209785, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914590580937209785, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914590580937209785, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1914590581039647204, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
         type: 3}
       propertyPath: m_Name
@@ -1727,11 +1711,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1914590581110700395, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.40761307
-      objectReference: {fileID: 0}
     - target: {fileID: 1914590581337855545, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
         type: 3}
       propertyPath: forceFieldTransform
@@ -1760,7 +1739,7 @@ PrefabInstance:
     - target: {fileID: 1914590581420349891, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.043389e-14
+      value: -4.7045145e-14
       objectReference: {fileID: 0}
     - target: {fileID: 1914590581486664419, guid: 45946a07c9e11ef4c8fb3477fc0ebd25,
         type: 3}
