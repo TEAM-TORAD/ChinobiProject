@@ -4811,7 +4811,7 @@ GameObject:
   - component: {fileID: 5502368865268389663}
   - component: {fileID: 5502368866846713895}
   m_Layer: 0
-  m_Name: ExplodingNPC Variant 1
+  m_Name: Bomb Guy
   m_TagString: ExplodingNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

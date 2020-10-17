@@ -53,8 +53,8 @@ public class Stamina : MonoBehaviour
             if(transform.CompareTag("Player"))
             {
                 staminaImage.fillAmount = (float)stamina / maxStamina;
-            }
-            UpdateForceFieldSize();
+                UpdateForceFieldSize();
+        }
 
         
     }
@@ -90,6 +90,8 @@ public class Stamina : MonoBehaviour
     {
         stamina = _stamina;
         maxStamina = _maxStamina;
+        if (stamina > maxStamina) stamina = maxStamina;
+        else if (stamina < 0) stamina = 0;
         if (transform.CompareTag("Player"))
         {
             staminaImage.fillAmount = (float)stamina / maxStamina;

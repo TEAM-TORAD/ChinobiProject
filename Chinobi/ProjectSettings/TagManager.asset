@@ -11,6 +11,8 @@ TagManager:
   - DoNotRegisterCollision
   - Weapon
   - GoldPanel
+  - StorePanel
+  - MessagePanel
   layers:
   - Default
   - TransparentFX

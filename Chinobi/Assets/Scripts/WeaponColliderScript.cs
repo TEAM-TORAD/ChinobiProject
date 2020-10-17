@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 /*
@@ -18,24 +19,43 @@ public enum WeaponType
 public class WeaponColliderScript : MonoBehaviour
 {
     
-    public WeaponType type;
-    public Transform weapon;
-    private Collider weaponsCollider;
+    public Transform weapon1;
+    public WeaponType typeWeapon1;
+
+    public Transform weapon2;
+    public WeaponType typeWeapon2;
+
+    private Collider weaponsCollider1 = null, weaponsCollider2 = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        weaponsCollider = weapon.GetComponent<Collider>();
-        weaponsCollider.enabled = false;
-        //weapon = transform.Find("WeaponSlot").transform;
+        weaponsCollider1 = weapon1.GetComponent<Collider>();
+        weaponsCollider1.enabled = false;
+
+        if(weapon2 != null)
+        {
+            weaponsCollider2 = weapon2.GetComponent<Collider>();
+            weaponsCollider2.enabled = false;
+        }
     }
 
     public void ColliderOn()
     {
-        weaponsCollider.enabled = true;
+        weaponsCollider1.enabled = true;
     }
     public void ColliderOff()
     {
-        weaponsCollider.enabled = false;
+        weaponsCollider1.enabled = false;
     }
-    
+
+    public void Collider2On()
+    {
+        weaponsCollider2.enabled = true;
+    }
+    public void Collider2Off()
+    {
+        weaponsCollider2.enabled = false;
+    }
+
 }

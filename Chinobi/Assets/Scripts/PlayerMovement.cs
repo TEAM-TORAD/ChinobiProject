@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         // Rotation Smoothing Settings
         turnSmoothTime = 0.1f;
         jump = GetComponent<PlayerJump>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void FixedUpdate()
     {

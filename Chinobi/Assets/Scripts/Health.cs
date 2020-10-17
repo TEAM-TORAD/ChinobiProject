@@ -59,6 +59,9 @@ public class Health : MonoBehaviour
     {
         health = _health;
         maxHealth = _maxHealth;
+        if (health > maxHealth) health = maxHealth;
+        else if (health < 0) health = 0;
+
         if (transform.CompareTag("Player"))
         {
             healthImage.fillAmount = (float)health / maxHealth;
