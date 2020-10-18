@@ -54,7 +54,6 @@ public class WaspNPCScript : MonoBehaviour
         if(alive)
         {
             velocity = RB.velocity.magnitude;
-            if (Input.GetKeyDown(KeyCode.B)) Die();
             if (!isTakingDamage && !isAttacking)
             {
                 if (!aware)

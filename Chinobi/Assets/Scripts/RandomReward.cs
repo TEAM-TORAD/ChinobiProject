@@ -28,19 +28,19 @@ public class RandomReward : MonoBehaviour
     
     }
 
-    public void DropItem()
+    public void DropItem(Transform enemy)
     {
-        StartCoroutine(DropDelay());
+        StartCoroutine(DropDelay(enemy));
         
     }
 
-    IEnumerator DropDelay()
+    IEnumerator DropDelay(Transform enemy)
     {
         yield return new WaitForSeconds(3);
 
         int num = Random.Range(0, itemDrops.Count);
-        if(deadEnemy != null) Instantiate(itemDrops[num], deadEnemy.position, deadEnemy.rotation);
-        Destroy(deadEnemy.parent.gameObject);
+        Instantiate(itemDrops[num], enemy.position, enemy.rotation);
+        Destroy(enemy.parent.gameObject);
     }
 
 

@@ -13,12 +13,15 @@ public class PlayerMovement : MonoBehaviour
     public float playerSpeed;
     public float currentSpeed;
 
+    public bool canMove = true;
+
     private float inputForwardBack;
     private float inputLeftRight;
     private Vector3 moveDirection;
     private float turnSmoothTime;
     float turnSmoothVelocity;
     private PlayerJump jump;
+    private Animator animator;
 
     private void Awake()
     {
@@ -29,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
         // Rotation Smoothing Settings
         turnSmoothTime = 0.1f;
         jump = GetComponent<PlayerJump>();
+
+        animator = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -63,51 +68,57 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PlayerSpeed()
     {
-        if (moveDirection.magnitude > 0.1)
+        // If the animator is in the PlayerMovement state (blend tree), do regular speed acceleration/deceleration
+        if(canMove)
         {
-
-
-
-            if (currentSpeed < 1f)
+            if (moveDirection.magnitude > 0.1)
             {
-                currentSpeed += .03f;
+                if (currentSpeed < 1f)
+                {
+                    currentSpeed += .03f;
+
+                }
+
+                if (currentSpeed > 1f)
+                {
+                    currentSpeed += .01f;
+
+                }
+
+                if (currentSpeed > 2f)
+                {
+                    currentSpeed = 2f;
+
+                }
 
             }
-
-            if (currentSpeed > 1f)
+            else if (moveDirection.magnitude < 0.1f)
             {
-                currentSpeed += .01f;
+                if (currentSpeed > 0)
+                {
+
+                    if (jump.isGrounded)
+                    {
+                        currentSpeed -= 0.05f;
+                    }
+                    else
+                    {
+                        currentSpeed -= 0.001f;
+                    }
+                }
+                if (currentSpeed < 0.001)
+                {
+                    currentSpeed = 0f;
+                }
 
             }
-
-            if (currentSpeed > 2f)
-            {
-                currentSpeed = 2f;
-
-            }
-
         }
-        else if (moveDirection.magnitude < 0.1f)
+        // Player movement is not allowed (player is in another state than PlayerMovement such as attacking, jumping, falling etc)
+        else
         {
-            if (currentSpeed > 0)
-            {
-
-                if (jump.isGrounded)
-                {
-                    currentSpeed -= 0.05f;
-                }
-                else
-                {
-                    currentSpeed -= 0.001f;
-                }
-            }
-            if (currentSpeed < 0.001)
-            {
-                currentSpeed = 0f;
-            }
-
+            if (currentSpeed > 0) currentSpeed -= .04f;
+            if (currentSpeed < 0) currentSpeed = 0;
         }
-
     }
 
 

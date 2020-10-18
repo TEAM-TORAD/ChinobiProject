@@ -10,6 +10,7 @@ public class PlayerBlock : MonoBehaviour
     public GameObject blockSphere;
     //public GameObject onSphereDrained;
     private MeshRenderer thisMesh;
+    private PlayerMovement PM;
 
     //http://gyanendushekhar.com/2018/09/16/change-material-and-its-properties-at-runtime-unity-tutorial/
     public void Start()
@@ -18,6 +19,7 @@ public class PlayerBlock : MonoBehaviour
         stamina = GetComponent<Stamina>();
         thisMesh = blockSphere.GetComponent<MeshRenderer>();
         blockSphere.SetActive(false);
+        PM = GetComponent<PlayerMovement>();
     }
 
     public void Update()
@@ -35,12 +37,15 @@ public class PlayerBlock : MonoBehaviour
                 StopBlock();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1) && stamina.stamina > 5)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && stamina.stamina > 5 && !isBlocking)
         {
             anim.SetBool("Block", true);
-            isBlocking = true;
-            stamina.usingStamina = true;
-            blockSphere.SetActive(true);
+            if(PM.currentSpeed < 0.4f)
+            {
+                isBlocking = true;
+                stamina.usingStamina = true;
+                blockSphere.SetActive(true);
+            }
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {

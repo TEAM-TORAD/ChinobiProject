@@ -5,11 +5,27 @@ using UnityEngine;
 public class CoinScript : MonoBehaviour
 {
     public int goldValue = 10;
+    public float destroySecondsAferPickup = 2.0f;
+    public ParticleSystem[] activeOnAwake;
+    public ParticleSystem[] activeOnPickup;
+    private bool pickedUp = false;
     Hashtable hash;
+    Transform mesh;
     // Start is called before the first frame update
     void Start()
     {
+        mesh = transform.Find("Mesh");
         Rotate();
+        foreach(ParticleSystem p in activeOnAwake)
+        {
+            p.Play();
+        }
+
+        foreach (ParticleSystem p in activeOnPickup)
+        {
+            p.Stop();
+            p.Clear();
+        }
     }
 
     // Update is called once per frame
@@ -19,28 +35,43 @@ public class CoinScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.CompareTag("Player")) {
+        if(other.transform.CompareTag("Player") && !pickedUp) {
             Economy.economy.AddGold(goldValue);
-            Destroy(transform.parent.gameObject);
+            pickedUp = true;
+            StartCoroutine(PickupCoin(destroySecondsAferPickup));
         }
+    }
+    IEnumerator PickupCoin(float value)
+    {
+        foreach (ParticleSystem p in activeOnAwake)
+        {
+            p.Stop();
+            p.Clear();
+        }
+
+        foreach (ParticleSystem p in activeOnPickup)
+        {
+            p.Play();
+        }
+        transform.Find("Mesh").gameObject.SetActive(false);
+        yield return new WaitForSeconds(value);
+        Destroy(transform.gameObject);
     }
     void Rotate()
     {
         // http://www.pixelplacement.com/itween/documentation.php#RotateAdd
-        iTween.RotateAdd(transform, transform.gameObject , iTween.Hash(
+        iTween.RotateAdd(transform, transform.gameObject, iTween.Hash(
             "space", Space.World,
             "time", 2.0f,
-            "amount", new Vector3(0.0f,360.0f,0.0f),
+            "amount", new Vector3(0.0f, 360.0f, 0.0f),
             "easeType", iTween.EaseType.spring,
             "loopType", iTween.LoopType.none,
             "oncomplete", "RotationComplete",
             "oncompletetarget", transform.gameObject
             ));
-
     }
     public void RotationComplete()
     {
-        print("Rotation is completed.");
         Rotate();
     }
 }
