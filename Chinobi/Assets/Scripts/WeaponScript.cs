@@ -21,6 +21,7 @@ public class WeaponScript : MonoBehaviour
             {
                 if (c.attachedRigidbody != null) // The object that was hit has an attached rigidbody
                 {
+                    attackValue = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerAttacks>().attackValue;
                     if (c.attachedRigidbody.CompareTag("ExplodingNPC"))
                     {
                         Debug.Log("Player hit Exploding NPC");

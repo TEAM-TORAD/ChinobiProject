@@ -7,8 +7,8 @@ using UnityEngine.AI;
 
 public class RandomReward : MonoBehaviour
 {
-    
-    public Transform deadEnemy;
+
+    public static RandomReward RR;
 
     [Header("Drop Items")]
     public GameObject item1;
@@ -16,32 +16,20 @@ public class RandomReward : MonoBehaviour
     public GameObject item3;
     public GameObject item4;
 
-    List<GameObject> itemDrops;
+    public List<GameObject> itemDrops;
 
     void Start()
     {
+        if (RR == null) RR = this;
+        else Destroy(this);
+
         itemDrops = new List<GameObject>();
         itemDrops.Add(item1);
         itemDrops.Add(item2);
         itemDrops.Add(item3);
         itemDrops.Add(item4);
-    
     }
 
-    public void DropItem(Transform enemy)
-    {
-        StartCoroutine(DropDelay(enemy));
-        
-    }
-
-    IEnumerator DropDelay(Transform enemy)
-    {
-        yield return new WaitForSeconds(3);
-
-        int num = Random.Range(0, itemDrops.Count);
-        Instantiate(itemDrops[num], enemy.position, enemy.rotation);
-        Destroy(enemy.parent.gameObject);
-    }
 
 
 }

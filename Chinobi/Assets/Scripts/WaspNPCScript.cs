@@ -30,6 +30,9 @@ public class WaspNPCScript : MonoBehaviour
     public bool isAttacking = false, isTakingDamage = false;
     private Collider coll;
 
+
+    private float deathTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +54,7 @@ public class WaspNPCScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(alive)
+        if (alive)
         {
             velocity = RB.velocity.magnitude;
             if (!isTakingDamage && !isAttacking)
@@ -87,6 +90,12 @@ public class WaspNPCScript : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            deathTimer += Time.deltaTime;
+            if (deathTimer >= 3.0f) DropItem();
+        }
+       
     }
     float DistanceToAgentTarget()
     {
@@ -104,6 +113,14 @@ public class WaspNPCScript : MonoBehaviour
         aliveCollider.enabled = false;
         deadCollider.enabled = true;
 
+    }
+    void DropItem()
+    {
+        RandomReward RR = RandomReward.RR;
+
+        int num = Random.Range(0, RR.itemDrops.Count);
+        Instantiate(RR.itemDrops[num], transform.position, transform.rotation);
+        Destroy(transform.gameObject);
     }
     public void TakeDamage(int value)
     {
