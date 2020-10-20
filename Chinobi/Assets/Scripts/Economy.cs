@@ -63,8 +63,8 @@ public class Economy : MonoBehaviour
         if (economy == null) economy = this;
         else Destroy(this);
         goldPanel = GameObject.FindGameObjectWithTag("GoldPanel").transform;
-        GameObject thisObject = Instantiate(inventoryGoldPrefab, goldPanel);
-        goldText = thisObject.transform.GetComponentInChildren<TextMeshProUGUI>();
+
+        goldText = goldPanel.transform.Find("Amount Text").GetComponent<TextMeshProUGUI>();
         goldText.text = gold.ToString();
         SetGlowStrength(currentStrength);
 

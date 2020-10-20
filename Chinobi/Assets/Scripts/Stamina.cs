@@ -31,9 +31,8 @@ public class Stamina : MonoBehaviour
         
             if(transform.CompareTag("Player"))
             {
-                staminaPanel = GameObject.FindGameObjectWithTag("StaminaPanel").transform;
-                GameObject staminaObject = Instantiate(staminaImagePrefab, staminaPanel);
-                staminaImage = staminaObject.transform.GetChild(1).GetComponent<Image>();
+                staminaPanel = GameObject.FindGameObjectWithTag("HealthNStamina").transform;
+                staminaImage = staminaPanel.transform.Find("ShieldFill").GetComponent<Image>();
             }
         
     }

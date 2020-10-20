@@ -5,14 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - ExplodingNPC
-  - HealthPanel
-  - StaminaPanel
   - WaspNPC
   - DoNotRegisterCollision
   - Weapon
   - GoldPanel
   - StorePanel
   - MessagePanel
+  - HealthNStamina
   layers:
   - Default
   - TransparentFX

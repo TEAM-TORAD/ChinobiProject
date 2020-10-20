@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public bool healthCriticalRunning = false, online = false;
     //public int lives;
     public GameObject healthImagePrefab;
-    private Transform healthPanel;
+    private Transform healthNStaminaPanel;
     private Image healthImage, healthImageBG;
     private Color lerpedColor;
     public Color greyColor, redColor;
@@ -19,10 +19,9 @@ public class Health : MonoBehaviour
     {
         if (transform.CompareTag("Player"))
         {
-            healthPanel = GameObject.FindGameObjectWithTag("HealthPanel").transform;
-            GameObject healthImageObject = Instantiate(healthImagePrefab, healthPanel);
-            healthImage = healthImageObject.transform.GetChild(1).GetComponent<Image>();
-            healthImageBG = healthImageObject.transform.GetChild(0).GetComponent<Image>();
+            healthNStaminaPanel = GameObject.FindGameObjectWithTag("HealthNStamina").transform;
+            healthImage = healthNStaminaPanel.transform.Find("HealthFill").GetComponent<Image>();
+            healthImageBG = healthNStaminaPanel.transform.Find("DamageFill").GetComponent<Image>();
         }
     }
     private void Update()
