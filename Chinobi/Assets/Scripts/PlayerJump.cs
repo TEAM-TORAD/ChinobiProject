@@ -13,6 +13,8 @@ public class PlayerJump : MonoBehaviour
     private Animator anim;
     public bool isGrounded;
 
+    private PlayerMovement PM;
+
     [Header("Current Height")]
     public float currentHeight;
 
@@ -20,8 +22,9 @@ public class PlayerJump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
-        jumpHeight = 300f;
+        PM = GetComponent<PlayerMovement>();
         delay = 0.45f;
+
     }
 
     public void Update()
@@ -46,13 +49,23 @@ public class PlayerJump : MonoBehaviour
     {
         if(isGrounded)
         {
-            float dirSpeed = rb.velocity.z;
-            float newJumpDistance = jumpDistance * dirSpeed;
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Force);
-            rb.AddForce(Vector3.forward * newJumpDistance, ForceMode.Force);
+            
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            StartCoroutine(DelayedForwardForce());
         }
     }
+    IEnumerator DelayedForwardForce()
+    {
+        // Wait until the player is no longer grounded before adding forward speed, in case different materials affect the jump distance while player is grounded (guessing here)
+        yield return new WaitUntil(() => !isGrounded);
+        // Multiply the jumpDistance with the velocity (meters per second that the player is moving)
+        float newJumpDistance = jumpDistance * PM.velocity;
+        rb.AddForce(transform.forward * newJumpDistance, ForceMode.Impulse);
 
+        print("Added " + PM.velocity + " multiplied with " + jumpDistance + " = " + newJumpDistance + ".");
+
+
+    }
     public void GroundCheck()
     {
         Vector3 downVector = transform.TransformDirection(Vector3.down) * 100f;

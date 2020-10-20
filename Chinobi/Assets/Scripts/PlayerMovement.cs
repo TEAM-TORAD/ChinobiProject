@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerCamera;
 
     [Header("Player Settings")]
-    public float playerSpeed;
+    public float playerSpeed = 6;
     public float currentSpeed;
 
     public bool canMove = true;
@@ -23,12 +23,14 @@ public class PlayerMovement : MonoBehaviour
     private PlayerJump jump;
     private Animator animator;
 
+    //Calculating velocity
+    Vector3 lastpos;
+    public float velocity;
+
     private void Awake()
     {
         // Get Player RigidBody from Self
         rb = GetComponent<Rigidbody>();
-        // Player Speed Settings
-        playerSpeed = 6;
         // Rotation Smoothing Settings
         turnSmoothTime = 0.1f;
         jump = GetComponent<PlayerJump>();
@@ -39,7 +41,19 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        //Calculating velocity is the first thing that happens
+        //Movement since last frame
+        Vector3 movementSinceLastFrame = transform.position - lastpos;
+        // Framerate since last frame
+        float framerate = 1 / Time.deltaTime;
+        //Velocity meters per second (ignoring z)
+        velocity = Mathf.Pow( (Mathf.Pow(movementSinceLastFrame.x, 2) + Mathf.Pow(movementSinceLastFrame.z, 2) ), 0.5f) * framerate ;
+
+
         MovePlayer();
+
+        // Updating the last position is the last thing that happens
+        lastpos = transform.position;
     }
     public void MovePlayer()
     {
@@ -113,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
-        // Player movement is not allowed (player is in another state than PlayerMovement such as attacking, jumping, falling etc)
+        // Player movement is not allowed (player is in another state than PlayerMovement, primarily attacking, )
         else
         {
             if (currentSpeed > 0) currentSpeed -= .04f;
