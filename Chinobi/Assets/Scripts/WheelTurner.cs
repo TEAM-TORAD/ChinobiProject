@@ -86,9 +86,6 @@ public class WheelTurner : MonoBehaviour
         targets[target].statue.localRotation = newPosTarget;
         if (targets[target].statue.localRotation.eulerAngles.y <= targets[target].maxAngle && targets[target].statue.localRotation.eulerAngles.y >= targets[target].minAngle) targets[target].inPosition = true;
         else targets[target].inPosition = false;
-
-
-
     }
     void RotateBeam( Transform beam, Transform hitObject)
     {
