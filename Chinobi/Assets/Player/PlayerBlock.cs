@@ -1,0 +1,71 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerBlock : MonoBehaviour
+{
+    public Animator anim;
+    public bool isBlocking;
+    private Stamina stamina;
+    public GameObject blockSphere;
+    //public GameObject onSphereDrained;
+    private MeshRenderer thisMesh;
+
+    //http://gyanendushekhar.com/2018/09/16/change-material-and-its-properties-at-runtime-unity-tutorial/
+    public void Start()
+    {
+        anim = GetComponent<Animator>();
+        stamina = GetComponent<Stamina>();
+        thisMesh = blockSphere.GetComponent<MeshRenderer>();
+        blockSphere.SetActive(false);
+    }
+
+    public void Update()
+    {
+        if (!isBlocking)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                anim.SetTrigger("Attack2");
+            }
+        }
+        if(isBlocking)
+        {
+            if(stamina.stamina > 0)
+            {
+                //thisMesh.material.SetFloat("_NormalStrength2", 1 - (stamina.stamina / stamina.maxStamina));
+            }
+            else
+            {
+                /*GameObject drainSphere = Instantiate(onSphereDrained, blockSphere.transform.parent);
+                drainSphere.transform.localPosition = blockSphere.transform.localPosition;*/
+                StopBlock();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1) && stamina.stamina > 5 && !isBlocking)
+        {
+            anim.SetTrigger("Attack2");
+            anim.SetBool("Aim", true);
+            //if(PM.currentSpeed < 0.4f)
+            //{
+                isBlocking = true;
+                stamina.usingStamina = true;
+                blockSphere.SetActive(true);
+            //}
+            
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            anim.ResetTrigger("Attack2");
+            StopBlock();
+        }
+    }
+    private void StopBlock()
+    {
+        anim.SetBool("Aim", false);
+        isBlocking = false;
+        stamina.usingStamina = false;
+
+        blockSphere.SetActive(false);
+    }
+}

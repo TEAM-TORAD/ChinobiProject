@@ -12,11 +12,29 @@ public class ExplodingNPCController : MonoBehaviour
     private Health health;
 
     // Public variables
-    public AudioClip footstep, explosion;
-    public float walkSpeed = 2, runSpeed = 5, detectionDistance = 3, reachedTargetDistance = 0.3f, explodeDistance = 0.5f, explosionRadius = 2.0f, explosionForce = 100.0f;
+
+    [Tooltip("The speed when traveling between patrol points.")]
+    public float walkSpeed = 2;
+    [Tooltip("The speed the NPC will travel when it has detected the player")]
+    public float runSpeed = 5;
+    [Tooltip("The max distance the NPC can detect the player")]
+    public float detectionDistance = 10;
+    [Tooltip("The distance to the patrol point in x and z that the NPC will travel before considering the target to be reached.")]
+    public float reachedTargetDistance = 0.3f;
+    [Tooltip("The distance to the player the aware NPC will travel before attacking.")]
+    public float explodeDistance = 0.5f;
+    [Tooltip("The radius from the NPC that will be affected by the explossion")]
+    public float explosionRadius = 2.0f;
+    [Tooltip("The force of the explosion. The further away from the center of the explosion the less force will be added to rigidbodies within the explosion radius.")]
+    public float explosionForce = 100.0f;
+    [Tooltip("The damage the player will recieve from the explosion")]
     public int explosionDamageValue = 20;
-    public Transform[] patrolPoints;
+    [Tooltip("The material that will be set when the NPC dies (unless it dies from exploding).")]
     public Material deadMaterial;
+    [Tooltip("The angle in which the NPC can detect the player. If the player is within the detection distance it will check the angle. Last step a raycast will check if something is between the NPC and the player")]
+    public float detectionAngle = 35.0f;
+    [Tooltip("The patrol points the NPC will travel between. Starts at the first, goes to the second until last element in the array. Then it will go back to the first element in the array.")]
+    public Transform[] patrolPoints;
 
     // Handled by logic
     [HideInInspector]
@@ -61,9 +79,36 @@ public class ExplodingNPCController : MonoBehaviour
                     agent.SetDestination(patrolPoints[patrolIndex].position);
                 }
                 // If agent is close enough to the player to discover them
-                if (Vector3.Distance(transform.position, player.position) < detectionDistance)
+                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+                if (distanceToPlayer < detectionDistance)
                 {
-                    aware = true;
+                    //Check the angle between the player and the wasp's forward position
+                    Vector3 targetPos = player.position - transform.position;
+                    float angle = Vector3.Angle(targetPos, transform.forward);
+                    // If the angle is less than the detection-angle set in the inspector, detect the player
+                    if (angle < detectionAngle)
+                    {
+                        LayerMask layerMask = 1 >> LayerMask.NameToLayer("Enemy");
+                        RaycastHit hit;
+                        // Does the ray intersect any objects excluding the player layer
+                        if (Physics.Raycast(transform.position, targetPos, out hit, detectionDistance, layerMask))
+                        {
+                            if(hit.transform.CompareTag("Player"))
+                            {
+                                Debug.Log("Did Hit Player");
+                                aware = true;
+                            }
+                            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                            else
+                            {
+                                Debug.Log("Did Hit " + hit.transform.tag);
+                            }
+
+                        }
+                    }
+                    //If the player is less than 1 meter away, the wasp will detect them even if the angle is greater than the detection angle
+                    else if (distanceToPlayer < 1) aware = true;
+
                 }
             }
             // Agent is aware

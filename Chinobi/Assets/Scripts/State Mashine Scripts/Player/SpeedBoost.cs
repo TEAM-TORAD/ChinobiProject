@@ -9,8 +9,8 @@ public class SpeedBoost : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //rb.MovePosition(transform.position + transform.forward.normalized * playerSpeed * currentSpeed * Time.deltaTime);
-        Rigidbody RB = animator.transform.GetComponentInParent<Rigidbody>();
-        RB.AddForce(animator.transform.parent.forward.normalized * forceToAdd, ForceMode.Impulse);
+        Rigidbody RB = animator.transform.GetComponent<Rigidbody>();
+        RB.AddForce(animator.transform.forward.normalized * forceToAdd, ForceMode.Impulse);
 
     }
 

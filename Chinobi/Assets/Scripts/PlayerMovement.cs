@@ -12,21 +12,19 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Settings")]
     public float playerSpeed = 6;
     public float currentSpeed;
+    public float airSpeed;
 
     public bool canMove = true;
 
     private float inputForwardBack;
     private float inputLeftRight;
-    private Vector3 moveDirection;
+    public Vector3 moveDirection;
     private float turnSmoothTime;
     float turnSmoothVelocity;
     private PlayerJump jump;
-    private Animator animator;
+    
 
-    //Calculating velocity
-    Vector3 lastpos;
-    public float velocity;
-
+   
     private void Awake()
     {
         // Get Player RigidBody from Self
@@ -35,25 +33,17 @@ public class PlayerMovement : MonoBehaviour
         turnSmoothTime = 0.1f;
         jump = GetComponent<PlayerJump>();
 
-        animator = GetComponentInChildren<Animator>();
+    
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
     public void FixedUpdate()
     {
-        //Calculating velocity is the first thing that happens
-        //Movement since last frame
-        Vector3 movementSinceLastFrame = transform.position - lastpos;
-        // Framerate since last frame
-        float framerate = 1 / Time.deltaTime;
-        //Velocity meters per second (ignoring z)
-        velocity = Mathf.Pow( (Mathf.Pow(movementSinceLastFrame.x, 2) + Mathf.Pow(movementSinceLastFrame.z, 2) ), 0.5f) * framerate ;
-
+       
 
         MovePlayer();
 
-        // Updating the last position is the last thing that happens
-        lastpos = transform.position;
+       
     }
     public void MovePlayer()
     {
@@ -83,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerSpeed()
     {
         // If the animator is in the PlayerMovement state (blend tree), do regular speed acceleration/deceleration
-        if(canMove)
+        if(canMove && jump.isGrounded)
         {
             if (moveDirection.magnitude > 0.1)
             {
@@ -117,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                     else
                     {
-                        currentSpeed -= 0.001f;
+                        currentSpeed -= 0;
                     }
                 }
                 if (currentSpeed < 0.001)
@@ -126,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
+        }
+        //Activates airSpeed when the player is airborne
+        else if (canMove && jump.currentHeight > 0.3f)
+        {
+            currentSpeed = airSpeed;
         }
         // Player movement is not allowed (player is in another state than PlayerMovement, primarily attacking, )
         else

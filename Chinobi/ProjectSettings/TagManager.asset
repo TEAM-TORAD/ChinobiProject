@@ -12,6 +12,8 @@ TagManager:
   - StorePanel
   - MessagePanel
   - HealthNStamina
+  - Fire
+  - BeamTarget
   layers:
   - Default
   - TransparentFX

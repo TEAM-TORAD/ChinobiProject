@@ -15,7 +15,6 @@ public class WaspNPCScript : MonoBehaviour
 
     // Public variables
     public float walkSpeed = 2, runSpeed = 5, detectionDistance = 3, reachedTargetDistance = 0.3f, hooverDistanceMax = 2.5f, hooverDistanceMin = 1.5f;
-    public int explosionDamageValue = 20;
     public Transform[] patrolPoints;
     public Collider aliveCollider, deadCollider;
 
@@ -33,6 +32,8 @@ public class WaspNPCScript : MonoBehaviour
 
     private float deathTimer;
 
+    public float detectionAngle = 35.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,7 @@ public class WaspNPCScript : MonoBehaviour
         agent.SetDestination(patrolPoints[patrolIndex].position);
         aliveCollider.enabled = true;
         deadCollider.enabled = false;
+
 
     }
 
@@ -71,9 +73,36 @@ public class WaspNPCScript : MonoBehaviour
                         agent.SetDestination(patrolPoints[patrolIndex].position);
                     }
                     // If agent is close enough to the player to discover them
-                    if (Vector3.Distance(transform.position, player.position) < detectionDistance)
+                    float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+                    if (distanceToPlayer < detectionDistance)
                     {
-                        aware = true;
+                        //Check the angle between the player and the wasp's forward position
+                        Vector3 targetPos = player.position - transform.position;
+                        float angle = Vector3.Angle(targetPos, transform.forward);
+                        // If the angle is less than the detection-angle set in the inspector, detect the player
+                        if(angle < detectionAngle )
+                        {
+                            LayerMask layerMask = 1 >> LayerMask.GetMask("Enemy");
+                            RaycastHit hit;
+                            // Does the ray intersect any objects excluding the player layer
+                            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, detectionDistance, layerMask))
+                            {
+                                if (hit.transform.CompareTag("Player"))
+                                {
+                                    Debug.Log("Did Hit Player");
+                                    aware = true;
+                                }
+                                //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                                else
+                                {
+                                    Debug.Log("Did Hit " + hit.transform.tag);
+                                }
+
+                            }
+                        }
+                        //If the player is less than 1 meter away, the wasp will detect them even if the angle is greater than the detection angle
+                        else if(distanceToPlayer < 1) aware = true;
+
                     }
                 }
                 // Agent is aware

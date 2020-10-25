@@ -37,7 +37,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2880843715077515461}
-  - component: {fileID: 2880843715077515463}
   - component: {fileID: 2557107863919702335}
   - component: {fileID: 2557107863919703747}
   - component: {fileID: 2557107863689493446}
@@ -64,47 +63,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2880843715077515463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2880843715077515458}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b58cf0a920e8fd46aca3ed0811c4324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  on: 1
-  canFly: 1
-  floatHeight: 0.5
-  runAway: 0
-  runTo: 1
-  runDistance: 10
-  runBufferDistance: 1
-  walkSpeed: 10
-  runSpeed: 15
-  randomSpeed: 10
-  rotationSpeed: 10
-  visualRadius: 200
-  moveableRadius: 200
-  attackRange: 0.5
-  attackTime: 1
-  useWaypoints: 0
-  reversePatrol: 1
-  waypoints: []
-  pauseAtWaypoints: 0
-  pauseMin: 1
-  pauseMax: 3
-  huntingTimer: 5
-  estimateElevation: 1
-  estRayTimer: 1
-  requireTarget: 1
-  target: {fileID: 0}
-  anim: {fileID: 0}
-  distance: 0
-  direction: {x: 0, y: 0, z: 0}
 --- !u!136 &2557107863919702335
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -174,11 +132,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2
   runSpeed: 5
-  detectionDistance: 3
+  detectionDistance: 10
   reachedTargetDistance: 0.5
   hooverDistanceMax: 2.5
   hooverDistanceMin: 1.5
-  explosionDamageValue: 20
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -190,6 +147,7 @@ MonoBehaviour:
   alive: 1
   isAttacking: 0
   isTakingDamage: 0
+  detectionAngle: 35
 --- !u!54 &2557107863760622723
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -217,9 +175,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.2
-  m_Height: 4.787011
+  m_Height: 2.9341865
   m_Direction: 1
-  m_Center: {x: -0.53999996, y: 1.2664943, z: 5.6843534e-16}
+  m_Center: {x: -0.53999996, y: 2.0327485, z: 5.6843534e-16}
 --- !u!114 &2557107862596989880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,8 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33578332e1f5e242a8e3ef60279b7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  weapon: {fileID: 5256927511753999955}
+  weapon1: {fileID: 5256927511753999955}
+  typeWeapon1: 0
+  weapon2: {fileID: 0}
+  typeWeapon2: 0
 --- !u!65 &2557107862477701842
 BoxCollider:
   m_ObjectHideFlags: 0

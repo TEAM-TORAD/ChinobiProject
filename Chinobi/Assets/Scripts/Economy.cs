@@ -178,6 +178,11 @@ public class Economy : MonoBehaviour
             print("Not enough gold!");
         }
     }
+    public void InstantiateServerMessage(string message)
+    {
+        GameObject newText = Instantiate(serverMessagePrefab, serverMessagePanel);
+        newText.GetComponent<ServerMessageScript>().SetServerText(message);
+    }
     private void PopulateStore()
     {
         if (storePanel != null)

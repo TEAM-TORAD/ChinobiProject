@@ -5,10 +5,12 @@ using UnityEngine;
 public class AttackEffects : MonoBehaviour
 {
     Animator attackAnimator;
+    GameObject attackTrails;
     // Start is called before the first frame update
     void Start()
     {
-        attackAnimator = transform.parent.Find("Attack Trails").GetComponent<Animator>();
+        attackTrails = gameObject.GetComponent<GameObject>();
+        attackAnimator = attackTrails.GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
