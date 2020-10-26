@@ -2291,9 +2291,9 @@ public class iTween : MonoBehaviour
 	/// <param name="time">
 	/// A <see cref="System.Single"/> for the time in seconds the animation will take to complete.
 	/// </param>
-	public static void RotateAdd(GameObject target, Vector3 amount, float time){
+	/*public static void RotateAdd(GameObject target, Vector3 amount, float time){
 		RotateAdd(target,Hash("amount",amount,"time",time));
-	}
+	}*/
 	
 	/// <summary>
 	/// Adds supplied Euler angles in degrees to a GameObject's rotation over time with FULL customization options.
@@ -2355,7 +2355,7 @@ public class iTween : MonoBehaviour
 	/// <param name="oncompleteparams">
 	/// A <see cref="System.Object"/> for arguments to be sent to the "oncomplete" method.
 	/// </param>
-	public static void RotateAdd(GameObject target, Hashtable args){
+	public static void RotateAdd(Transform transform, GameObject target, Hashtable args){
 		//clean args:
 		args = iTween.CleanArgs(args);
 		
