@@ -35369,6 +35369,8 @@ GameObject:
   - component: {fileID: 3906541791785132893}
   - component: {fileID: 919132149100993174}
   - component: {fileID: 4000358589318401106}
+  - component: {fileID: 7929434960927523656}
+  - component: {fileID: 2912497948458207197}
   m_Layer: 8
   m_Name: PlayerMaleFBX
   m_TagString: Player
@@ -35542,6 +35544,45 @@ MonoBehaviour:
   hand: {fileID: 1841013395607769945}
   fireRate: 2
   smoothTransition: 0.1
+--- !u!114 &7929434960927523656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906541791785132894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb01d65dc8d6f84b9d1409e89cb1903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  healthCriticalRunning: 0
+  online: 0
+  greyColor: {r: 1, g: 1, b: 1, a: 0}
+  redColor: {r: 0.8396226, g: 0.5029815, b: 0.5029815, a: 0}
+--- !u!114 &2912497948458207197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906541791785132894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67d88bd3b20ad245b6f2419e24e81e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stamina: 20
+  maxStamina: 20
+  drainPerSecond: 6
+  gainPerSecond: 8
+  online: 0
+  usingStamina: 0
+  minForceFieldScale: 2
+  maxForceFieldScale: 3
+  forceFieldTransform: {fileID: 0}
 --- !u!1 &3927620829046042965
 GameObject:
   m_ObjectHideFlags: 0

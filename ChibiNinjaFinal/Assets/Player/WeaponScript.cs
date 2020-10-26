@@ -52,11 +52,11 @@ public class WeaponScript : MonoBehaviour
                         Debug.Log("Player hit by enemy!");
                         Health playerHealth = c.attachedRigidbody.GetComponent<Health>();
                         Stamina playerStamina = c.attachedRigidbody.GetComponent<Stamina>();
-                        PlayerBlock playerBlock = c.attachedRigidbody.GetComponent<PlayerBlock>();
+                        PlayerInputs playerInputs = c.attachedRigidbody.GetComponent<PlayerInputs>();
 
-                        if (playerStamina != null && playerBlock != null && playerHealth != null)
+                        if (playerStamina != null && playerInputs != null && playerHealth != null)
                         {
-                            if (playerBlock.isBlocking)
+                            if (playerInputs.isHoldingBlock)
                             {
                                 playerStamina.StaminaDamage(attackValue);
                             }
@@ -65,7 +65,7 @@ public class WeaponScript : MonoBehaviour
                                 playerHealth.TakeDamage(attackValue);
                             }
                         }
-                        else Debug.LogError("Some scripts are missing. Make sure Health.cs, Stamina.cs and PlayerBlock.cs are attatched to the player!");
+                        else Debug.LogError("Some scripts are missing. Make sure Health.cs, Stamina.cs and PlayerInputs.cs are attatched to the player!");
                     }
                 }
             }

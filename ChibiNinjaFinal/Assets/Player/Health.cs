@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
     {
         if(transform.CompareTag("Player"))
         {
+            if (Input.GetKeyDown(KeyCode.O)) TakeDamage(10);
             if ((float)health / maxHealth < 0.2f)
             {
                 lerpedColor = Color.Lerp(greyColor, redColor, Mathf.PingPong(Time.time, 1.25f));

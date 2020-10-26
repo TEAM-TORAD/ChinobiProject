@@ -25,7 +25,9 @@ public class PlayerInputs : MonoBehaviour
 
     // Component
     #region Components Used
-    private Animator anim;                          
+    private Animator anim;
+
+    private Stamina stamina;
     #endregion
 
     private void Start()
@@ -33,6 +35,7 @@ public class PlayerInputs : MonoBehaviour
         // Find animator on current GameObject
         #region Locate Initial Component
         anim = gameObject.GetComponent<Animator>();
+        stamina = GetComponent<Stamina>();
         #endregion
     }
     private void Update()
@@ -71,20 +74,26 @@ public class PlayerInputs : MonoBehaviour
                 }
         #endregion
         #region Block Button - RightMouse
-        if (Input.GetButton(rightMouse))
+
+        if (Input.GetButtonDown(rightMouse))
+        {
+            // Only start blocking if player has enough stamina to block for one second or more
+            if (stamina.stamina > stamina.drainPerSecond)
+            {
+                stamina.usingStamina = true;
+                anim.SetTrigger("BlockPressed");
+                HoldingBlock();
+            }
+        }
+        /*
+        else if (Input.GetButton(rightMouse) && stamina.stamina > 0)
         {
             HoldingBlock();
+        }*/
+        if (Input.GetButtonUp(rightMouse) || stamina.stamina <= 0)
+        {
+            StopBlocking();
         }
-            if (Input.GetButtonDown(rightMouse))
-            {
-                anim.SetTrigger("BlockPressed");
-            }
-                if (Input.GetButtonUp(rightMouse))
-                {
-                    isHoldingBlock = false;
-                    anim.SetBool("BlockHeld", false);
-                    anim.ResetTrigger("BlockPressed");
-                }
         #endregion
         #region Kick Button - MiddleMouse
         if (Input.GetButton(middleMouse))
@@ -124,8 +133,16 @@ public class PlayerInputs : MonoBehaviour
     #region Held Button Methods
     void HoldingJump()
     {
-        isHoldingJump = true;
-        anim.SetBool("JumpHeld", true);     
+        if(stamina.stamina > 0)
+        {
+            isHoldingJump = true;
+            anim.SetBool("JumpHeld", true);
+        }  
+        else
+        {
+            isHoldingJump = false;
+            anim.SetBool("JumpHeld", false);
+        }
     }
 
     void HoldingAttack()
@@ -138,6 +155,13 @@ public class PlayerInputs : MonoBehaviour
     {
         isHoldingBlock = true;
         anim.SetBool("BlockHeld", true);
+    }
+    void StopBlocking()
+    {
+        isHoldingBlock = false;
+        anim.SetBool("BlockHeld", false);
+        anim.ResetTrigger("BlockPressed");
+        stamina.usingStamina = false;
     }
 
     void HoldingKick()
