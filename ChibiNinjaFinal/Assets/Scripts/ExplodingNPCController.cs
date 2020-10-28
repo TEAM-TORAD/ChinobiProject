@@ -11,6 +11,7 @@ public class ExplodingNPCController : MonoBehaviour
     private Rigidbody RB;
     private Health health;
     private Transform rayTarget, rayOrigin;
+    private bool hasExploded;
 
     // Public variables
 
@@ -128,6 +129,7 @@ public class ExplodingNPCController : MonoBehaviour
     }
     public void Explode()
     {
+        hasExploded = true;
         //Debug.Log("Explosion started");
         Vector3 explosionCenter = coll.bounds.center;
         Collider[] colliders = Physics.OverlapSphere(explosionCenter, explosionRadius);
@@ -192,7 +194,7 @@ public class ExplodingNPCController : MonoBehaviour
     }
     public void Die()
     {
-        if (!isAttacking)
+        if (!hasExploded)
         {
             float velocity = RB.velocity.magnitude;
             if (velocity < 2.5f) velocity = 2.5f;

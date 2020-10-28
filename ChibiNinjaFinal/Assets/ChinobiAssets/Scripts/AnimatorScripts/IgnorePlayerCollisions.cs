@@ -7,9 +7,8 @@ public class IgnorePlayerCollisions : MonoBehaviour
     
     void Start()
     {
-        
-        Physics.IgnoreLayerCollision(9, 11);
-        Physics.IgnoreLayerCollision(8, 11);
+        Physics.IgnoreLayerCollision(2, 8);
+        Physics.IgnoreLayerCollision(2, 10);
     }
 
    

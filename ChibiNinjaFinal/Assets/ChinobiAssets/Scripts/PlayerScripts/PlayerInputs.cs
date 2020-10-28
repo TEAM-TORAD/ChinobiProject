@@ -90,8 +90,13 @@ public class PlayerInputs : MonoBehaviour
         {
             HoldingBlock();
         }*/
-        if (Input.GetButtonUp(rightMouse) || stamina.stamina <= 0)
+        if (Input.GetButtonUp(rightMouse))
         {
+            StopBlocking();
+        }
+        if(stamina.stamina <= 0 && isHoldingBlock)
+        {
+            anim.SetBool("ShieldBreak", true);
             StopBlocking();
         }
         #endregion
