@@ -13,6 +13,7 @@ TagManager:
   - DoNotRegisterCollision
   - PlayerChildObject
   - ExplodingNPC
+  - HitBox
   layers:
   - Default
   - TransparentFX
