@@ -14,6 +14,7 @@ TagManager:
   - PlayerChildObject
   - ExplodingNPC
   - HitBox
+  - DummyText
   layers:
   - Default
   - TransparentFX

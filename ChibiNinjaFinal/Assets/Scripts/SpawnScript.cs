@@ -17,7 +17,7 @@ public class SpawnScript : MonoBehaviour
     {
         image = cameraFadePanel.GetComponent<Image>();
         RB = GetComponent<Rigidbody>();
-        SpawnPlayer(spawnPoint);
+        //SpawnPlayer(spawnPoint);
     }
     private void Update()
     {
