@@ -49,10 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926f1cc83d1c8b942b27c91bd27caa46, type: 3}
   m_Name: NewBlit
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
     Event: 300
-    blitMaterial: {fileID: 2100000, guid: c41c03c4800828c4682cdd11dd2329ae, type: 2}
+    blitMaterial: {fileID: 2100000, guid: 88b8c5ef72de69f45ae19416cfe71717, type: 2}
     blitMaterialPassIndex: 0
     destination: 0
     textureId: _BlitPassTexture
