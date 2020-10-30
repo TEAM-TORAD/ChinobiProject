@@ -100,7 +100,6 @@ namespace DialogueEditor
             Instance = this;
 
             m_uiOptions = new List<UIConversationButton>();
-            playerInputs = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputs>();
         }
 
         private void Start()
@@ -351,7 +350,7 @@ namespace DialogueEditor
             ClearOptions();
             m_pendingDialogue = m_conversation.Root;
             SetState(eState.TransitioningDialogueBoxOn);
-            playerInputs.conversationOpen = true;
+            CursorScript.instance.conversationOpen = true;
         }
 
         public void EndConversation()
@@ -360,7 +359,7 @@ namespace DialogueEditor
 
             if (OnConversationEnded != null)
                 OnConversationEnded.Invoke();
-            playerInputs.conversationOpen = false;
+            CursorScript.instance.conversationOpen = false;
         }
 
 

@@ -60,8 +60,8 @@ public class AimBehaviourBasic : MonoBehaviour
 			crosshair.spread.sSpread -= crosshair.spread.decreasePerSecond * Time.deltaTime;
 			crosshair.spread.sSpread = Mathf.Clamp(crosshair.spread.sSpread, crosshair.spread.minSpread, crosshair.spread.maxSpread);
 
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
+			//Cursor.lockState = CursorLockMode.Locked;
+			//Cursor.visible = false;
 		}
 	}
 
@@ -76,8 +76,8 @@ public class AimBehaviourBasic : MonoBehaviour
 		turnAimOn = false;
 		cameraScript.ResetTargetOffsets();
 		playerCamera.GetComponent<SmartCrosshair>().drawCrosshair = false;
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		//Cursor.lockState = CursorLockMode.None;
+		//Cursor.visible = true;
 	}
 	
 }

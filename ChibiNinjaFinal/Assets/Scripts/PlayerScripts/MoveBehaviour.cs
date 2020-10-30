@@ -48,7 +48,7 @@ public class MoveBehaviour : GenericBehaviour
 	// LocalFixedUpdate overrides the virtual function of the base class.
 	public override void LocalFixedUpdate()
 	{
-		if (!playerInputs.conversationOpen)
+		if (CursorScript.instance.cursorLocked)
 		{
 			// Call the basic movement manager.
 			MovementManagement(behaviourManager.GetH, behaviourManager.GetV);

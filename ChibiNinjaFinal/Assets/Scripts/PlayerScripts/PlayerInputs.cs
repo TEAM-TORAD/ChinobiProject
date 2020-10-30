@@ -15,7 +15,8 @@ public class PlayerInputs : MonoBehaviour
     #endregion
 
     #region Other
-    public bool conversationOpen = false;
+    public bool conversationOpen = false, menuOpen = false;
+    private bool cursorLocked;
     #endregion
 
     // Bools for Holding Button States.
@@ -43,8 +44,9 @@ public class PlayerInputs : MonoBehaviour
         #endregion
     }
     private void Update()
-    {   
-        if(!conversationOpen)
+    {
+        print("Cursor locked = " + CursorScript.instance.cursorLocked);
+        if(CursorScript.instance.cursorLocked)
         {
             #region Jump Button - SpaceBar
             if (Input.GetButton(jumpButton))
@@ -82,13 +84,8 @@ public class PlayerInputs : MonoBehaviour
 
             if (Input.GetButtonDown(rightMouse))
             {
-                // Only start blocking if player has enough stamina to block for one second or more
-                if (stamina.stamina > stamina.drainPerSecond)
-                {
-                    stamina.usingStamina = true;
-                    anim.SetTrigger("BlockPressed");
-                    HoldingBlock();
-                }
+                anim.SetTrigger("BlockPressed");
+                HoldingBlock();
             }
             /*
             else if (Input.GetButton(rightMouse) && stamina.stamina > 0)
@@ -157,7 +154,6 @@ public class PlayerInputs : MonoBehaviour
             anim.SetBool("JumpHeld", false);
         }
     }
-
     void HoldingAttack()
     {
         isHoldingAttack = true;
@@ -169,12 +165,16 @@ public class PlayerInputs : MonoBehaviour
         isHoldingBlock = true;
         anim.SetBool("BlockHeld", true);
     }
-    void StopBlocking()
+    public void StopBlocking()
     {
         isHoldingBlock = false;
         anim.SetBool("BlockHeld", false);
         anim.ResetTrigger("BlockPressed");
         stamina.usingStamina = false;
+    }
+    public void UseShield()
+    {
+        stamina.usingStamina = true;
     }
 
     void HoldingKick()

@@ -54,11 +54,6 @@ public class Economy : MonoBehaviour
     public Item[] items;
 
 
-
-    CursorLockMode beforeOpeningPanelLockMode;
-    bool beforeOpeningPanelVisible;
-
-
     private void Awake()
     {
         if (economy == null) economy = this;
@@ -91,17 +86,13 @@ public class Economy : MonoBehaviour
         {
             if (storePanel.gameObject.activeSelf)
             {
-                Cursor.lockState = beforeOpeningPanelLockMode;
-                Cursor.visible = beforeOpeningPanelVisible;
                 storePanel.gameObject.SetActive(false);
+                CursorScript.instance.storeOpen = false;
             }
             else
             {
                 storePanel.gameObject.SetActive(true);
-                beforeOpeningPanelLockMode = Cursor.lockState;
-                beforeOpeningPanelVisible = Cursor.visible;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                CursorScript.instance.storeOpen = true;
             }
         }
     }

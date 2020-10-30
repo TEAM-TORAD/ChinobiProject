@@ -5,7 +5,10 @@ using System.Collections.Generic;
 // Contains basic setup and common functions used by all the player behaviours.
 public class BasicBehaviour : MonoBehaviour
 {
-	public Transform playerCamera;                        // Reference to the camera that focus the player.
+	#region Custom variables
+	private PlayerInputs playerInputs;
+    #endregion
+    public Transform playerCamera;                        // Reference to the camera that focus the player.
 	public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
 	public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
 	public string sprintButton = "Sprint";                // Default sprint button input name.
@@ -46,6 +49,7 @@ public class BasicBehaviour : MonoBehaviour
 
 	void Awake ()
 	{
+		playerInputs = GetComponent<PlayerInputs>();
 		// Set up the references.
 		behaviours = new List<GenericBehaviour> ();
 		overridingBehaviours = new List<GenericBehaviour>();
@@ -71,7 +75,8 @@ public class BasicBehaviour : MonoBehaviour
 		anim.SetFloat(vFloat, v, 0.1f, Time.deltaTime);
 
 		// Toggle sprint by input.
-		sprint = Input.GetButton (sprintButton);
+		if (CursorScript.instance.cursorLocked) sprint = Input.GetButton(sprintButton);
+		else sprint = false;
 
 		// Set the correct camera FOV for sprint mode.
 		if(IsSprinting())
