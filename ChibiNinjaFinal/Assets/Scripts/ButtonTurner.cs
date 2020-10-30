@@ -23,7 +23,7 @@ public class ButtonTurner : MonoBehaviour
         if(!hintPrinted && CheckAngle())
         {
             hintPrinted = true;
-            Economy.economy.InstantiateServerMessage("Use 'E' to push the button!");
+            Economy.economy.InstantiateServerMessage("Use 'E' to push the button!", true);
         }
         if(Input.GetKeyDown(KeyCode.E))
         {

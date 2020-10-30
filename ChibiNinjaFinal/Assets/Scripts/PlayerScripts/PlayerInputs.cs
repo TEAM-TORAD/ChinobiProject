@@ -14,6 +14,10 @@ public class PlayerInputs : MonoBehaviour
     public string sprintButton = "Sprint";
     #endregion
 
+    #region Other
+    public bool conversationOpen = false;
+    #endregion
+
     // Bools for Holding Button States.
     #region Button Held Bools
     public bool isHoldingJump;                          
@@ -40,98 +44,102 @@ public class PlayerInputs : MonoBehaviour
     }
     private void Update()
     {   
-        // Listens for player Inputs Pressed or Held, and lets the Animator know to Trigger if only pressed
-        #region Jump Button - SpaceBar
-        if (Input.GetButton(jumpButton))        
+        if(!conversationOpen)
         {
-            HoldingJump();
-        }
+            #region Jump Button - SpaceBar
+            if (Input.GetButton(jumpButton))
+            {
+                HoldingJump();
+            }
             if (Input.GetButtonDown(jumpButton))
             {
                 anim.SetTrigger("JumpPressed");
             }
-                if (Input.GetButtonUp(jumpButton))
-                {
-                    isHoldingJump = false;
-                    anim.SetBool("JumpHeld", false);
-                    anim.ResetTrigger("JumpPressed");
-                }
-        #endregion
-        #region Attack Button - LeftMouse
-        if (Input.GetButton(leftMouse))
-        {
-            HoldingAttack();
-        }
+            if (Input.GetButtonUp(jumpButton))
+            {
+                isHoldingJump = false;
+                anim.SetBool("JumpHeld", false);
+                anim.ResetTrigger("JumpPressed");
+            }
+            #endregion
+            #region Attack Button - LeftMouse
+            if (Input.GetButton(leftMouse))
+            {
+                HoldingAttack();
+            }
             if (Input.GetButtonDown(leftMouse))
             {
                 anim.SetTrigger("AttackPressed");
             }
-                if (Input.GetButtonUp(leftMouse))
-                {
-                    isHoldingAttack = false;
-                    anim.SetBool("AttackHeld", false);
-                    anim.ResetTrigger("AttackPressed");
-                }
-        #endregion
-        #region Block Button - RightMouse
-
-        if (Input.GetButtonDown(rightMouse))
-        {
-            // Only start blocking if player has enough stamina to block for one second or more
-            if (stamina.stamina > stamina.drainPerSecond)
+            if (Input.GetButtonUp(leftMouse))
             {
-                stamina.usingStamina = true;
-                anim.SetTrigger("BlockPressed");
-                HoldingBlock();
+                isHoldingAttack = false;
+                anim.SetBool("AttackHeld", false);
+                anim.ResetTrigger("AttackPressed");
             }
-        }
-        /*
-        else if (Input.GetButton(rightMouse) && stamina.stamina > 0)
-        {
-            HoldingBlock();
-        }*/
-        if (Input.GetButtonUp(rightMouse))
-        {
-            StopBlocking();
-        }
-        if(stamina.stamina <= 0 && isHoldingBlock)
-        {
-            anim.SetBool("ShieldBreak", true);
-            StopBlocking();
-        }
-        #endregion
-        #region Kick Button - MiddleMouse
-        if (Input.GetButton(middleMouse))
-        {
-            HoldingKick();
-        }
+            #endregion
+            #region Block Button - RightMouse
+
+            if (Input.GetButtonDown(rightMouse))
+            {
+                // Only start blocking if player has enough stamina to block for one second or more
+                if (stamina.stamina > stamina.drainPerSecond)
+                {
+                    stamina.usingStamina = true;
+                    anim.SetTrigger("BlockPressed");
+                    HoldingBlock();
+                }
+            }
+            /*
+            else if (Input.GetButton(rightMouse) && stamina.stamina > 0)
+            {
+                HoldingBlock();
+            }*/
+            if (Input.GetButtonUp(rightMouse))
+            {
+                StopBlocking();
+            }
+            if (stamina.stamina <= 0 && isHoldingBlock)
+            {
+                anim.SetBool("ShieldBreak", true);
+                StopBlocking();
+            }
+            #endregion
+            #region Kick Button - MiddleMouse
+            if (Input.GetButton(middleMouse))
+            {
+                HoldingKick();
+            }
             if (Input.GetButtonDown(middleMouse))
             {
                 anim.SetTrigger("KickPressed");
             }
-                if (Input.GetButtonUp(middleMouse))
-                {
-                    isHoldingKick = false;
-                    anim.SetBool("KickHeld", false);
-                    anim.ResetTrigger("KickPressed");
-                }
-        #endregion
-        #region Sprint Button - LeftShift
-        if (Input.GetButton(sprintButton))
-        {
-            HoldingSprint();
-        }
+            if (Input.GetButtonUp(middleMouse))
+            {
+                isHoldingKick = false;
+                anim.SetBool("KickHeld", false);
+                anim.ResetTrigger("KickPressed");
+            }
+            #endregion
+            #region Sprint Button - LeftShift
+            if (Input.GetButton(sprintButton))
+            {
+                HoldingSprint();
+            }
             if (Input.GetButtonDown(sprintButton))
             {
                 anim.SetTrigger("SprintPressed");
             }
-                if (Input.GetButtonUp(sprintButton))
-                {
-                    isHoldingSprint = false;
-                    anim.SetBool("SprintHeld", false);
-                    anim.ResetTrigger("SprintPressed");
-                }
-        #endregion
+            if (Input.GetButtonUp(sprintButton))
+            {
+                isHoldingSprint = false;
+                anim.SetBool("SprintHeld", false);
+                anim.ResetTrigger("SprintPressed");
+            }
+            #endregion
+        }
+        // Listens for player Inputs Pressed or Held, and lets the Animator know to Trigger if only pressed
+
     }
 
     // Methods for handling Held Button inputs and letting the Animator know its been Held

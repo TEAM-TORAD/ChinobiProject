@@ -52,7 +52,7 @@ public class WheelTurner : MonoBehaviour
             if(!hintPrinted)
             {
                 hintPrinted = true;
-                Economy.economy.InstantiateServerMessage("Use 'Q' or 'E' to rotate the wheel!");
+                Economy.economy.InstantiateServerMessage("Use 'Q' or 'E' to rotate the wheel!", true);
             }
             if (!locked)
             {
@@ -70,7 +70,7 @@ public class WheelTurner : MonoBehaviour
             else
             {
                 // Wheel is locked
-                if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) Economy.economy.InstantiateServerMessage("This wheel is locked!");
+                if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) Economy.economy.InstantiateServerMessage("This wheel is locked!", true);
             }
         }
         newAngle += angleChange;

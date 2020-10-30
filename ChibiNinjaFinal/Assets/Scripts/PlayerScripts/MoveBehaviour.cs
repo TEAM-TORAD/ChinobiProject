@@ -3,6 +3,7 @@
 // MoveBehaviour inherits from GenericBehaviour. This class corresponds to basic walk and run behaviour, it is the default behaviour.
 public class MoveBehaviour : GenericBehaviour
 {
+	private PlayerInputs playerInputs;
 	public float walkSpeed = 0.15f;                 // Default walk speed.
 	public float runSpeed = 1.0f;                   // Default run speed.
 	public float sprintSpeed = 2.0f;                // Default sprint speed.
@@ -24,6 +25,7 @@ public class MoveBehaviour : GenericBehaviour
 		jumpBool = Animator.StringToHash("Jump");
 		groundedBool = Animator.StringToHash("Grounded");
 		behaviourManager.GetAnim.SetBool(groundedBool, true);
+		playerInputs = GetComponent<PlayerInputs>();
 
 		// Subscribe and register this behaviour as the default behaviour.
 		behaviourManager.SubscribeBehaviour(this);
@@ -37,7 +39,7 @@ public class MoveBehaviour : GenericBehaviour
 	{
 		
 		// Get jump input.
-		if (!jump && Input.GetButtonDown(jumpButton) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !overrideJump)
+		if (!jump && Input.GetButtonDown(jumpButton) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding() && !overrideJump && !playerInputs.conversationOpen)
 		{
 			jump = true;
 		}
@@ -46,11 +48,18 @@ public class MoveBehaviour : GenericBehaviour
 	// LocalFixedUpdate overrides the virtual function of the base class.
 	public override void LocalFixedUpdate()
 	{
-		// Call the basic movement manager.
-		MovementManagement(behaviourManager.GetH, behaviourManager.GetV);
+		if (!playerInputs.conversationOpen)
+		{
+			// Call the basic movement manager.
+			MovementManagement(behaviourManager.GetH, behaviourManager.GetV);
 
-		// Call the jump manager.
-		JumpManagement();
+			// Call the jump manager.
+			JumpManagement();
+		}
+		else
+		{ // Call the basic movement manager.
+			MovementManagement(0, 0);
+		}
 	}
 
 	// Execute the idle and walk/run jump movements.

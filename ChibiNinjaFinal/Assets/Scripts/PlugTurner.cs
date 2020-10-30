@@ -29,7 +29,7 @@ public class PlugTurner : MonoBehaviour
         if (!hintPrinted && CheckAngle())
         {
             hintPrinted = true;
-            Economy.economy.InstantiateServerMessage("Press 'E' to pick up the Key!");
+            Economy.economy.InstantiateServerMessage("Press 'E' to pick up the Key!", true);
         }
         if (!pickedUp && canInteract)
         {

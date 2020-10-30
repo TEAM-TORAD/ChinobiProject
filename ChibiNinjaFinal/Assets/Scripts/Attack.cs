@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
                     if (other.transform.GetComponent<Health>() != null) other.transform.GetComponent<Health>().TakeDamage(attackValue);
                     else Debug.LogError("No health script on " + other.transform.name + ".");
                 }
-                else print(other.transform.name + " with tag " + other.transform.tag + " with parent " + other.transform.parent.name);
+                else print(other.transform.name + " with tag " + other.transform.tag);
             }
             else
             {

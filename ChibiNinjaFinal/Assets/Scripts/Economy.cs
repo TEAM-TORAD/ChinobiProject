@@ -47,7 +47,8 @@ public class Economy : MonoBehaviour
     private float currentStrength, updateValue;
 
 
-    public GameObject serverMessagePrefab;
+    public GameObject messageRegular;
+    public GameObject messageHint;
 
     public GameObject itemPrefab;
     public Item[] items;
@@ -120,7 +121,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(serverMessagePrefab, serverMessagePanel);
+                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
                     newText.GetComponent<ServerMessageScript>().SetServerText("Health incresed with " + _item.effect.effectValue.ToString() + "!");
                 }
             }
@@ -134,7 +135,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + "."); 
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(serverMessagePrefab, serverMessagePanel);
+                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
                     newText.GetComponent<ServerMessageScript>().SetServerText("Max health incresed with " + _item.effect.effectValue.ToString() + "!");
                 }
             }
@@ -148,7 +149,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(serverMessagePrefab, serverMessagePanel);
+                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
                     newText.GetComponent<ServerMessageScript>().SetServerText("Stamina incresed with " + _item.effect.effectValue.ToString() + "!");
                 }
             }
@@ -162,7 +163,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(serverMessagePrefab, serverMessagePanel);
+                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
                     newText.GetComponent<ServerMessageScript>().SetServerText("Max stamina incresed with " + _item.effect.effectValue.ToString() + "!");
                 }
             }
@@ -172,16 +173,39 @@ public class Economy : MonoBehaviour
             // You don't have enough gold.
             if(serverMessagePanel != null)
             {
-                GameObject newText = Instantiate(serverMessagePrefab, serverMessagePanel);
+                GameObject newText = Instantiate(messageRegular, serverMessagePanel);
                 newText.GetComponent<ServerMessageScript>().SetServerText("You don't have enough gold to buy this item!");
             }
             print("Not enough gold!");
         }
     }
-    public void InstantiateServerMessage(string message)
+    public void DestroyOldMessages()
     {
-        GameObject newText = Instantiate(serverMessagePrefab, serverMessagePanel);
-        newText.GetComponent<ServerMessageScript>().SetServerText(message);
+        foreach (Transform t in serverMessagePanel)
+        {
+            if (!t.GetComponent<ServerMessageScript>().autoDestroy)
+            {
+                Destroy(t.gameObject);
+            }
+        }
+    }
+    public void InstantiateServerMessage(string message, bool destroy)
+    {
+        
+        if(destroy)
+        {
+            GameObject newText = Instantiate(messageRegular, serverMessagePanel);
+            ServerMessageScript SMS = newText.GetComponent<ServerMessageScript>();
+            SMS.SetServerText(message);
+            SMS.autoDestroy = true;
+        }
+        else
+        {
+            GameObject newText = Instantiate(messageRegular, serverMessagePanel);
+            ServerMessageScript SMS = newText.GetComponent<ServerMessageScript>();
+            SMS.SetServerText(message);
+            SMS.autoDestroy = false;
+        }
     }
     private void PopulateStore()
     {

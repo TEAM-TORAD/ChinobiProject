@@ -29,7 +29,7 @@ public class LeverTurner : MonoBehaviour
             if(CheckAngle())
             {
                 hintPrinted = true;
-                Economy.economy.InstantiateServerMessage("Use 'E' to push the handle.");
+                Economy.economy.InstantiateServerMessage("Use 'E' to push the handle.", true);
             }
         }
         if(Input.GetKeyDown(KeyCode.E))
@@ -48,7 +48,7 @@ public class LeverTurner : MonoBehaviour
                     else
                     {
                         //Lever is still locked
-                        Economy.economy.InstantiateServerMessage("This lever is locked!");
+                        Economy.economy.InstantiateServerMessage("This lever is locked!", true);
                     }
                 }
                 else ChangeLever();
@@ -72,7 +72,7 @@ public class LeverTurner : MonoBehaviour
             }
             else
             {
-                Economy.economy.InstantiateServerMessage("This lever is locked!");
+                Economy.economy.InstantiateServerMessage("This lever is locked!", true);
             }
         }
     }

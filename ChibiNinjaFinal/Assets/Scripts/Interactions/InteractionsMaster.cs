@@ -37,8 +37,25 @@ public class InteractionsMaster : MonoBehaviour
     {
         if (other.CompareTag("Player")) playerClose = false;
     }
+    public void SetConversation(string name)
+    {
+        bool matchFound = false;
+        int i = 0;
+        foreach(Mission m in missions)
+        {
+            if(name == m.missionName)
+            {
+                activeMissionIndex = i;
+                matchFound = true;
+                break;
+            }
+            ++i;
+        }
+        if (!matchFound) Debug.LogError("No matching mission-name found!");
+    }
     void StartACtiveConversation()
     {
         ConversationManager.Instance.StartConversation(missions[activeMissionIndex].conversation);
+
     }
 }

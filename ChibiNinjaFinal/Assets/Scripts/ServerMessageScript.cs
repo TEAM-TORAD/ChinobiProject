@@ -8,6 +8,7 @@ public class ServerMessageScript : MonoBehaviour
 {
     [HideInInspector]
     public string message;
+    public bool autoDestroy = true;
     public float dissolveAfter = 2.0f;
     public float destroyAfter = 3.0f;
     private float timer;
@@ -18,30 +19,38 @@ public class ServerMessageScript : MonoBehaviour
     {
         image = GetComponent<Image>();
         TMP = transform.GetComponentInChildren<TextMeshProUGUI>();
-        if (destroyAfter <= 0) print("The server message won't be destroyed since destroyAfter is set to " + destroyAfter + ".");
+        if(autoDestroy)
+        {
+            if (destroyAfter <= 0) print("The server message won't be destroyed since destroyAfter is set to " + destroyAfter + ".");
 
-        if (destroyAfter > 0 &&  dissolveAfter > destroyAfter) dissolveAfter = destroyAfter;
+            if (destroyAfter > 0 && dissolveAfter > destroyAfter) dissolveAfter = destroyAfter;
+        }
+        
 
     }
     
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if(timer >= dissolveAfter)
+        if(autoDestroy)
         {
-            Color newColorBG = image.color;
-            newColorBG.a -= (1 / (destroyAfter - dissolveAfter)) * Time.deltaTime;
-            image.color = newColorBG;
+            timer += Time.deltaTime;
+            if (timer >= dissolveAfter)
+            {
+                Color newColorBG = image.color;
+                newColorBG.a -= (1 / (destroyAfter - dissolveAfter)) * Time.deltaTime;
+                image.color = newColorBG;
 
-            Color newColorText = TMP.color;
-            newColorText.a -= (1 / (destroyAfter - dissolveAfter)) * Time.deltaTime;
-            TMP.color = newColorText;
+                Color newColorText = TMP.color;
+                newColorText.a -= (1 / (destroyAfter - dissolveAfter)) * Time.deltaTime;
+                TMP.color = newColorText;
+            }
+            if (destroyAfter > 0 && timer >= destroyAfter)
+            {
+                Destroy(transform.gameObject);
+            }
         }
-        if(destroyAfter > 0 &&  timer >= destroyAfter)
-        {
-            Destroy(transform.gameObject);
-        }
+        
     }
     public void SetServerText(string _text)
     {

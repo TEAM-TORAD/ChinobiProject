@@ -7,6 +7,9 @@ namespace DialogueEditor
 {
     public class ConversationManager : MonoBehaviour
     {
+        #region Custom variables
+        private PlayerInputs playerInputs;
+        #endregion
         private const float TRANSITION_TIME = 0.2f; // Transition time for fades
 
         public static ConversationManager Instance { get; private set; }
@@ -97,6 +100,7 @@ namespace DialogueEditor
             Instance = this;
 
             m_uiOptions = new List<UIConversationButton>();
+            playerInputs = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputs>();
         }
 
         private void Start()
@@ -347,6 +351,7 @@ namespace DialogueEditor
             ClearOptions();
             m_pendingDialogue = m_conversation.Root;
             SetState(eState.TransitioningDialogueBoxOn);
+            playerInputs.conversationOpen = true;
         }
 
         public void EndConversation()
@@ -355,6 +360,7 @@ namespace DialogueEditor
 
             if (OnConversationEnded != null)
                 OnConversationEnded.Invoke();
+            playerInputs.conversationOpen = false;
         }
 
 
