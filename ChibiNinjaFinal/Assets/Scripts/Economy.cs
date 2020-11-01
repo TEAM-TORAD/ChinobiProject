@@ -21,7 +21,7 @@ public class ItemEffects
     public int effectValue;
     public ItemEffectTarget target;
 }
-public enum ItemEffectTarget 
+public enum ItemEffectTarget
 {
     MAX_HEALTH,
     MAX_STAMINA,
@@ -39,7 +39,8 @@ public class Economy : MonoBehaviour
     public GameObject inventoryGoldPrefab;
     public int gold;
     Transform goldPanel;
-    Transform storePanel;
+    [HideInInspector]
+    public Transform storePanel;
     Transform serverMessagePanel;
     TextMeshProUGUI goldText;
     public float glowTimePeak = 1.5f;
@@ -70,7 +71,7 @@ public class Economy : MonoBehaviour
         serverMessagePanel = GameObject.FindGameObjectWithTag("MessagePanel").transform;
 
         storePanel = GameObject.FindGameObjectWithTag("StorePanel").transform;
-        PopulateStore();
+        //PopulateStore();
         storePanel.gameObject.SetActive(false);
 
 
@@ -82,7 +83,7 @@ public class Economy : MonoBehaviour
             currentStrength += Time.deltaTime * updateValue;
             SetGlowStrength(currentStrength);
         }
-        if(Input.GetKeyDown(storeButton))
+        if (Input.GetKeyDown(storeButton))
         {
             if (storePanel.gameObject.activeSelf)
             {
@@ -98,12 +99,12 @@ public class Economy : MonoBehaviour
     }
     public void PurchaseItem(Item _item)
     {
-        if(gold >= _item.price)
+        if (gold >= _item.price)
         {
             // You can afford the item
 
             // Add health
-            if(_item.effect.target == ItemEffectTarget.HEALTH)
+            if (_item.effect.target == ItemEffectTarget.HEALTH)
             {
                 Health playerHealth = player.GetComponent<Health>();
                 playerHealth.AddHealth(_item.effect.effectValue);
@@ -117,7 +118,7 @@ public class Economy : MonoBehaviour
                 }
             }
             // Add max health
-            else if(_item.effect.target == ItemEffectTarget.MAX_HEALTH)
+            else if (_item.effect.target == ItemEffectTarget.MAX_HEALTH)
             {
                 Health playerHealth = player.GetComponent<Health>();
                 playerHealth.ResetHealth(playerHealth.health, playerHealth.maxHealth + _item.effect.effectValue);
@@ -145,7 +146,7 @@ public class Economy : MonoBehaviour
                 }
             }
             // Add max stamina
-            else if(_item.effect.target == ItemEffectTarget.MAX_STAMINA)
+            else if (_item.effect.target == ItemEffectTarget.MAX_STAMINA)
             {
                 Stamina playerStamina = player.GetComponent<Stamina>();
                 playerStamina.ResetStamina(playerStamina.stamina, playerStamina.maxStamina + _item.effect.effectValue);
@@ -162,7 +163,7 @@ public class Economy : MonoBehaviour
         else
         {
             // You don't have enough gold.
-            if(serverMessagePanel != null)
+            if (serverMessagePanel != null)
             {
                 GameObject newText = Instantiate(messageRegular, serverMessagePanel);
                 newText.GetComponent<ServerMessageScript>().SetServerText("You don't have enough gold to buy this item!");
@@ -182,8 +183,8 @@ public class Economy : MonoBehaviour
     }
     public void InstantiateServerMessage(string message, bool destroy)
     {
-        
-        if(destroy)
+
+        if (destroy)
         {
             GameObject newText = Instantiate(messageRegular, serverMessagePanel);
             ServerMessageScript SMS = newText.GetComponent<ServerMessageScript>();
@@ -198,12 +199,18 @@ public class Economy : MonoBehaviour
             SMS.autoDestroy = false;
         }
     }
-    private void PopulateStore()
+    public void PopulateStore(Item[] _items)
     {
         if (storePanel != null)
         {
             Transform content = storePanel.transform.Find("Items Panel").Find("Content").transform;
-            foreach (Item i in items)
+            //Destroy old content
+            foreach (Transform t in content)
+            {
+                Destroy(t.gameObject);
+            }
+            // Add new content
+            foreach (Item i in _items)
             {
                 GameObject newItem = Instantiate(itemPrefab, content);
                 newItem.transform.Find("Image").GetComponent<Image>().sprite = i.image;
@@ -236,8 +243,8 @@ public class Economy : MonoBehaviour
     }
     IEnumerator GlowTextCR()
     {
-        
-        yield return new  WaitForSeconds(glowTimePeak);
+
+        yield return new WaitForSeconds(glowTimePeak);
         updateValue = -1 / glowTimePeak;
         yield return new WaitForSeconds(glowTimePeak);
         updateGlow = false;

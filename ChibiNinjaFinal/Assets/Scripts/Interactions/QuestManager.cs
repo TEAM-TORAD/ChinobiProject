@@ -5,24 +5,24 @@ using DialogueEditor;
 
 public class QuestManager : MonoBehaviour
 {
+    public static QuestManager instance = null;
     public DummyHitDetection dummy;
     public InteractionsMaster interactionsMaster;
     public bool attackTutorialStarted, waspKillerStarted;
 
-
-    private void Start()
+    private void Awake()
     {
-        //dummyText = GameObject.FindGameObjectWithTag("DummyText").transform;
-        //dummyText.gameObject.SetActive(false);
+        if (instance == null) instance = this;
+        else Destroy(this);
     }
     private void Update()
     {
 
-      
+
     }
     public void StartAttackTutorial()
     {
-        if(!attackTutorialStarted)
+        if (!attackTutorialStarted)
         {
             attackTutorialStarted = true;
             dummy.StartTutorial();
@@ -34,11 +34,11 @@ public class QuestManager : MonoBehaviour
     }
     public void StartWaspKiller()
     {
-        if(!waspKillerStarted)
+        if (!waspKillerStarted)
         {
             waspKillerStarted = true;
             ClearMessages();
-            Economy.economy.InstantiateServerMessage("Go and destroy the wasps-nest in the village!", false);
+            Economy.economy.InstantiateServerMessage("Destroy the wasps-nest in the village!", false);
             interactionsMaster.SetConversation("Wasp Accepted");
         }
     }

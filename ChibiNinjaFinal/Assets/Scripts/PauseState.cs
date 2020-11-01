@@ -9,6 +9,7 @@ public class PauseState : MonoBehaviour
     public GameObject pauseUI; // EGO containing the whole pause UI
     public GameObject pauseMenu; // EGO containing the pause UI
     public GameObject optionsMenu; // EGO containing the options UI
+    public GameObject deadMenu;
 
     public bool pauseMenuActive;
 
@@ -23,6 +24,7 @@ public class PauseState : MonoBehaviour
         pauseUI.SetActive(false);
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
+        deadMenu.SetActive(false);
         pauseMenuActive = false;
 
         playerInputs = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputs>();
@@ -31,8 +33,15 @@ public class PauseState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(CursorScript.instance.playerDead)
+        {
+            pauseUI.SetActive(true);
+            deadMenu.SetActive(true);
+            optionsMenu.SetActive(false);
+            pauseMenu.SetActive(false);
+        }
         // what happens when escape button is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             // resumes game if pause menu is active
             if (pauseMenuActive)
@@ -56,6 +65,7 @@ public class PauseState : MonoBehaviour
         pauseMenuActive = false;
         playerInputs.menuOpen = false;
         CursorScript.instance.menuOpen = false;
+        AudioListener.pause = false;
 
     }
     public void GamePaused()
@@ -67,10 +77,19 @@ public class PauseState : MonoBehaviour
         pauseMenuActive = true;
         playerInputs.menuOpen = true;
         CursorScript.instance.menuOpen = true;
+        AudioListener.pause = true;
+    }
+    public void ReloadLevel()
+    {
+        string thisScene = SceneManager.GetActiveScene().name;
+        Time.timeScale = 1.0f;
+        AudioListener.pause = false;
+        SceneManager.LoadScene(thisScene);
     }
     public void LoadMainMenu()
     {
         Time.timeScale = 1.0f; // resumes time  when leaving game scene to menu
+        AudioListener.pause = false;
         SceneManager.LoadScene("NewMainMenu");
     }
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class AimBehaviourOverride : StateMachineBehaviour
@@ -10,7 +9,7 @@ public class AimBehaviourOverride : StateMachineBehaviour
         animator.gameObject.GetComponent<AimBehaviourBasic>().AimOn();
         if (Input.GetButtonUp("Fire1"))
         {
-            animator.gameObject.GetComponent<NinjaStarShoot>().ThrowNinjaStar();          
+            animator.transform.GetComponent<NinjaStarShoot>().ThrowNinjaStar();          
         }
     } 
 }

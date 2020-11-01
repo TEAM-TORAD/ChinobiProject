@@ -14,12 +14,16 @@ public class DummyHitDetection : MonoBehaviour
     private Animator playerAnimator;
     private float timer;
     private string currentHint = "";
+    private ParticleSystem PS;
+    private Transform player;
     private void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        PS = transform.parent.Find("Particle System").GetComponent<ParticleSystem>();
         playerInputs = player.GetComponent<PlayerInputs>();
         playerAnimator = player.GetComponent<Animator>();
         hits = 0;
+
     }
     private void Update()
     {
@@ -65,7 +69,7 @@ public class DummyHitDetection : MonoBehaviour
                     fifthHint = true;
                     currentHint = "Hold the right mouse button while standing still to block.";
                     Economy.economy.DestroyOldMessages();
-                    Economy.economy.InstantiateServerMessage("Just like Jet Li. You can block as well.", true);
+                    Economy.economy.InstantiateServerMessage("You are just like Jet Li!", true);
                     Economy.economy.InstantiateServerMessage(currentHint, false);
                 }
             }
@@ -86,12 +90,28 @@ public class DummyHitDetection : MonoBehaviour
                 }
             }
         }
+        else if(!playerClose && started && !complete && !CursorScript.instance.conversationOpen)
+        {
+            if(Input.GetButtonDown(playerInputs.leftMouse) || Input.GetButtonDown(playerInputs.middleMouse) || Input.GetButtonDown(playerInputs.rightMouse))
+            {
+                Economy.economy.InstantiateServerMessage("Get closer to the dummy!", true);
+            }
+        }
     }
     private void OnCollisionEnter(Collision c)
     {
-        if(c.transform.CompareTag("HitBox") && started)
+        
+        if (c.transform.CompareTag("HitBox") )
         {
-            ++hits;
+            // Set the rotation of the particle effect to face player
+            Vector3 newRot = PS.transform.rotation.eulerAngles;
+            newRot.y = player.rotation.eulerAngles.y;
+            newRot.y -= 180;
+            PS.transform.rotation = Quaternion.Euler(newRot);
+
+            PS.Play();
+
+            if(started) ++hits;
         }
     }
     private void OnTriggerEnter(Collider c)
@@ -113,7 +133,7 @@ public class DummyHitDetection : MonoBehaviour
         if(c.CompareTag("Player"))
         {
             playerClose = false;
-            if (started && !complete) Economy.economy.InstantiateServerMessage("Where are you going? Training is not complete yet!", true);
+            if (started && !complete) Economy.economy.InstantiateServerMessage("Where are you going? Training isn't completed yet!", true);
         }
     }
 

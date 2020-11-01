@@ -19,7 +19,7 @@ public class InteractionsMaster : MonoBehaviour
 
     private void Update()
     {
-        if(playerClose && Input.GetKeyDown(KeyCode.E))
+        if (playerClose && Input.GetKeyDown(KeyCode.E))
         {
             StartACtiveConversation();
         }
@@ -31,6 +31,7 @@ public class InteractionsMaster : MonoBehaviour
         {
             playerClose = true;
             if (autoStartConversation) StartACtiveConversation();
+            else Economy.economy.InstantiateServerMessage("Press 'E' to start conversation", true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -41,9 +42,9 @@ public class InteractionsMaster : MonoBehaviour
     {
         bool matchFound = false;
         int i = 0;
-        foreach(Mission m in missions)
+        foreach (Mission m in missions)
         {
-            if(name == m.missionName)
+            if (name == m.missionName)
             {
                 activeMissionIndex = i;
                 matchFound = true;

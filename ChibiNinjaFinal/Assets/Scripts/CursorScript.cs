@@ -6,7 +6,7 @@ public class CursorScript : MonoBehaviour
 {
     public static CursorScript instance = null;
     public bool cursorLocked;
-    public bool storeOpen, conversationOpen, menuOpen;
+    public bool storeOpen, conversationOpen, menuOpen, playerDead;
     // Start is called before the first frame update
     void Awake()
     {
@@ -18,7 +18,7 @@ public class CursorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(storeOpen || conversationOpen || menuOpen)
+        if(storeOpen || conversationOpen || menuOpen || playerDead)
         {
             if (cursorLocked) UnlockCursor();
         }

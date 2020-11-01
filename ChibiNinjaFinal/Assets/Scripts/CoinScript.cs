@@ -8,6 +8,7 @@ public class CoinScript : MonoBehaviour
     public float destroySecondsAferPickup = 2.0f;
     public ParticleSystem[] activeOnAwake;
     public ParticleSystem[] activeOnPickup;
+    public iTween.EaseType coinSpinEaseType = iTween.EaseType.linear;
     private bool pickedUp = false;
     Hashtable hash;
     Transform mesh;
@@ -64,7 +65,7 @@ public class CoinScript : MonoBehaviour
             "space", Space.World,
             "time", 2.0f,
             "amount", new Vector3(0.0f, 360.0f, 0.0f),
-            "easeType", iTween.EaseType.spring,
+            "easeType", coinSpinEaseType,
             "loopType", iTween.LoopType.none,
             "oncomplete", "RotationComplete",
             "oncompletetarget", transform.gameObject

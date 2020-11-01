@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     private Image healthImage, healthImageBG;
     private Color lerpedColor;
     public Color greyColor, redColor;
+    private bool alive = true;
 
     void Start()
     {
@@ -62,6 +63,12 @@ public class Health : MonoBehaviour
         }
     }
 
+    IEnumerator PauseGameAfterDying(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Time.timeScale = 0.0f;
+        AudioListener.pause = true;
+    }
     public void TakeDamage(int value)
     {
         health -= value;
@@ -71,22 +78,43 @@ public class Health : MonoBehaviour
             // Death effect
             if(transform.CompareTag("Player"))
             {
+                if(alive)
+                {
+                    CursorScript.instance.playerDead = true;
+                    // death animation
+                    Animator playerAnim = transform.GetComponent<Animator>();
+                    playerAnim.SetTrigger("Dying");
+                        AnimationClip[] clips = playerAnim.runtimeAnimatorController.animationClips;
+                        foreach (AnimationClip clip in clips)
+                        {
+                            switch (clip.name)
+                            {
+                            // Find the name of the dying animation (Name of the clip itself, not the state)
+                                case "Player Dying":
+                                    StartCoroutine(PauseGameAfterDying(clip.length));
+                                    break;
+                            }
+                        }
+                    alive = false;
 
+                    // Open dead-panel
+                }
             }
             if (transform.CompareTag("ExplodingNPC"))
             {
                 transform.GetComponent<ExplodingNPCController>().Die();
+                alive = false;
             }
             if(transform.CompareTag("WaspNPC"))
             {
-                //transform.GetComponentInChildren<Animator>().SetTrigger("Die");
                 transform.GetComponent<WaspNPCScript>().Die();
+                alive = false;
             }
         }
         else
         {
             // Take damage
-            Debug.Log(transform.name + " took " + value + " in damage.");
+            //Debug.Log(transform.name + " took " + value + " in damage.");
             
             if (transform.CompareTag("ExplodingNPC"))
             {
