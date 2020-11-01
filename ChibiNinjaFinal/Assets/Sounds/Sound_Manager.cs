@@ -6,11 +6,18 @@ public class Sound_Manager : MonoBehaviour
 {
     private AudioSource audioSource;
 
-    public AudioClip footSteps;
+    [SerializeField]
+    private AudioClip[] steps;
+
+    [SerializeField]
+    private AudioClip[] jumps;
+
+    [SerializeField]
+    private AudioClip[] attack_Screams;
+
     public AudioClip sword_1;
     public AudioClip sword_2;
     public AudioClip sword_3;
-    public AudioClip sword_302;
     public AudioClip kick_1;
     public AudioClip kick_2;
     public AudioClip kick_3;
@@ -19,16 +26,9 @@ public class Sound_Manager : MonoBehaviour
     public AudioClip bombExplode;
     public AudioClip waspBuzz;
     public AudioClip waspDeath;
-    public AudioClip jumping;
-    public AudioClip jumpingMoving;
-    public AudioClip jumpingAttack;
-    public AudioClip jumpKick;
-    public AudioClip jumpFrontFlip;
-    public AudioClip jumpHighroll;
     public AudioClip shield;
     public AudioClip shieldBreak;
     public AudioClip shieldBreak_Scream;
-    
     public AudioClip rolling;
     
     
@@ -41,14 +41,43 @@ public class Sound_Manager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Idle()
+    private AudioClip GetRandomClipSteps()
     {
-        audioSource.Stop();
+        return steps[UnityEngine.Random.Range(0, steps.Length)];
     }
 
     public void Steps()
     {
-        audioSource.PlayOneShot(footSteps);
+        AudioClip steps = GetRandomClipSteps();
+        audioSource.PlayOneShot(steps);
+    }
+
+    private AudioClip GetRandomClipJumps()
+    {
+        return jumps[UnityEngine.Random.Range(0, jumps.Length)];
+    }
+
+    public void Jumps()
+    {
+        AudioClip jumps = GetRandomClipJumps();
+        audioSource.PlayOneShot(jumps);
+    }
+
+    private AudioClip GetRandomClipAttack_Screams()
+    {
+        return attack_Screams[UnityEngine.Random.Range(0, attack_Screams.Length)];
+    }
+
+    public void AttackScreams()
+    {
+        AudioClip attack_Screams = GetRandomClipAttack_Screams();
+        audioSource.PlayOneShot(attack_Screams);
+    }
+
+
+    public void Idle()
+    {
+        audioSource.Stop();
     }
 
     public void Sword_1()
@@ -66,44 +95,9 @@ public class Sound_Manager : MonoBehaviour
         audioSource.PlayOneShot(sword_3);
     }
 
-    public void Sword_302()
-    {
-        audioSource.PlayOneShot(sword_302);
-    }
-
     public void Slide()
     {
         audioSource.PlayOneShot(slide);
-    }
-
-    public void Jumping()
-    {
-        audioSource.PlayOneShot(jumping);
-    }
-
-    public void JumpFrontFlip()
-    {
-        audioSource.PlayOneShot(jumpFrontFlip);
-    }
-
-    public void JumpHighroll()
-    {
-        audioSource.PlayOneShot(jumpHighroll);
-    }
-
-    public void JumpKick()
-    {
-        audioSource.PlayOneShot(jumpKick);
-    }
-
-    public void JumpingMoving()
-    {
-        audioSource.PlayOneShot(jumpingMoving);
-    }
-
-    public void JumpingAttack()
-    {
-        audioSource.PlayOneShot(jumpingAttack);
     }
 
     public void ShieldBreak()
