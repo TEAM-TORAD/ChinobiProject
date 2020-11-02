@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 428168}
   - component: {fileID: 3312580}
   - component: {fileID: 2373794}
+  - component: {fileID: 65992052784728770}
   m_Layer: 0
   m_Name: SM_Bld_Platform_Small_Legs_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &65992052784728770
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 483c74bfbe922ce4b84c1647e6d5bb78, type: 3}

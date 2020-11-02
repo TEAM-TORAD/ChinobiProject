@@ -77,7 +77,7 @@ public class ShopKeeperNPC : MonoBehaviour
     }
     public void OpenStore()
     {
-        Economy.economy.PopulateStore(items);
+        Economy.economy.PopulateStore(this);
         Economy.economy.storePanel.gameObject.SetActive(true);
         CursorScript.instance.storeOpen = true;
         ConversationManager.Instance.EndConversation();

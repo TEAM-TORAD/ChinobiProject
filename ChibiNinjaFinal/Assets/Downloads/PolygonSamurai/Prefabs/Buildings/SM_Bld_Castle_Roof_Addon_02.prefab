@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 422086}
   - component: {fileID: 3315524}
   - component: {fileID: 2331494}
+  - component: {fileID: -1965642695325062046}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Roof_Addon_02
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-1965642695325062046
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6e26c8013ca9bf242aca305e2d2e33f6, type: 3}

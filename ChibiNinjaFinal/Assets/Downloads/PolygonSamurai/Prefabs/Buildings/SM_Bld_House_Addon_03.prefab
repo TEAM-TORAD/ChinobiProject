@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 497146}
   - component: {fileID: 3378700}
   - component: {fileID: 2338026}
+  - component: {fileID: 6409468228304304858}
   m_Layer: 0
   m_Name: SM_Bld_House_Addon_03
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6409468228304304858
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100878}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d0f6326a3d8a0c649ae9f6d403ee7958, type: 3}

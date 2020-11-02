@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 497878}
   - component: {fileID: 3398366}
   - component: {fileID: 2399244}
+  - component: {fileID: 3809591978899474695}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Window_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3809591978899474695
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: dcd2f674d67110043a3f7bf088f91163, type: 3}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 475346}
   - component: {fileID: 3386442}
   - component: {fileID: 2356888}
+  - component: {fileID: 9103708694086790350}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Base_Small_Windows_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &9103708694086790350
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 2ea58930a3c94b4499d944ec24a5471b, type: 3}

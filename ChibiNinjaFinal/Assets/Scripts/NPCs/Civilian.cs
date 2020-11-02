@@ -22,7 +22,8 @@ public class Civilian : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        if (GetComponent<Animator>() != null) animator = GetComponent<Animator>();
+        else if (GetComponentInChildren<Animator>() != null) animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         RB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -115,7 +116,11 @@ public class Civilian : MonoBehaviour
 
         // Set animator based on the angle between the current rotation and the target rotation
         float angleToTarget = Vector3.Angle(targetDirection, transform.forward);
-        if (angleToTarget > 3) animator.SetFloat("Blend", 0.2f);
+        if (angleToTarget > 3)
+        {
+            animator.SetFloat("Blend", 0.2f);
+            print("angle to player greater than 3");
+        }
         else animator.SetFloat("Blend", 0.0f);
 
         // The step size is equal to speed times frame time.

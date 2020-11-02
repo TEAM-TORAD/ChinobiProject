@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PauseState : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class PauseState : MonoBehaviour
 
     public bool pauseMenuActive;
 
-    public AudioMixer audioMixer;
+    public AudioMixer audioMixerMusic;
 
     private PlayerInputs playerInputs;
+
+    public Slider BGMusicSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +66,6 @@ public class PauseState : MonoBehaviour
         optionsMenu.SetActive(false);
         Time.timeScale = 1.0f; // resumes the game speed
         pauseMenuActive = false;
-        playerInputs.menuOpen = false;
         CursorScript.instance.menuOpen = false;
         AudioListener.pause = false;
 
@@ -75,7 +77,6 @@ public class PauseState : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0.0f; // pause game speed
         pauseMenuActive = true;
-        playerInputs.menuOpen = true;
         CursorScript.instance.menuOpen = true;
         AudioListener.pause = true;
     }
@@ -93,9 +94,9 @@ public class PauseState : MonoBehaviour
         SceneManager.LoadScene("NewMainMenu");
     }
 
-    public void SetVolume(float volume)
+    public void SetVolume()
     {
-        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
-        Debug.Log(volume);
+        audioMixerMusic.SetFloat("BG Music", Mathf.Log10(BGMusicSlider.value) * 20);
+        print("volume set");
     }
 }

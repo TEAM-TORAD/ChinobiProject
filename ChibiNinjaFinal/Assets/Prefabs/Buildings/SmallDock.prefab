@@ -11259,25 +11259,9 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_IsSelectable: 1
-  m_SelectedFaces: d5000000dc000000
-  m_SelectedEdges:
-  - a: 852
-    b: 853
-  - a: 853
-    b: 854
-  - a: 854
-    b: 855
-  - a: 855
-    b: 852
-  - a: 881
-    b: 882
-  - a: 882
-    b: 880
-  - a: 880
-    b: 883
-  - a: 883
-    b: 881
-  m_SelectedVertices: 5603000054030000550300005703000070030000710300007203000073030000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!23 &588819394174545927
 MeshRenderer:
   m_ObjectHideFlags: 0

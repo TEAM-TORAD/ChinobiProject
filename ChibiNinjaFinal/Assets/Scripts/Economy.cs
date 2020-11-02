@@ -11,6 +11,7 @@ public class Item
     public string name;
     public string description;
     public int price;
+    public bool destroyOnPurchase = false;
     public Sprite image;
     public ItemEffects effect;
 }
@@ -53,6 +54,7 @@ public class Economy : MonoBehaviour
 
     public GameObject itemPrefab;
     public Item[] items;
+    private ShopKeeperNPC currentShopKeeper;
 
 
     private void Awake()
@@ -159,6 +161,26 @@ public class Economy : MonoBehaviour
                     newText.GetComponent<ServerMessageScript>().SetServerText("Max stamina incresed with " + _item.effect.effectValue.ToString() + "!");
                 }
             }
+            if(_item.destroyOnPurchase)
+            {
+                Transform content = storePanel.transform.Find("Items Panel").Find("Content").transform;
+                Item[] _items = currentShopKeeper.items;
+
+                // Create a new array of items without the one we are going to destroy
+                Item[] newArray = new Item[_items.Length - 1];
+                int i = 0;
+                foreach (Item it in _items)
+                {
+                    if(it != _item)
+                    {
+                        newArray[i] = it;
+                        ++i;
+                    }
+                }
+                currentShopKeeper.items = newArray;
+                //Repopulate the store with the new array
+                PopulateStore(currentShopKeeper);
+            }
         }
         else
         {
@@ -199,16 +221,18 @@ public class Economy : MonoBehaviour
             SMS.autoDestroy = false;
         }
     }
-    public void PopulateStore(Item[] _items)
+    public void PopulateStore(ShopKeeperNPC shopKeeper)
     {
         if (storePanel != null)
         {
+            currentShopKeeper = shopKeeper;
             Transform content = storePanel.transform.Find("Items Panel").Find("Content").transform;
             //Destroy old content
             foreach (Transform t in content)
             {
                 Destroy(t.gameObject);
             }
+            Item[] _items = shopKeeper.items;
             // Add new content
             foreach (Item i in _items)
             {

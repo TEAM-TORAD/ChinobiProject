@@ -15,8 +15,6 @@ public class PlayerInputs : MonoBehaviour
     #endregion
 
     #region Other
-    public bool conversationOpen = false, menuOpen = false;
-    private bool cursorLocked;
     #endregion
 
     // Bools for Holding Button States.
@@ -45,7 +43,6 @@ public class PlayerInputs : MonoBehaviour
     }
     private void Update()
     {
-        print("Cursor locked = " + CursorScript.instance.cursorLocked);
         if(CursorScript.instance.cursorLocked)
         {
             #region Jump Button - SpaceBar
