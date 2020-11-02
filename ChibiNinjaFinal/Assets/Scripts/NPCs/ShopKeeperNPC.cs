@@ -55,11 +55,11 @@ public class ShopKeeperNPC : MonoBehaviour
             playerClose = true;
             if(autoStartConversation)
             {
-                StartConversation();
+                if(!CursorScript.instance.storeOpen) StartConversation();
             }
             else
             {
-                Economy.economy.InstantiateServerMessage("Press 'E' to talk to the shop keeper.", true);
+                if(!CursorScript.instance.storeOpen) Economy.economy.InstantiateServerMessage("Press 'E' to talk to the shop keeper.", true);
             }
         }
     }
@@ -68,7 +68,7 @@ public class ShopKeeperNPC : MonoBehaviour
         if (c.CompareTag("Player"))
         {
             playerClose = false;
-            if (Economy.economy.storePanel.gameObject.activeSelf) CloseStore();
+            //if (Economy.economy.storePanel.gameObject.activeSelf) CloseStore();
         }
     }
     private void StartConversation()

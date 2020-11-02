@@ -56,14 +56,17 @@ public class Civilian : MonoBehaviour
                 {
                     if (!CursorScript.instance.conversationOpen)
                     {
-                        ConversationManager.Instance.StartConversation(conversation);
-                        CursorScript.instance.conversationOpen = true;
+                        if(conversation != null)
+                        {
+                            ConversationManager.Instance.StartConversation(conversation);
+                            CursorScript.instance.conversationOpen = true;
+                        }
                     }
                     else
                     {
                         ConversationManager.Instance.EndConversation();
                         CursorScript.instance.conversationOpen = false;
-                        Economy.economy.InstantiateServerMessage("Press 'E' to talk to Girl.", true);
+                        if(conversation != null) Economy.economy.InstantiateServerMessage("Press 'E' to start conversation.", true);
                     }
                 }
             }
