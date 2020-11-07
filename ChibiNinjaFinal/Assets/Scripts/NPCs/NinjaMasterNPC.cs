@@ -9,13 +9,13 @@ public class NinjaMasterNPC : MonoBehaviour
     private Rigidbody RB;
     private Animator animator;
     private Transform player;
-    public Transform passiveLookAt;
     public bool lookAtPlayer, passive = true;
-    public float rotationSpeed = 3.0f;
+    public float rotationSpeed = 90.0f;
     public float angleToTarget;
     // Start is called before the first frame update
     void Awake()
     {
+        if (transform.GetComponent<NPCInteraction>() != null) transform.GetComponent<NPCInteraction>().passive = passive;
         agent = GetComponent<NavMeshAgent>();
         RB = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -25,16 +25,9 @@ public class NinjaMasterNPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lookAtPlayer) {
-            LookAt(player);
-        }
-        else
+       if(!passive)
         {
-            if (passive)
-            {
-                if (passiveLookAt != null) LookAt(passiveLookAt);
-                else animator.SetFloat("Blend", 0.0f);
-            }
+
         }
     }
     private void LookAt(Transform target)
@@ -42,22 +35,23 @@ public class NinjaMasterNPC : MonoBehaviour
         // Determine which direction to rotate towards
         Vector3 targetDirection = target.position - transform.position;
 
-        // Set animator based on the angle between the current rotation and the target rotation
-        angleToTarget = Vector3.Angle(targetDirection, transform.forward);
-        if (angleToTarget > 2) animator.SetFloat("Blend", 0.3f);
-        else animator.SetFloat("Blend", 0.0f);
+        float angle = Vector3.SignedAngle(targetDirection, transform.forward, Vector3.up);
+        // Set animator based on the angle between the current; rotation and the target rotation
+        if (Mathf.Abs(angle) > 5)
+        {
+            float blendValue = Mathf.Lerp(animator.GetFloat("Blend"), 0.2f, 2 * Time.deltaTime);
+            animator.SetFloat("Blend", blendValue);
+            Vector3 newRot = transform.rotation.eulerAngles;
+            if (angle > 0) newRot.y -= Time.deltaTime * rotationSpeed;
+            else newRot.y += Time.deltaTime * rotationSpeed;
+            transform.rotation = Quaternion.Euler(newRot);
+        }
 
-        // The step size is equal to speed times frame time.
-        float singleStep = rotationSpeed * Time.deltaTime;
-
-        // Rotate the forward vector towards the target direction by one step
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-
-        // Draw a ray pointing at our target in
-        Debug.DrawRay(transform.position, newDirection, Color.red);
-
-        // Calculate a rotation a step closer to the target and applies rotation to this object
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        else
+        {
+            float blendValue = Mathf.Lerp(animator.GetFloat("Blend"), 0.0f, 2* Time.deltaTime);
+            animator.SetFloat("Blend",blendValue);
+        }
     }
     private void OnTriggerEnter(Collider c)
     {

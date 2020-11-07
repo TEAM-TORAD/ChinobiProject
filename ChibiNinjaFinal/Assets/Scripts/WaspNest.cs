@@ -14,7 +14,7 @@ public class WaspNest : MonoBehaviour
     public Transform[] patrolPoints;
     private ParticleSystem PS;
 
-    public InteractionsMaster interactionsMaster;
+    public NPCInteraction interactionMaster;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +69,7 @@ public class WaspNest : MonoBehaviour
                     t.parent = null;
                 }
                 Destroy(transform.parent.gameObject);
-                interactionsMaster.SetConversation("Wasp Completed");
+                interactionMaster.SetConversation("Waspnest Completed");
             }
         }
     }

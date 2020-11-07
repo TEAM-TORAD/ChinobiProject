@@ -6,17 +6,16 @@ using DialogueEditor;
 
 public class Civilian : MonoBehaviour
 {
-    public float rotationSpeed = 4.0f;
+    public float rotationSpeed = 120.0f;
     public float walkSpeed = 2, runSpeed = 5, patrolPointReachedDistance = 0.7f;
     public NPCConversation conversation;
-    public bool passive = true, autoStartConversation = true;
+    public bool passive = true;
     public Transform[] patrolPoints;
     private bool playerClose, fleeing;
     private Animator animator;
     private Transform player;
     private NavMeshAgent agent;
     private Rigidbody RB;
-    private Quaternion startRotation;
     public bool overrideRun = false;
 
     // Start is called before the first frame update
@@ -27,8 +26,8 @@ public class Civilian : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         RB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        startRotation = transform.rotation;
-        if(!passive)
+        if (transform.GetComponent<NPCInteraction>() != null) transform.GetComponent<NPCInteraction>().passive = passive;
+        if (!passive)
         {
             if (patrolPoints.Length > 0)
             {
@@ -37,8 +36,9 @@ public class Civilian : MonoBehaviour
             }
             else
             {
-                passive = true;
-                Debug.LogError(transform.name + " is set to not be passive, but has no patrol points to go to. Setting as passive.");
+                passive = true; 
+                if (transform.GetComponent<NPCInteraction>() != null) transform.GetComponent<NPCInteraction>().passive = true;
+                Debug.LogError(transform.name + " is set to NOT be passive, but it doesn't have any patrol points to go to. Passive bool will be set to true to avoid breaking the game.");
             }
         }
         
@@ -47,36 +47,7 @@ public class Civilian : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(passive)
-        {
-            if(playerClose)
-            {
-                LookAt(player);
-                if(Input.GetKeyDown(KeyCode.E))
-                {
-                    if (!CursorScript.instance.conversationOpen)
-                    {
-                        if(conversation != null)
-                        {
-                            ConversationManager.Instance.StartConversation(conversation);
-                            CursorScript.instance.conversationOpen = true;
-                        }
-                    }
-                    else
-                    {
-                        ConversationManager.Instance.EndConversation();
-                        CursorScript.instance.conversationOpen = false;
-                        if(conversation != null) Economy.economy.InstantiateServerMessage("Press 'E' to start conversation.", true);
-                    }
-                }
-            }
-            else
-            {
-                // Rotate towards the rotation the NPC had when the game started
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, startRotation, rotationSpeed * 10 * Time.deltaTime);
-            }
-        }
-        else
+        if(!passive)
         {
             if(fleeing)
             {
@@ -111,66 +82,10 @@ public class Civilian : MonoBehaviour
             return returnValue;
         }
     }
-    private void LookAt(Transform target)
-    {
-        // Determine which direction to rotate towards
-        Vector3 targetDirection = target.position - transform.position;
-
-
-        // Set animator based on the angle between the current rotation and the target rotation
-        float angleToTarget = Vector3.Angle(targetDirection, transform.forward);
-        if (angleToTarget > 3)
-        {
-            animator.SetFloat("Blend", 0.2f);
-            print("angle to player greater than 3");
-        }
-        else animator.SetFloat("Blend", 0.0f);
-
-        // The step size is equal to speed times frame time.
-        float singleStep = rotationSpeed * Time.deltaTime;
-
-        // Rotate the forward vector towards the target direction by one step
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-
-        // Draw a ray pointing at our target in
-        Debug.DrawRay(transform.position, newDirection, Color.red);
-
-        // Calculate a rotation a step closer to the target and applies rotation to this object
-        transform.rotation = Quaternion.LookRotation(newDirection);
-    }
+    
     float DistanceToAgentTarget()
     {
         return Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(agent.destination.x, agent.destination.z));
     }
-    private void OnTriggerEnter(Collider c)
-    {
-        if(c.CompareTag("Player"))
-        {
-            playerClose = true;
-            if(passive)
-            {
-                if(autoStartConversation && conversation != null && !CursorScript.instance.conversationOpen)
-                {
-                    ConversationManager.Instance.StartConversation(conversation);
-                    CursorScript.instance.conversationOpen = true;
-                }
-                else if(!autoStartConversation && conversation != null && !CursorScript.instance.conversationOpen)
-                {
-                    Economy.economy.InstantiateServerMessage("Press 'E' to talk to Girl.", true);
-                }
-            }
-
-            //play giggle sound
-
-        }
-    }
-    private void OnTriggerExit(Collider c)
-    {
-        if (c.CompareTag("Player"))
-        {
-            playerClose = false;
-
-
-        }
-    }
+    
 }

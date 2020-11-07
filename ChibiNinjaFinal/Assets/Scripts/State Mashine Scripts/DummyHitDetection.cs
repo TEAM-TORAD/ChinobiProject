@@ -7,7 +7,7 @@ using UnityEngine;
 public class DummyHitDetection : MonoBehaviour
 {
     public float hits;
-    public InteractionsMaster interactionsMaster;
+    public NPCInteraction interactionsMaster;
     private bool playerClose;
     public bool started, firstHint, secondHint, thirdHint, fourthHint, fifthHint, complete;
     private PlayerInputs playerInputs;
@@ -55,7 +55,6 @@ public class DummyHitDetection : MonoBehaviour
                 {
                     fourthHint = true;
                     currentHint = "Hold the middle-mouse-button to do a kick-combo.";
-                    Economy.economy.InstantiateServerMessage("You're a champ!", true);
                     Economy.economy.DestroyOldMessages();
                     Economy.economy.InstantiateServerMessage(currentHint, false);
                 }
@@ -86,7 +85,7 @@ public class DummyHitDetection : MonoBehaviour
                     Economy.economy.InstantiateServerMessage(currentHint, false);
 
                     // Set new conversation on the master
-                    interactionsMaster.SetConversation("Dummy completed");
+                    interactionsMaster.SetConversation("Tutorial Completed");
                 }
             }
         }

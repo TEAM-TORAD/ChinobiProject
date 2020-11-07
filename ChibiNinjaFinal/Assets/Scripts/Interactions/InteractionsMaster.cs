@@ -4,7 +4,7 @@ using UnityEngine;
 using DialogueEditor;
 
 [System.Serializable]
-public class Mission
+public class MissionOld
 {
     public string missionName;
     public NPCConversation conversation;
@@ -12,10 +12,17 @@ public class Mission
 }
 public class InteractionsMaster : MonoBehaviour
 {
-    public Mission[] missions;
+    public MissionOld[] missions;
     public bool autoStartConversation = true;
     private bool playerClose;
     private int activeMissionIndex = 0;
+    GameObject talkBubble;
+
+    private void Awake()
+    {
+        talkBubble = transform.Find("TalkBubble").gameObject; 
+        talkBubble.SetActive(false);
+    }
 
     private void Update()
     {
@@ -31,18 +38,25 @@ public class InteractionsMaster : MonoBehaviour
         {
             playerClose = true;
             if (autoStartConversation) StartACtiveConversation();
-            else Economy.economy.InstantiateServerMessage("Press 'E' to start conversation", true);
+            else
+            {
+                talkBubble.SetActive(true);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) playerClose = false;
+        if (other.CompareTag("Player"))
+        {
+            playerClose = false;
+            if(talkBubble.activeSelf) talkBubble.SetActive(false);
+        }
     }
     public void SetConversation(string name)
     {
         bool matchFound = false;
         int i = 0;
-        foreach (Mission m in missions)
+        foreach (MissionOld m in missions)
         {
             if (name == m.missionName)
             {
@@ -57,6 +71,8 @@ public class InteractionsMaster : MonoBehaviour
     void StartACtiveConversation()
     {
         ConversationManager.Instance.StartConversation(missions[activeMissionIndex].conversation);
+        if(talkBubble.activeSelf) talkBubble.SetActive(false);
+        CameraLookAt.instance.Activate(transform);
 
     }
 }

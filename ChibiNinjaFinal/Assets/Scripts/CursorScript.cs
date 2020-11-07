@@ -7,12 +7,15 @@ public class CursorScript : MonoBehaviour
     public static CursorScript instance = null;
     public bool cursorLocked;
     public bool storeOpen, conversationOpen, menuOpen, playerDead;
+    private ThirdPersonOrbitCamBasic thirdPersonOrbitCam;
     // Start is called before the first frame update
     void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(this);
+        thirdPersonOrbitCam = Camera.main.transform.GetComponent<ThirdPersonOrbitCamBasic>();
         LockCursor();
+
     }
 
     // Update is called once per frame
@@ -21,6 +24,7 @@ public class CursorScript : MonoBehaviour
         if(storeOpen || conversationOpen || menuOpen || playerDead)
         {
             if (cursorLocked) UnlockCursor();
+            
         }
         else
         {
@@ -32,11 +36,13 @@ public class CursorScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         cursorLocked = true;
+        thirdPersonOrbitCam.enabled = true;
     }
     void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         cursorLocked = false;
+        thirdPersonOrbitCam.enabled = false;
     }
 }

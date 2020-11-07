@@ -20,6 +20,25 @@ public class QuestManager : MonoBehaviour
 
 
     }
+    public void CloseCOnversation()
+    {
+        if(CursorScript.instance.conversationOpen)
+        {
+            ConversationManager.Instance.EndConversation();
+            CameraLookAt.instance.Deactivate();
+        }
+        else Debug.LogError("conversationOpen is set to false in CursorScript.instace . Can't end a conversation if none is open.");
+
+    }
+    public void StartConversation(NPCConversation conversation, Transform lookAtTarget)
+    {
+        if (!CursorScript.instance.conversationOpen)
+        {
+            ConversationManager.Instance.StartConversation(conversation);
+            CameraLookAt.instance.Activate(lookAtTarget);
+        }
+        else Debug.LogError("conversationOpen is already set to true in the CursorScript.instance . Can't start a new conversation while a conversation is already open.");
+    }
     public void StartAttackTutorial()
     {
         if (!attackTutorialStarted)

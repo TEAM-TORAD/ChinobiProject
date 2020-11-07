@@ -18,8 +18,9 @@ MonoBehaviour:
   patrolPointReachedDistance: 0.7
   conversation: {fileID: 0}
   passive: 1
-  autoStartConversation: 1
+  autoStartConversation: 0
   patrolPoints: []
+  overrideRun: 0
 --- !u!1001 &5812636790554854137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 575861013453511204, guid: 24236c32272677e43aca55ef21d282d4,
         type: 3}
       propertyPath: m_Name
-      value: NPC_Man
+      value: NPC_Man Variant
       objectReference: {fileID: 0}
     - target: {fileID: 915935134620106910, guid: 24236c32272677e43aca55ef21d282d4,
         type: 3}

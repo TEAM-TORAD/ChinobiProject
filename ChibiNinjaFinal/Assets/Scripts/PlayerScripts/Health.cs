@@ -65,6 +65,7 @@ public class Health : MonoBehaviour
 
     IEnumerator PauseGameAfterDying(float time)
     {
+        CursorScript.instance.playerDead = true;
         yield return new WaitForSeconds(time);
         Time.timeScale = 0.0f;
         AudioListener.pause = true;

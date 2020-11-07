@@ -85,19 +85,6 @@ public class Economy : MonoBehaviour
             currentStrength += Time.deltaTime * updateValue;
             SetGlowStrength(currentStrength);
         }
-        if (Input.GetKeyDown(storeButton))
-        {
-            if (storePanel.gameObject.activeSelf)
-            {
-                storePanel.gameObject.SetActive(false);
-                CursorScript.instance.storeOpen = false;
-            }
-            else
-            {
-                storePanel.gameObject.SetActive(true);
-                CursorScript.instance.storeOpen = true;
-            }
-        }
     }
     public void PurchaseItem(Item _item)
     {
@@ -115,8 +102,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
-                    newText.GetComponent<ServerMessageScript>().SetServerText("Health incresed with " + _item.effect.effectValue.ToString() + "!");
+                    InstantiateServerMessage("Health incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
             // Add max health
@@ -129,8 +115,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + "."); 
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
-                    newText.GetComponent<ServerMessageScript>().SetServerText("Max health incresed with " + _item.effect.effectValue.ToString() + "!");
+                    InstantiateServerMessage("Max health incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
             // Add stamina
@@ -143,8 +128,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
-                    newText.GetComponent<ServerMessageScript>().SetServerText("Stamina incresed with " + _item.effect.effectValue.ToString() + "!");
+                    InstantiateServerMessage("Stamina incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
             // Add max stamina
@@ -157,13 +141,11 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
                 {
-                    GameObject newText = Instantiate(messageRegular, serverMessagePanel);
-                    newText.GetComponent<ServerMessageScript>().SetServerText("Max stamina incresed with " + _item.effect.effectValue.ToString() + "!");
+                    InstantiateServerMessage("Max stamina incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
             if(_item.destroyOnPurchase)
             {
-                Transform content = storePanel.transform.Find("Items Panel").Find("Content").transform;
                 Item[] _items = currentShopKeeper.items;
 
                 // Create a new array of items without the one we are going to destroy
@@ -171,6 +153,7 @@ public class Economy : MonoBehaviour
                 int i = 0;
                 foreach (Item it in _items)
                 {
+                    // If the item in the itteration is NOT the one we want to delete, add it to the new array
                     if(it != _item)
                     {
                         newArray[i] = it;
@@ -187,10 +170,8 @@ public class Economy : MonoBehaviour
             // You don't have enough gold.
             if (serverMessagePanel != null)
             {
-                GameObject newText = Instantiate(messageRegular, serverMessagePanel);
-                newText.GetComponent<ServerMessageScript>().SetServerText("You don't have enough gold to buy this item!");
+                InstantiateServerMessage("You don't have enough gold to buy this item!", true);
             }
-            print("Not enough gold!");
         }
     }
     public void DestroyOldMessages()

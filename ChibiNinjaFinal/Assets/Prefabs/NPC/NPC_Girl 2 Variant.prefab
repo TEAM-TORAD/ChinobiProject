@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 6997502909741771868, guid: 95a76a932a836e344ab4dfe41549daf7,
         type: 3}
       propertyPath: m_Name
-      value: NPC_Girl 2
+      value: NPC_Girl 2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7662821435015689958, guid: 95a76a932a836e344ab4dfe41549daf7,
         type: 3}
@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 7916613477759095051, guid: 95a76a932a836e344ab4dfe41549daf7,
         type: 3}
       propertyPath: autoStartConversation
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95a76a932a836e344ab4dfe41549daf7, type: 3}

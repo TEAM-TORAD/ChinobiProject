@@ -1330,6 +1330,7 @@ GameObject:
   - component: {fileID: 1080136331856410080}
   - component: {fileID: 1080136332124006470}
   - component: {fileID: 8324753397362313952}
+  - component: {fileID: 471913387}
   m_Layer: 0
   m_Name: NPC_Master
   m_TagString: Untagged
@@ -1350,6 +1351,7 @@ Transform:
   m_Children:
   - {fileID: 4585887210025771846}
   - {fileID: 3541772796971480703}
+  - {fileID: 1544897798}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -60.000004, z: 0}
@@ -1398,10 +1400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346cb8d8f3eb1cb4983489809d766ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passiveLookAt: {fileID: 0}
   lookAtPlayer: 0
   passive: 1
-  rotationSpeed: 3
+  rotationSpeed: 90
   angleToTarget: 0
 --- !u!54 &1080136332124006471
 Rigidbody:
@@ -1439,7 +1440,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5214990113285368162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78665d16dd311e54cbb6a04a735c7846, type: 3}
   m_Name: 
@@ -1457,7 +1458,7 @@ MonoBehaviour:
   - missionName: Wasp Completed
     conversation: {fileID: 0}
     completed: 0
-  autoStartConversation: 1
+  autoStartConversation: 0
 --- !u!195 &1080136332124006470
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1577,6 +1578,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &471913387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214990113285368162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d84a317d9dd74542931bfc9afa6f413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 90
+  passive: 0
+  autoStartConversation: 0
+  conversation: {fileID: 0}
 --- !u!1 &5236027735156154386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,3 +2909,78 @@ Transform:
   m_Father: {fileID: 2192750278257820608}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4486074005173985606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4833643658223563736}
+    m_Modifications:
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11550002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8660254
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486074005913543745, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+        type: 3}
+      propertyPath: m_Name
+      value: TalkBubble
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff8ba6f8bd021054f8186a6f3ee7e850, type: 3}
+--- !u!4 &1544897798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4486074005913543744, guid: ff8ba6f8bd021054f8186a6f3ee7e850,
+    type: 3}
+  m_PrefabInstance: {fileID: 4486074005173985606}
+  m_PrefabAsset: {fileID: 0}

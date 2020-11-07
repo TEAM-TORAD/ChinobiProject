@@ -350,7 +350,7 @@ namespace DialogueEditor
             ClearOptions();
             m_pendingDialogue = m_conversation.Root;
             SetState(eState.TransitioningDialogueBoxOn);
-            CursorScript.instance.conversationOpen = true;
+            if (CursorScript.instance != null) CursorScript.instance.conversationOpen = true;
         }
 
         public void EndConversation()
@@ -359,7 +359,12 @@ namespace DialogueEditor
 
             if (OnConversationEnded != null)
                 OnConversationEnded.Invoke();
-            CursorScript.instance.conversationOpen = false;
+            if (CursorScript.instance != null)
+            {
+                CursorScript.instance.conversationOpen = false;
+                // Don't deactivate the CameraLookAt function if the store is open
+                if(!CursorScript.instance.storeOpen) if (CameraLookAt.instance != null) CameraLookAt.instance.Deactivate();
+            }
         }
 
 
