@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 421634}
   - component: {fileID: 3398012}
   - component: {fileID: 2398868}
+  - component: {fileID: -7540001446649824326}
   m_Layer: 0
   m_Name: SM_Prop_Snow_Bell_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-7540001446649824326
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: ce41f5be8a789114e93730ce51fa930f, type: 3}

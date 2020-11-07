@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 496956}
   - component: {fileID: 3342306}
   - component: {fileID: 2373952}
+  - component: {fileID: 4197441145967559641}
   m_Layer: 0
   m_Name: SM_Prop_Snow_StoneBrazier_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4197441145967559641
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c0b5634ddf6fc52498849ff4cca9ad93, type: 3}

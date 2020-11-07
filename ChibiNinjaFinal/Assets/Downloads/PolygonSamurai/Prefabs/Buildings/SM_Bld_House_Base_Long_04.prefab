@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 423514}
   - component: {fileID: 3370704}
   - component: {fileID: 2309864}
-  - component: {fileID: -83867917034722129}
+  - component: {fileID: -2166792306572608923}
   m_Layer: 0
   m_Name: SM_Bld_House_Base_Long_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &423514
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-83867917034722129
+--- !u!64 &-2166792306572608923
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

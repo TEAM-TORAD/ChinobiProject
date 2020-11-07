@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 498830}
   - component: {fileID: 3354948}
   - component: {fileID: 2311522}
-  - component: {fileID: -4250097123856817228}
+  - component: {fileID: -885358879933049565}
   m_Layer: 0
   m_Name: SM_Bld_Block_Stairs_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &498830
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-4250097123856817228
+--- !u!64 &-885358879933049565
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 443864}
   - component: {fileID: 3362226}
   - component: {fileID: 2395614}
-  - component: {fileID: -4730268735072638318}
+  - component: {fileID: 8463597076969051773}
   m_Layer: 0
   m_Name: SM_Bld_Temple_Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &443864
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-4730268735072638318
+--- !u!64 &8463597076969051773
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

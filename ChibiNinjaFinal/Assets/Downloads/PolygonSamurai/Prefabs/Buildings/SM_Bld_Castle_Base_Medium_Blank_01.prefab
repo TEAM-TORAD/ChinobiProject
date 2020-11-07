@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 419164}
   - component: {fileID: 3374464}
   - component: {fileID: 2368322}
-  - component: {fileID: -8968943183762792907}
+  - component: {fileID: 461366665301499564}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Base_Medium_Blank_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &419164
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-8968943183762792907
+--- !u!64 &461366665301499564
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

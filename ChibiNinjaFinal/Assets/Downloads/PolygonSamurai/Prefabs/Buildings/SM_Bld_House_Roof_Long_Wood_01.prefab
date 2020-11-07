@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 436496}
   - component: {fileID: 3325320}
   - component: {fileID: 2381872}
-  - component: {fileID: 8112751533129499793}
+  - component: {fileID: 7327064400543327736}
   m_Layer: 0
   m_Name: SM_Bld_House_Roof_Long_Wood_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &436496
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &8112751533129499793
+--- !u!64 &7327064400543327736
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

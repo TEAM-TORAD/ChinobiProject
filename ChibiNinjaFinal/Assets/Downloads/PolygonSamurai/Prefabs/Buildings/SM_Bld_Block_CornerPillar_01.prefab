@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 452314}
   - component: {fileID: 3312754}
   - component: {fileID: 2335196}
-  - component: {fileID: 3619698755236379816}
+  - component: {fileID: -2607299025348452635}
   m_Layer: 0
   m_Name: SM_Bld_Block_CornerPillar_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &452314
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3619698755236379816
+--- !u!64 &-2607299025348452635
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

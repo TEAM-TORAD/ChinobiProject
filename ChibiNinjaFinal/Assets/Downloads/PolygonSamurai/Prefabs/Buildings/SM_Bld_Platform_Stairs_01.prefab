@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 438134}
   - component: {fileID: 3366604}
   - component: {fileID: 2380770}
-  - component: {fileID: -5199235254602080149}
+  - component: {fileID: -1925177813770870226}
   m_Layer: 0
   m_Name: SM_Bld_Platform_Stairs_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &438134
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-5199235254602080149
+--- !u!64 &-1925177813770870226
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

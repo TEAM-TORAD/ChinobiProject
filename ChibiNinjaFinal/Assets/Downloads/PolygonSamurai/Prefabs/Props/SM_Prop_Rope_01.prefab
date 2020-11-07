@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 484938}
   - component: {fileID: 3381356}
   - component: {fileID: 2379568}
+  - component: {fileID: 106727207462083325}
   m_Layer: 0
   m_Name: SM_Prop_Rope_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &106727207462083325
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 70ab489b53b95d449a57e1ced66b506e, type: 3}

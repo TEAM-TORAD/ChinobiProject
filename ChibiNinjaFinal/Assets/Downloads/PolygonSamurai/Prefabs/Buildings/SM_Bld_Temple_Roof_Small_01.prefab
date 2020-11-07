@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 494252}
   - component: {fileID: 3330144}
   - component: {fileID: 2305092}
-  - component: {fileID: 7787998019273487414}
+  - component: {fileID: -78188867172410996}
   m_Layer: 0
   m_Name: SM_Bld_Temple_Roof_Small_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &494252
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7787998019273487414
+--- !u!64 &-78188867172410996
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

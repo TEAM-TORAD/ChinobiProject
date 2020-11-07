@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 472572}
   - component: {fileID: 3349552}
   - component: {fileID: 2394864}
+  - component: {fileID: -992064064011922246}
   m_Layer: 0
   m_Name: SM_Env_Snow_Hill_Cascade_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-992064064011922246
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151006}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 27c9e085f5f86644dbd0aa34360856e8, type: 3}

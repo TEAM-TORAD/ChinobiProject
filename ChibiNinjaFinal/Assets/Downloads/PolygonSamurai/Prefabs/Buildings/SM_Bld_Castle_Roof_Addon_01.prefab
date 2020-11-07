@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 456744}
   - component: {fileID: 3303916}
   - component: {fileID: 2372944}
-  - component: {fileID: 7619039564971608144}
+  - component: {fileID: 2593058115804453543}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Roof_Addon_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &456744
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7619039564971608144
+--- !u!64 &2593058115804453543
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

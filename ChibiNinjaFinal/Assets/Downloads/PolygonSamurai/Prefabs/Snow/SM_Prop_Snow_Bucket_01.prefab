@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 409258}
   - component: {fileID: 3358712}
   - component: {fileID: 2385386}
+  - component: {fileID: 8601904256746083711}
   m_Layer: 0
   m_Name: SM_Prop_Snow_Bucket_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8601904256746083711
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f10b3f55ffd771f478bdfd4e056d146d, type: 3}

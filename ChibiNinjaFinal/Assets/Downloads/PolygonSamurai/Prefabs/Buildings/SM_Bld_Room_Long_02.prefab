@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 426962}
   - component: {fileID: 3327158}
   - component: {fileID: 2348574}
-  - component: {fileID: -8563530655666350148}
+  - component: {fileID: -8057216090317302306}
   m_Layer: 0
   m_Name: SM_Bld_Room_Long_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &426962
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-8563530655666350148
+--- !u!64 &-8057216090317302306
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

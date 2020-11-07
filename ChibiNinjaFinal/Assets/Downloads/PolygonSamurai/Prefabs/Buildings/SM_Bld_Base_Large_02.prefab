@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 415750}
   - component: {fileID: 3373060}
   - component: {fileID: 2391684}
-  - component: {fileID: 3586480514168452594}
+  - component: {fileID: -7979009621630335214}
   m_Layer: 0
   m_Name: SM_Bld_Base_Large_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &415750
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3586480514168452594
+--- !u!64 &-7979009621630335214
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 429442}
   - component: {fileID: 3337604}
   - component: {fileID: 2316348}
+  - component: {fileID: -1588663421464287362}
   m_Layer: 0
   m_Name: SM_Bld_Snow_House_Base_Long_Extension_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-1588663421464287362
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 7531b13bc298c2a42adb9a88f3ba3dd3, type: 3}

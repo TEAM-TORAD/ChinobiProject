@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 413596}
   - component: {fileID: 3313512}
   - component: {fileID: 2355968}
-  - component: {fileID: 5712564849635704249}
+  - component: {fileID: -7386485261799454968}
   m_Layer: 0
   m_Name: SM_Bld_BridgeCover_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &413596
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5712564849635704249
+--- !u!64 &-7386485261799454968
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

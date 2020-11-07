@@ -27,8 +27,16 @@ public class NPCInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(transform.CompareTag("ShopKeeper"))
+        {
+            talkBubble = transform.parent.Find("TalkBubble").gameObject;
+        }
+        else
+        {
+            talkBubble = transform.Find("TalkBubble").gameObject;
+        }
+
         if (GetComponent<Animator>() != null) animator = GetComponent<Animator>();
-        talkBubble = transform.Find("TalkBubble").gameObject;
         talkBubble.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").transform;
         // This saves a position 1 meter in front of the player in the direction he is looking when the game starts. When player isn't close the NPC will rotate towards this position
@@ -100,7 +108,7 @@ public class NPCInteraction : MonoBehaviour
         if (!matchFound) Debug.LogError("No matching mission-name found!");
     }
 
-    private void OnTriggerEnter(Collider c)
+    public void EnteringTrigger(Collider c)
     {
         if (c.CompareTag("Player"))
         {
@@ -121,9 +129,8 @@ public class NPCInteraction : MonoBehaviour
             //play conversation sound?
 
         }
-        
     }
-    private void OnTriggerExit(Collider c)
+    public void ExitingTrigger(Collider c)
     {
         if (c.CompareTag("Player"))
         {
@@ -131,6 +138,15 @@ public class NPCInteraction : MonoBehaviour
             if (talkBubble.activeSelf) talkBubble.SetActive(false);
 
         }
+    }
+    private void OnTriggerEnter(Collider c)
+    {
+        EnteringTrigger(c);
+        
+    }
+    private void OnTriggerExit(Collider c)
+    {
+        ExitingTrigger(c);
     }
     private void LookAt(Vector3 _targetPosition)
     {

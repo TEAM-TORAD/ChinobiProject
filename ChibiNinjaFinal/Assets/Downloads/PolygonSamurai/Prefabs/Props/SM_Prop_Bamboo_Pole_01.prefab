@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 433148}
   - component: {fileID: 3348966}
   - component: {fileID: 2310932}
+  - component: {fileID: 3401724709264525927}
   m_Layer: 0
   m_Name: SM_Prop_Bamboo_Pole_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3401724709264525927
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 01e02ec429d53f7478bc0bd18c22ed02, type: 3}

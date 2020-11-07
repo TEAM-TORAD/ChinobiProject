@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 420016}
   - component: {fileID: 3329070}
   - component: {fileID: 2321000}
-  - component: {fileID: 6498859013636926413}
+  - component: {fileID: 7919343230962061376}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Gates_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &420016
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6498859013636926413
+--- !u!64 &7919343230962061376
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

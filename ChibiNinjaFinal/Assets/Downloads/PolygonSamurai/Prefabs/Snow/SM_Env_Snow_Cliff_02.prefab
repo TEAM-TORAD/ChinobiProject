@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 499722}
   - component: {fileID: 3384272}
   - component: {fileID: 2331404}
+  - component: {fileID: 3936760653126639154}
   m_Layer: 0
   m_Name: SM_Env_Snow_Cliff_02
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3936760653126639154
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: ef97d2f182373744f893a8fcc82a4bc7, type: 3}

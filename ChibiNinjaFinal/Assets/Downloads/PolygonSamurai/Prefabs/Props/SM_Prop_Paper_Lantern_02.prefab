@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 462276}
   - component: {fileID: 3343150}
   - component: {fileID: 2363376}
+  - component: {fileID: -3393181482630886640}
   m_Layer: 0
   m_Name: SM_Prop_Paper_Lantern_02
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-3393181482630886640
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 3730fc0701d09bc498ccc37662d8e616, type: 3}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 477070}
   - component: {fileID: 3331284}
   - component: {fileID: 2375298}
+  - component: {fileID: -3356123254424438776}
   m_Layer: 0
   m_Name: SM_Env_Snow_Tree_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-3356123254424438776
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fe129d67339b56c46b6e5af43c76a2e8, type: 3}

@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 498268}
   - component: {fileID: 3338358}
   - component: {fileID: 2340734}
-  - component: {fileID: -7961151476546582660}
+  - component: {fileID: -1891625021179277258}
   m_Layer: 0
   m_Name: SM_Bld_House_Roof_Long_Thatch_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &498268
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-7961151476546582660
+--- !u!64 &-1891625021179277258
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 479182}
   - component: {fileID: 3334142}
   - component: {fileID: 2323870}
+  - component: {fileID: -2156153229820323738}
   m_Layer: 0
   m_Name: SM_Env_Snow_Path_TSection_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-2156153229820323738
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fe7bbaddd0253a5409f08b19c06e7740, type: 3}

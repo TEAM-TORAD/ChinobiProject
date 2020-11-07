@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 412904}
   - component: {fileID: 3387334}
   - component: {fileID: 2376330}
-  - component: {fileID: -1784533099548699775}
+  - component: {fileID: 681488882693880054}
   m_Layer: 0
   m_Name: SM_Bld_Tower_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &412904
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-1784533099548699775
+--- !u!64 &681488882693880054
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

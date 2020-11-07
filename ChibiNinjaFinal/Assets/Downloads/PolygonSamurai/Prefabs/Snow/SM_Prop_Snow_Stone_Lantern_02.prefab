@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 499480}
   - component: {fileID: 3390080}
   - component: {fileID: 2396486}
+  - component: {fileID: -626942838623964946}
   m_Layer: 0
   m_Name: SM_Prop_Snow_Stone_Lantern_02
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-626942838623964946
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: ce1f62b9bd083184d9c274036782cc51, type: 3}

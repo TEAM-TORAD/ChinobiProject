@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 498684}
   - component: {fileID: 3357050}
   - component: {fileID: 2355754}
+  - component: {fileID: 722108957494904829}
   m_Layer: 0
   m_Name: SM_Bld_Snow_Base_Large_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &722108957494904829
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6aa0fc812da0ace48935f77e6bb53777, type: 3}

@@ -8,7 +8,8 @@ public class DeliveryQuestManager : MonoBehaviour
     private GameObject sushiBag;
     private GameObject talkBubble;
     
-    public TMP_Text speachBubble;
+    private TMP_Text text;
+    private GameObject bubble;
     public bool deliveryQuestActive;
     public bool conversationOpen;
     public bool quitWorkConversation;
@@ -21,18 +22,25 @@ public class DeliveryQuestManager : MonoBehaviour
     public float goldRate = 0.5f, bonusRate = 100.0f;
     public float timer;
 
+    public static DeliveryQuestManager instance = null;
    
     public void Start()
     {
+        if (instance == null) instance = this;
+        else Destroy(this);
         talkBubble = transform.Find("TalkBubble").gameObject;
         talkBubble.SetActive(false);
         sushiBag = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().backPack.gameObject;
-        speachBubble = transform.Find("SpeachBubble").GetComponent<TMP_Text>();
+        bubble = transform.Find("SpeachBubble").gameObject;
+        text = bubble.transform.Find("Bubble").Find("Text").GetComponent<TMP_Text>();
+        bubble.SetActive(false);
         deliveryQuestActive = false;
-        speachBubble.gameObject.SetActive(false);
         conversationOpen = false;
         locations = GameObject.FindGameObjectsWithTag("DeliveryLocation");
-        currentLocation = locations[index];
+        foreach(GameObject g in locations)
+        {
+            g.SetActive(false);
+        }
         sushiBag.SetActive(false);
        
     }
@@ -73,8 +81,8 @@ public class DeliveryQuestManager : MonoBehaviour
     {
         if (!deliveryQuestActive && Input.GetKeyDown(KeyCode.E))
         {
-            speachBubble.gameObject.SetActive(true);
-            speachBubble.text = "Want to deliver sushi? \n Y or N";
+            bubble.SetActive(true);
+            text.text = "Want to deliver sushi? \n Y or N";
             conversationOpen = true;
             timer = 0;
             talkBubble.SetActive(false);
@@ -83,7 +91,7 @@ public class DeliveryQuestManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                speachBubble.text ="You're Hired, now get going!";
+                text.text ="You're Hired, now get going!";
                 deliveryQuestActive = true;
                 Invoke("EndConversation", 3f);
                 ChooseDeliveryLocation();
@@ -91,30 +99,32 @@ public class DeliveryQuestManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.N))
             {
-                speachBubble.text = "Too good for Uber hey!?";
+                text.text = "Too good for Uber hey!?";
                 Invoke("EndConversation", 3f);
             }
         }
         if (deliveryQuestActive && Input.GetKeyDown(KeyCode.E))
         {
-            speachBubble.gameObject.SetActive(true);
-            speachBubble.text = "Are you sick of Ubering? \n Y or N";
+            bubble.SetActive(true);
+            text.text = "Are you sick of Ubering? \n Y or N";
+            talkBubble.SetActive(false);
             quitWorkConversation = true;
         }
         if (quitWorkConversation)
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                speachBubble.text = "Too late... you're already FIRED!";
+                text.text = "Too late... you're already FIRED!";
                 deliveryQuestActive = false;
                 Invoke("EndConversation", 3f);
                 quitWorkConversation = false;
                 RemoveDeliveryItemFromPlayer();
+                //locations[index].GetComponent<DeliveryLocationManager>().CancelDelivery();
                 
             }
             if (Input.GetKeyDown(KeyCode.N))
             {
-                speachBubble.text = "Stop talking... get back to work!";
+                text.text = "Stop talking... get back to work!";
                 Invoke("EndConversation", 3f);
                 quitWorkConversation = false;
             }
@@ -125,7 +135,7 @@ public class DeliveryQuestManager : MonoBehaviour
     {
         active = false;
         conversationOpen = false;
-        speachBubble.gameObject.SetActive(false);
+        bubble.SetActive(false);
         if (active) talkBubble.SetActive(true);
     }
     #endregion
@@ -144,8 +154,10 @@ public class DeliveryQuestManager : MonoBehaviour
     }
     public void ChooseDeliveryLocation()
     {
-        index = Random.Range(0, locations.Length);
+        index = Random.Range(0, locations.Length - 1);
+        locations[index].SetActive(true);
         currentLocation = locations[index];
+        currentLocation.transform.GetComponent<DeliveryLocationManager>().SetAsLocation();
     }
 
     public void PlaceDeliveryItemOnPlayer()

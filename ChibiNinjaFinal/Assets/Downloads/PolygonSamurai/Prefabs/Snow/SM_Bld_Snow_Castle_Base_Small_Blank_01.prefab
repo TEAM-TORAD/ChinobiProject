@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 421328}
   - component: {fileID: 3373374}
   - component: {fileID: 2359512}
+  - component: {fileID: -392628943849175924}
   m_Layer: 0
   m_Name: SM_Bld_Snow_Castle_Base_Small_Blank_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-392628943849175924
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132632}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d0f20216f8ecdbf479fd82759f386533, type: 3}

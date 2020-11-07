@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 405044}
   - component: {fileID: 3316002}
   - component: {fileID: 2307480}
+  - component: {fileID: -6124431404093847536}
   m_Layer: 0
   m_Name: SM_Prop_Stone_Lantern_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-6124431404093847536
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: dfb0053eb66848949bf97d40525e1c64, type: 3}

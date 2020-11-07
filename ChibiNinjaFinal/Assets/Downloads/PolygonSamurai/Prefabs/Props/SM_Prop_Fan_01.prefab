@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 497312}
   - component: {fileID: 3315948}
   - component: {fileID: 2365584}
+  - component: {fileID: -6285290224918462087}
   m_Layer: 0
   m_Name: SM_Prop_Fan_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-6285290224918462087
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 511cb6afdbda6434199c5d0b55e32ac0, type: 3}

@@ -16,8 +16,8 @@ public class ShopKeeperNPC : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        animator = GetComponent<Animator>();
-        if (transform.GetComponent<NPCInteraction>() != null) transform.GetComponent<NPCInteraction>().passive = passive;
+        animator = GetComponentInChildren<Animator>();
+        if (transform.GetComponentInChildren<NPCInteraction>() != null) transform.GetComponentInChildren<NPCInteraction>().passive = passive;
     }
     public void OpenStore()
     {

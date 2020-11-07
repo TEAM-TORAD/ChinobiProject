@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 436554}
   - component: {fileID: 3376296}
   - component: {fileID: 2355514}
+  - component: {fileID: -6123840928076227641}
   m_Layer: 0
   m_Name: SM_Env_Snow_Bush_02
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-6123840928076227641
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 014a028b73da98745813ab5bfc206ba6, type: 3}

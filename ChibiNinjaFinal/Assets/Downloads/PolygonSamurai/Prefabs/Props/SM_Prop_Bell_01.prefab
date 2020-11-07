@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 413852}
   - component: {fileID: 3391562}
   - component: {fileID: 2382168}
+  - component: {fileID: 5878285474688632568}
   m_Layer: 0
   m_Name: SM_Prop_Bell_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5878285474688632568
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 945e293a608be054886bce0d48745edc, type: 3}

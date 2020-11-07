@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 427472}
   - component: {fileID: 3335612}
   - component: {fileID: 2396406}
-  - component: {fileID: -7788624607360567243}
+  - component: {fileID: 4126877302441206663}
   m_Layer: 0
   m_Name: SM_Bld_House_Addon_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &427472
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-7788624607360567243
+--- !u!64 &4126877302441206663
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

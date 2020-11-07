@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 424712}
   - component: {fileID: 3373088}
   - component: {fileID: 2386524}
+  - component: {fileID: 6390096271196062154}
   m_Layer: 0
   m_Name: SM_Bld_Snow_Block_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6390096271196062154
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c9420dcbd511bfa44888045dcf0f6d3a, type: 3}

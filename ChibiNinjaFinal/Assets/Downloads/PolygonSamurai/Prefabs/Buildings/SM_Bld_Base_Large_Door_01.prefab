@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 450904}
   - component: {fileID: 3398772}
   - component: {fileID: 2394422}
-  - component: {fileID: -5271436559401829857}
+  - component: {fileID: -9041480375180320556}
   m_Layer: 0
   m_Name: SM_Bld_Base_Large_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &450904
 Transform:
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-5271436559401829857
+--- !u!64 &-9041480375180320556
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

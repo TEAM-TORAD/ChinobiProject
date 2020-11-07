@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 462442}
   - component: {fileID: 3322476}
   - component: {fileID: 2386312}
+  - component: {fileID: -6422214576727477551}
   m_Layer: 0
   m_Name: SM_Bld_Snow_Room_Long_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-6422214576727477551
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: be4e1e6b43889bd40a01b7d8bbbabdd4, type: 3}

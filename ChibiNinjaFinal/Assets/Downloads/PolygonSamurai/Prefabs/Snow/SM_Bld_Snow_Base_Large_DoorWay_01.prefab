@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 466274}
   - component: {fileID: 3386858}
   - component: {fileID: 2338826}
+  - component: {fileID: -4528912830403545984}
   m_Layer: 0
   m_Name: SM_Bld_Snow_Base_Large_DoorWay_01
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-4528912830403545984
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 82199ebcd87a43241899d0599c5ea2d2, type: 3}

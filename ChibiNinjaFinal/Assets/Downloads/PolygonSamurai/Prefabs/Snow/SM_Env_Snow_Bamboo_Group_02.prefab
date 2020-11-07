@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 433486}
   - component: {fileID: 3366508}
   - component: {fileID: 2376546}
+  - component: {fileID: -8901670637950348516}
   m_Layer: 0
   m_Name: SM_Env_Snow_Bamboo_Group_02
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-8901670637950348516
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5bdd71a29d5f9b04c826fb591da376af, type: 3}
