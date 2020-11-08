@@ -47,9 +47,16 @@ public class DeliveryQuestManager : MonoBehaviour
 
     public void Update()
     {
-       if(active)
+        if(active)
         {
-            ActivateQuestion();
+            if (conversationOpen || deliveryQuestActive || quitWorkConversation)
+            {
+                ActivateQuestion();
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                ActivateQuestion();
+            }
         }
         if (deliveryQuestActive)
         {
@@ -115,11 +122,11 @@ public class DeliveryQuestManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 text.text = "Too late... you're already FIRED!";
+                locations[index].SetActive(false);
                 deliveryQuestActive = false;
                 Invoke("EndConversation", 3f);
                 quitWorkConversation = false;
                 RemoveDeliveryItemFromPlayer();
-                //locations[index].GetComponent<DeliveryLocationManager>().CancelDelivery();
                 
             }
             if (Input.GetKeyDown(KeyCode.N))

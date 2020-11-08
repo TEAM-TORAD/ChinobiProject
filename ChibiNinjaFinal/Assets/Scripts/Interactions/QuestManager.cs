@@ -7,13 +7,18 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance = null;
     public DummyHitDetection dummy;
-    public InteractionsMaster interactionsMaster;
+    public NPCInteraction interactionsMaster;
     public bool attackTutorialStarted, waspKillerStarted;
+    public Transform waspNest;
+    private Target waspNestTarget;
 
     private void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(this);
+        waspNestTarget = waspNest.GetComponent<Target>();
+        waspNestTarget.enabled = false;
+        waspNest.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -57,7 +62,9 @@ public class QuestManager : MonoBehaviour
         {
             waspKillerStarted = true;
             ClearMessages();
-            Economy.economy.InstantiateServerMessage("Destroy the wasps-nest in the village!", false);
+            waspNest.gameObject.SetActive(true);
+            waspNestTarget.enabled = true;
+            Economy.economy.InstantiateServerMessage("Destroy the wasps-nest in the village!", true);
             interactionsMaster.SetConversation("Wasp Accepted");
         }
     }

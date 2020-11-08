@@ -13,13 +13,25 @@ public class WaspNest : MonoBehaviour
     public GameObject waspPrefab;
     public Transform[] patrolPoints;
     private ParticleSystem PS;
+    private Rigidbody rb;
+    private bool rewardGiven;
 
-    public NPCInteraction interactionMaster;
+    public AudioSource waspNest;
+
+    public AudioClip waspNest_TakeDamage;
+    public AudioClip waspNest_Die;
+
+    
+    
+
+    public NPCInteraction interactionsMaster;
     // Start is called before the first frame update
     void Start()
     {
         spawnPoint = transform.parent.Find("Wasp Spawnpoint");
         PS = transform.parent.Find("Particle System").GetComponent<ParticleSystem>();
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
     }
 
     // Update is called once per frame
@@ -40,6 +52,7 @@ public class WaspNest : MonoBehaviour
             ++hits;
 
             // Hit effects
+            waspNest.PlayOneShot(waspNest_TakeDamage);
             // Sound
             // Particle Effect
             PS.Play();
@@ -54,8 +67,9 @@ public class WaspNest : MonoBehaviour
             }
 
             //Destroy the wasps-nest if the player hits it 10 times.
-            if (hits >= 10)
+            if (hits >= 10 && !rewardGiven)
             {
+                rewardGiven = true;
                 if (QuestManager.instance.waspKillerStarted)
                 {
                     Economy.economy.DestroyOldMessages();
@@ -68,8 +82,11 @@ public class WaspNest : MonoBehaviour
                 {
                     t.parent = null;
                 }
-                Destroy(transform.parent.gameObject);
-                interactionMaster.SetConversation("Waspnest Completed");
+                rb.isKinematic = false;
+                Destroy(transform.parent.gameObject, 3);
+                waspNest.PlayOneShot(waspNest_Die);
+                
+                interactionsMaster.SetConversation("Wasp Completed");
             }
         }
     }

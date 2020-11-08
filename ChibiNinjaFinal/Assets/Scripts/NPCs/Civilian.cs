@@ -8,7 +8,7 @@ public class Civilian : MonoBehaviour
 {
     public float rotationSpeed = 120.0f;
     public float walkSpeed = 2, runSpeed = 5, patrolPointReachedDistance = 0.7f;
-    public NPCConversation conversation;
+    //public NPCConversation conversation;
     public bool passive = true;
     public Transform[] patrolPoints;
     private bool playerClose, fleeing;

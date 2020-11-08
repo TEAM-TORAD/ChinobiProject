@@ -87,7 +87,6 @@ public class NPCInteraction : MonoBehaviour
             else
             {
                 LookAt(startRotation);
-                
             }
         }
     }
