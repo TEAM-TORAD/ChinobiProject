@@ -68,7 +68,7 @@ public class DummyHitDetection : MonoBehaviour
                     fifthHint = true;
                     currentHint = "Hold the right mouse button while standing still to block.";
                     Economy.economy.DestroyOldMessages();
-                    Economy.economy.InstantiateServerMessage("You are just like Jet Li!", true);
+                    Economy.economy.InstantiateServerMessage("You are just like Daniel LaRusso!", true);
                     Economy.economy.InstantiateServerMessage(currentHint, false);
                 }
             }
@@ -86,6 +86,7 @@ public class DummyHitDetection : MonoBehaviour
 
                     // Set new conversation on the master
                     interactionsMaster.SetConversation("Tutorial Completed");
+               
                 }
             }
         }

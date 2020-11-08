@@ -43,19 +43,17 @@ public class PauseState : MonoBehaviour
             optionsMenu.SetActive(false);
             pauseMenu.SetActive(false);
         }
-        // what happens when escape button is pressed
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        //// what happens when escape button is pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // resumes game if pause menu is active
-            if (pauseMenuActive)
-            {
-                Resume();
-            }
-            // pauses game if else
-            else
+            if (!pauseMenuActive)
             {
                 GamePaused();
             }
+            else
+            {
+                Resume();
+            }       
         }
     }
     public void Resume()
