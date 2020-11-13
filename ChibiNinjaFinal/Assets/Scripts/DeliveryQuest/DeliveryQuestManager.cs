@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class DeliveryQuestManager : MonoBehaviour
 {
     private GameObject sushiBag;
-    private GameObject talkBubble;
     
     private TMP_Text text;
-    private GameObject bubble;
     public bool deliveryQuestActive;
     public bool conversationOpen;
     public bool quitWorkConversation;
@@ -21,6 +20,8 @@ public class DeliveryQuestManager : MonoBehaviour
     private int reward;
     public float goldRate = 0.5f, bonusRate = 100.0f;
     public float timer;
+    private NPCInteraction nPCInteraction;
+    private DisplayInteractions displayInteractions;
 
     public static DeliveryQuestManager instance = null;
    
@@ -28,12 +29,15 @@ public class DeliveryQuestManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(this);
-        talkBubble = transform.Find("TalkBubble").gameObject;
-        talkBubble.SetActive(false);
+
+        if (transform.GetComponent<NPCInteraction>() != null) nPCInteraction = transform.GetComponent<NPCInteraction>();
+
+        if (transform.GetComponent<DisplayInteractions>() != null) displayInteractions = transform.GetComponent<DisplayInteractions>();
+        displayInteractions.OnSpeachBubbleOpen.AddListener(ActivateQuestion);
+        displayInteractions.OnSpeachBubbleClose.AddListener(EndConversation);
+
         sushiBag = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().backPack.gameObject;
-        bubble = transform.Find("SpeachBubble").gameObject;
-        text = bubble.transform.Find("Bubble").Find("Text").GetComponent<TMP_Text>();
-        bubble.SetActive(false);
+        text = transform.GetComponent<DisplayInteractions>().text;
         deliveryQuestActive = false;
         conversationOpen = false;
         locations = GameObject.FindGameObjectsWithTag("DeliveryLocation");
@@ -47,103 +51,68 @@ public class DeliveryQuestManager : MonoBehaviour
 
     public void Update()
     {
-        if(active)
-        {
-            if (conversationOpen || deliveryQuestActive || quitWorkConversation)
-            {
-                ActivateQuestion();
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                ActivateQuestion();
-            }
-        }
         if (deliveryQuestActive)
         {
             timer += 1f * Time.deltaTime;
         }
+        if(conversationOpen)
+        {
+            if (!deliveryQuestActive)
+            {
+                if (Input.GetKeyDown(KeyCode.Y))
+                {
+                    text.text = "You're Hired, now get going!";
+                    deliveryQuestActive = true;
+                    ChooseDeliveryLocation();
+                    PlaceDeliveryItemOnPlayer();
+                }
+                if (Input.GetKeyDown(KeyCode.N))
+                {
+                    text.text = "Too good for Uber hey!?";
+                }
+            }
+            if (quitWorkConversation)
+            {
+                if (Input.GetKeyDown(KeyCode.Y))
+                {
+                    text.text = "Too late... you're already FIRED!";
+                    locations[index].SetActive(false);
+                    deliveryQuestActive = false;
+                    quitWorkConversation = false;
+                    RemoveDeliveryItemFromPlayer();
+
+                }
+                if (Input.GetKeyDown(KeyCode.N))
+                {
+                    text.text = "Stop talking... get back to work!";
+                    quitWorkConversation = false;
+
+                }
+            }
+        }
     }
 
-    #region Trigger Conversation
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            talkBubble.SetActive(true);
-            active = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if(talkBubble.activeSelf) talkBubble.SetActive(false);
-            EndConversation();
-        }
-    }
-    #endregion
 
     #region Conversation to activate quest
     public void ActivateQuestion()
     {
         if (!deliveryQuestActive && Input.GetKeyDown(KeyCode.E))
         {
-            bubble.SetActive(true);
             text.text = "Want to deliver sushi? \n Y or N";
             conversationOpen = true;
             timer = 0;
-            talkBubble.SetActive(false);
         }
-        if (conversationOpen)
+        if (deliveryQuestActive)
         {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                text.text ="You're Hired, now get going!";
-                deliveryQuestActive = true;
-                Invoke("EndConversation", 3f);
-                ChooseDeliveryLocation();
-                PlaceDeliveryItemOnPlayer();
-            }
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                text.text = "Too good for Uber hey!?";
-                Invoke("EndConversation", 3f);
-            }
-        }
-        if (deliveryQuestActive && Input.GetKeyDown(KeyCode.E))
-        {
-            bubble.SetActive(true);
             text.text = "Are you sick of Ubering? \n Y or N";
-            talkBubble.SetActive(false);
+            conversationOpen = true;
             quitWorkConversation = true;
         }
-        if (quitWorkConversation)
-        {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                text.text = "Too late... you're already FIRED!";
-                locations[index].SetActive(false);
-                deliveryQuestActive = false;
-                Invoke("EndConversation", 3f);
-                quitWorkConversation = false;
-                RemoveDeliveryItemFromPlayer();
-                
-            }
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                text.text = "Stop talking... get back to work!";
-                Invoke("EndConversation", 3f);
-                quitWorkConversation = false;
-            }
-        }
-
     }
-    void EndConversation()
+    public void EndConversation()
     {
         active = false;
         conversationOpen = false;
-        bubble.SetActive(false);
-        if (active) talkBubble.SetActive(true);
     }
     #endregion
     public void ActivateDelivery()
@@ -181,8 +150,10 @@ public class DeliveryQuestManager : MonoBehaviour
         RemoveDeliveryItemFromPlayer();
         deliveryQuestActive = false;
         // Calculate the reward based on the average speed + a bonus based on the distance
-        reward = Mathf.RoundToInt((deliveryDistance / timer) * goldRate + (deliveryDistance / bonusRate));
-        if (reward == 0) reward = 1;
+        float myRweard = (deliveryDistance / timer) * goldRate + (deliveryDistance / bonusRate);
+        print("reward before rounding = " + myRweard);
+        reward = Mathf.RoundToInt(myRweard);
+        if (reward <= 0) reward = 1;
         Economy.economy.InstantiateServerMessage("You completed the delivery. Your reward is: " + reward + "!", true);
         Economy.economy.AddGold(reward);
 

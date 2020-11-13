@@ -16,8 +16,11 @@ public class DummyHitDetection : MonoBehaviour
     private string currentHint = "";
     private ParticleSystem PS;
     private Transform player;
+    private Target target;
     private void Start()
     {
+        target = GetComponent<Target>();
+        target.enabled = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         PS = transform.parent.Find("Particle System").GetComponent<ParticleSystem>();
         playerInputs = player.GetComponent<PlayerInputs>();
@@ -86,7 +89,9 @@ public class DummyHitDetection : MonoBehaviour
 
                     // Set new conversation on the master
                     interactionsMaster.SetConversation("Tutorial Completed");
-               
+                    QuestManager.instance.CompleteAttackTutorial();
+                    target.enabled = false;
+
                 }
             }
         }
@@ -140,6 +145,7 @@ public class DummyHitDetection : MonoBehaviour
     public void StartTutorial()
     {
         started = true;
+        target.enabled = true;
         Economy.economy.InstantiateServerMessage("Head over to the training dummy!", true);
     }
 

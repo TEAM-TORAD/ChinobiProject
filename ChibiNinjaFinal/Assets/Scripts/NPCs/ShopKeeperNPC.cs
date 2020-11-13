@@ -8,15 +8,10 @@ public class ShopKeeperNPC : MonoBehaviour
     public bool autoStartConversation = false;
     public NPCConversation conversation;
     public Item[] items;
-    private Animator animator;
     public bool passive = true;
-    private Transform player;
-    public Transform lookAtObject;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        animator = GetComponentInChildren<Animator>();
         if (transform.GetComponentInChildren<NPCInteraction>() != null) transform.GetComponentInChildren<NPCInteraction>().passive = passive;
     }
     public void OpenStore()

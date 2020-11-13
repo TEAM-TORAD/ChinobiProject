@@ -17,6 +17,8 @@ TagManager:
   - DummyText
   - DeliveryLocation
   - ShopKeeper
+  - NinjaMaster
+  - Flower
   layers:
   - Default
   - TransparentFX
@@ -29,7 +31,7 @@ TagManager:
   - Player
   - Enemy
   - Ground
-  - 
+  - Flowers
   - 
   - 
   - 

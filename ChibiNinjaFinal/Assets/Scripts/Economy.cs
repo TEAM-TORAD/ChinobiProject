@@ -27,7 +27,8 @@ public enum ItemEffectTarget
     MAX_HEALTH,
     MAX_STAMINA,
     HEALTH,
-    STAMINA
+    STAMINA,
+    ATTACK
 }
 
 
@@ -53,7 +54,6 @@ public class Economy : MonoBehaviour
     public GameObject messageHint;
 
     public GameObject itemPrefab;
-    public Item[] items;
     private ShopKeeperNPC currentShopKeeper;
 
 
@@ -97,7 +97,7 @@ public class Economy : MonoBehaviour
             {
                 Health playerHealth = player.GetComponent<Health>();
                 playerHealth.AddHealth(_item.effect.effectValue);
-                AddGold(-_item.price);
+                SpendGold(_item.price);
                 //print("Health incresed with " + _item.effect.effectValue.ToString() + "!");
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
@@ -110,9 +110,7 @@ public class Economy : MonoBehaviour
             {
                 Health playerHealth = player.GetComponent<Health>();
                 playerHealth.ResetHealth(playerHealth.health, playerHealth.maxHealth + _item.effect.effectValue);
-                AddGold(-_item.price);
-                //print("Max health incresed with " + _item.effect.effectValue.ToString() + "!");
-                //print("You payed " + _item.price.ToString() + "."); 
+                SpendGold(_item.price);
                 if (serverMessagePanel != null)
                 {
                     InstantiateServerMessage("Max health incresed with " + _item.effect.effectValue.ToString() + "!", true);
@@ -123,9 +121,7 @@ public class Economy : MonoBehaviour
             {
                 Stamina playerStamina = player.GetComponent<Stamina>();
                 playerStamina.ResetStamina(playerStamina.stamina + _item.effect.effectValue, playerStamina.maxStamina);
-                AddGold(-_item.price);
-                //print("Stamina incresed with " + _item.effect.effectValue.ToString() + "!");
-                //print("You payed " + _item.price.ToString() + ".");
+                SpendGold(_item.price);
                 if (serverMessagePanel != null)
                 {
                     InstantiateServerMessage("Stamina incresed with " + _item.effect.effectValue.ToString() + "!", true);
@@ -136,15 +132,26 @@ public class Economy : MonoBehaviour
             {
                 Stamina playerStamina = player.GetComponent<Stamina>();
                 playerStamina.ResetStamina(playerStamina.stamina, playerStamina.maxStamina + _item.effect.effectValue);
-                AddGold(-_item.price);
-                //print("Max stamina incresed with " + _item.effect.effectValue.ToString() + "!");
-                //print("You payed " + _item.price.ToString() + ".");
+                SpendGold(_item.price);
                 if (serverMessagePanel != null)
                 {
                     InstantiateServerMessage("Max stamina incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
-            if(_item.destroyOnPurchase)
+            // Add attack value
+            else if (_item.effect.target == ItemEffectTarget.ATTACK)
+            {
+                Attack playerAttack = player.transform.Find("SwordAttackHitBox").GetComponent<Attack>();
+                playerAttack.attackValue += _item.effect.effectValue;
+                SpendGold(_item.price);
+                if (serverMessagePanel != null)
+                {
+                    InstantiateServerMessage("Attack increased by " + _item.effect.effectValue.ToString() + "!", true);
+                }
+            }
+
+
+            if (_item.destroyOnPurchase)
             {
                 Item[] _items = currentShopKeeper.items;
 
@@ -186,7 +193,7 @@ public class Economy : MonoBehaviour
     }
     public void InstantiateServerMessage(string message, bool destroy)
     {
-
+        DestroyOldMessages();
         if (destroy)
         {
             GameObject newText = Instantiate(messageRegular, serverMessagePanel);
@@ -236,7 +243,17 @@ public class Economy : MonoBehaviour
     }
     public void AddGold(int amount)
     {
+        // Play add gold sound
+
         gold += amount;
+        goldText.text = gold.ToString();
+        GlowText();
+    }
+    public void SpendGold(int amount)
+    {
+        // Play spend gold sound
+
+        gold -= amount;
         goldText.text = gold.ToString();
         GlowText();
     }

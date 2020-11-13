@@ -69,26 +69,32 @@ public class WaspNest : MonoBehaviour
             //Destroy the wasps-nest if the player hits it 10 times.
             if (hits >= 10 && !rewardGiven)
             {
-                rewardGiven = true;
-                if (QuestManager.instance.waspKillerStarted)
-                {
-                    Economy.economy.DestroyOldMessages();
-                    Economy.economy.InstantiateServerMessage("Quest Completed. Wasps-nest destroyed. Have some gold!", true);
-                    Economy.economy.AddGold(10);
-                }
-
-                //Unparent all wasps that are still alive before destroying the wasps-nest
-                foreach (Transform t in transform)
-                {
-                    t.parent = null;
-                }
-                rb.isKinematic = false;
-                Destroy(transform.parent.gameObject, 3);
-                waspNest.PlayOneShot(waspNest_Die);
+                StartCoroutine(DestroyNest());
                 
-                interactionsMaster.SetConversation("Wasp Completed");
             }
         }
+    }
+    IEnumerator DestroyNest()
+    {
+        rewardGiven = true;
+        rb.isKinematic = false;
+        waspNest.PlayOneShot(waspNest_Die);
+
+        yield return new WaitForSeconds(3);
+
+        Economy.economy.DestroyOldMessages();
+        Economy.economy.InstantiateServerMessage("Quest Completed. Have some gold!", true);
+        Economy.economy.AddGold(10);
+
+        //Unparent all wasps that are still alive before destroying the wasps-nest
+        foreach (Transform t in transform)
+        {
+            t.parent = null;
+        }
+
+        Destroy(transform.parent.gameObject);
+
+        interactionsMaster.SetConversation("Waspnest Completed");
     }
     void AlertWasps()
     {

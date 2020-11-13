@@ -4,59 +4,50 @@ using UnityEngine;
 using TMPro;
 public class DeliveryLocationManager : MonoBehaviour
 {
-    private GameObject bubble;
-    private TMP_Text text;
     public bool active;
-    public bool closeEnough;
+    public bool conversationOpen;
     private Target target;
-    private Transform player;
     private Renderer renderer;
+    private DisplayInteractions displayInteractions;
+    private bool askedAboutSushi, replied;
+    private TMP_Text text;
 
     private void Start()
     {
         renderer = GetComponentInChildren<Renderer>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        displayInteractions = transform.GetComponent<DisplayInteractions>();
+        displayInteractions.OnSpeachBubbleOpen.AddListener(ActivateQuestion);
+        displayInteractions.OnSpeachBubbleClose.AddListener(CloseConversation);
         target = transform.GetComponent<Target>();
+        text = transform.GetComponent<DisplayInteractions>().text;
         target.enabled = false;
-        bubble = transform.Find("SpeachBubble").gameObject;
-        text = bubble.transform.Find("Bubble").Find("Text").GetComponent<TMP_Text>();
         active = false;
-        bubble.SetActive(false);
         
     }
     private void Update()
     {
-        if (DeliveryQuestManager.instance.currentLocation == gameObject)
+        if (DeliveryQuestManager.instance.currentLocation == gameObject && DeliveryQuestManager.instance.deliveryQuestActive)
         {
-            if (DeliveryQuestManager.instance.deliveryQuestActive)
-            {
-                target.enabled = true;
-                active = true;
-            }
+            target.enabled = true;
+            active = true;
         }
         else
         {
-            bubble.SetActive(false);
             active = false;
-        }
-        if (DeliveryQuestManager.instance.currentLocation == gameObject && !DeliveryQuestManager.instance.deliveryQuestActive)
-        {
             gameObject.GetComponent<Target>().enabled = false;
         }
         if (active)
         {
-            //E to talk sprite pop up
-            if(closeEnough)
+            if(askedAboutSushi && !replied && conversationOpen)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if(Input.GetKeyDown(KeyCode.Y))
                 {
-                    bubble.SetActive(true);
-                    text.text = "Thanks for the Sushi!";
-                    Invoke("DeactivateText", 3f);
-                    DeliveryQuestManager.instance.SushiDelivered();
-                    active = false;
-                    target.enabled = false;
-                    closeEnough = false;
+                    DeliveryComplete();
+                }
+                else if(Input.GetKeyDown(KeyCode.N))
+                {
+                    text.text = "Damn, thought you had my sushi...";
+                    replied = true;
                 }
             }
         }
@@ -68,7 +59,34 @@ public class DeliveryLocationManager : MonoBehaviour
             }
         }
     }
-   
+    public void ActivateQuestion()
+    {
+        if(active)
+        {
+            conversationOpen = true;
+            if (!askedAboutSushi)
+            {
+                text.text = "Is that my sushi? \n Y or N";
+                askedAboutSushi = true;
+            }
+        }
+        
+    }
+    public void CloseConversation()
+    {
+        conversationOpen = false;
+        askedAboutSushi = false;
+        replied = false;
+    }
+    public void DeliveryComplete()
+    {
+        DeliveryQuestManager.instance.SushiDelivered();
+        replied = true;
+        active = false;
+        target.enabled = false;
+        conversationOpen = false;
+        text.text = "Thanks for the Sushi!";
+    }
     public void SetAsLocation()
     {
         active = true;
@@ -80,32 +98,5 @@ public class DeliveryLocationManager : MonoBehaviour
         if (target != null) target.enabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            closeEnough = true;
-            if(active)
-            {
-                text.text = "Is that my Uber Eats?";
-                bubble.SetActive(true);
-            }
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.CompareTag("Player") && active && DeliveryQuestManager.instance.deliveryQuestActive)
-        {
-            text.text = "Damn, thought you had my Uber Eats";
-            Invoke("DeactivateText", 3f);
-            closeEnough = false;
-        }
-    }
-
-    public void DeactivateText()
-    {
-        bubble.SetActive(false);
-        closeEnough = false;
-    }
 
 }

@@ -17,6 +17,8 @@ public class Civilian : MonoBehaviour
     private NavMeshAgent agent;
     private Rigidbody RB;
     public bool overrideRun = false;
+    public float velocityPerSecond = 0;
+    public float deleteMe;
 
     // Start is called before the first frame update
     void Awake()
@@ -47,9 +49,9 @@ public class Civilian : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!passive)
+        if (!passive)
         {
-            if(fleeing)
+            if (fleeing)
             {
                 agent.speed = runSpeed;
             }
@@ -68,17 +70,15 @@ public class Civilian : MonoBehaviour
     float LocomotionBlendValue()
     {
         // Works with blend with 3 stages (idle, walk and run) 
-        //Only check velocity in x and z (Ignore up and down)
-        //float velocity = Mathf.Pow(Mathf.Pow(RB.velocity.x, 2) + Mathf.Pow(RB.velocity.z, 2), 0.5f);
-        float velocity = Mathf.Pow(Mathf.Pow(agent.velocity.x, 2) + Mathf.Pow(agent.velocity.z, 2), 0.5f);
-        if (velocity <= walkSpeed)
+        velocityPerSecond = Mathf.Lerp(velocityPerSecond, agent.speed, 0.4f);
+        if (velocityPerSecond <= walkSpeed)
         {
-            float returnValue = (velocity / walkSpeed) * 0.5f;
+            float returnValue = (velocityPerSecond / walkSpeed) * 0.5f;
             return returnValue;
         }
         else
         {
-            float returnValue = ((velocity - walkSpeed) / (runSpeed - walkSpeed) * .5f) + .5f;
+            float returnValue = ((velocityPerSecond - walkSpeed) / (runSpeed - walkSpeed) * .5f) + .5f;
             return returnValue;
         }
     }

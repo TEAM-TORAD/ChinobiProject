@@ -11,36 +11,36 @@ public class Interactions
     public NPCConversation conversation;
     public bool completed = false;
 }
+[System.Serializable]
+public enum NPCSpeechState
+{
+    silent,
+    interacts_UI,
+    interacts_speech_bubble
+}
 public class NPCInteraction : MonoBehaviour
 {
     private Animator animator;
     public float rotationSpeed = 90.0f;
     public bool passive, autoStartConversation;
-    private bool playerClose;
-    private GameObject talkBubble;
-    public Interactions[] interactions;
-    private int conversationIndex = 0;
+    [HideInInspector]
+    public bool playerClose;
+    public NPCSpeechState speachState = NPCSpeechState.silent;
     private Transform player;
     private Vector3 startRotation;
     private float rotationBlendValue = 0.3f;
-    
+    public Interactions[] interactions;
+    public string bubbleTextStart = "";
+    [HideInInspector]
+    public int conversationIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(transform.CompareTag("ShopKeeper"))
-        {
-            talkBubble = transform.parent.Find("TalkBubble").gameObject;
-        }
-        else
-        {
-            talkBubble = transform.Find("TalkBubble").gameObject;
-        }
-
         if (GetComponent<Animator>() != null) animator = GetComponent<Animator>();
-        talkBubble.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        // This saves a position 1 meter in front of the player in the direction he is looking when the game starts. When player isn't close the NPC will rotate towards this position
-        startRotation = transform.position + transform.forward;
+        // This saves a position in front of the player in the direction he is looking when the game starts. When player isn't close the NPC will rotate towards this position
+        startRotation = transform.position + transform.forward * 5;
     }
 
     // Update is called once per frame
@@ -51,38 +51,6 @@ public class NPCInteraction : MonoBehaviour
             if(playerClose)
             {
                 LookAt(player.position);
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    if (!CursorScript.instance.conversationOpen && !CursorScript.instance.storeOpen)
-                    {
-                        if (interactions.Length > 0)
-                        {
-                            ConversationManager.Instance.StartConversation(interactions[conversationIndex].conversation); 
-                            CameraLookAt.instance.Activate(transform);
-                            if (talkBubble.activeSelf) talkBubble.SetActive(false);
-                        }
-                    }
-                    else
-                    {
-                        if(CursorScript.instance.conversationOpen && interactions.Length > 0)
-                        {
-                            ConversationManager.Instance.EndConversation();
-                            talkBubble.SetActive(true);
-                        }
-                        else if(CursorScript.instance.storeOpen)
-                        {
-                            if (transform.GetComponent<ShopKeeperNPC>() != null)
-                            {
-                                transform.GetComponent<ShopKeeperNPC>().CloseStore();
-                                if (CameraLookAt.instance != null) CameraLookAt.instance.Deactivate();
-                            }
-                        }
-                    }
-                }
-                else if(!CursorScript.instance.conversationOpen)
-                {
-                    if(interactions.Length > 0 && !talkBubble.activeSelf) talkBubble.SetActive(true);
-                }
             }
             else
             {
@@ -112,18 +80,6 @@ public class NPCInteraction : MonoBehaviour
         if (c.CompareTag("Player"))
         {
             playerClose = true;
-            if (passive)
-            {
-                if (autoStartConversation && interactions.Length > 0 && !CursorScript.instance.conversationOpen)
-                {
-                    ConversationManager.Instance.StartConversation(interactions[conversationIndex].conversation);
-                    CursorScript.instance.conversationOpen = true;
-                }
-                else if (!autoStartConversation && interactions.Length > 0 && !CursorScript.instance.conversationOpen)
-                {
-                    talkBubble.SetActive(true);
-                }
-            }
 
             //play conversation sound?
 
@@ -134,14 +90,13 @@ public class NPCInteraction : MonoBehaviour
         if (c.CompareTag("Player"))
         {
             playerClose = false;
-            if (talkBubble.activeSelf) talkBubble.SetActive(false);
+            //if (talkBubble.activeSelf) talkBubble.SetActive(false);
 
         }
     }
     private void OnTriggerEnter(Collider c)
     {
         EnteringTrigger(c);
-        
     }
     private void OnTriggerExit(Collider c)
     {

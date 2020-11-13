@@ -15,8 +15,14 @@ public class Health : MonoBehaviour
     public Color greyColor, redColor;
     private bool alive = true;
 
+ 
+
     void Start()
     {
+        //ragdoll states
+        setRigidbodyState(true);
+        setColliderState(false);
+
         if (transform.CompareTag("Player"))
         {
             healthNStaminaPanel = GameObject.FindGameObjectWithTag("HealthNStamina").transform;
@@ -26,7 +32,7 @@ public class Health : MonoBehaviour
     }
     private void Update()
     {
-        if(transform.CompareTag("Player"))
+        if (transform.CompareTag("Player"))
         {
             if (Input.GetKeyDown(KeyCode.O)) TakeDamage(10);
             if ((float)health / maxHealth < 0.2f)
@@ -44,11 +50,11 @@ public class Health : MonoBehaviour
     {
         health += value;
         if (health > maxHealth) health = maxHealth;
-        if(transform.CompareTag("Player"))
+        if (transform.CompareTag("Player"))
         {
             healthImage.fillAmount = (float)health / maxHealth;
         }
-        
+
     }
     public void ResetHealth(int _health, int _maxHealth)
     {
@@ -70,6 +76,7 @@ public class Health : MonoBehaviour
         Time.timeScale = 0.0f;
         AudioListener.pause = true;
     }
+
     public void TakeDamage(int value)
     {
         health -= value;
@@ -77,25 +84,31 @@ public class Health : MonoBehaviour
         {
             health = 0;
             // Death effect
-            if(transform.CompareTag("Player"))
+            if (transform.CompareTag("Player"))
             {
-                if(alive)
+                if (alive)
                 {
                     CursorScript.instance.playerDead = true;
                     // death animation
                     Animator playerAnim = transform.GetComponent<Animator>();
                     playerAnim.SetTrigger("Dying");
-                        AnimationClip[] clips = playerAnim.runtimeAnimatorController.animationClips;
-                        foreach (AnimationClip clip in clips)
+
+                    //ragdoll trigger
+                    GetComponent<Animator>().enabled = false;
+                    setRigidbodyState(false);
+                    setColliderState(true);
+
+                    AnimationClip[] clips = playerAnim.runtimeAnimatorController.animationClips;
+                    foreach (AnimationClip clip in clips)
+                    {
+                        switch (clip.name)
                         {
-                            switch (clip.name)
-                            {
                             // Find the name of the dying animation (Name of the clip itself, not the state)
-                                case "Player Dying":
-                                    StartCoroutine(PauseGameAfterDying(clip.length));
-                                    break;
-                            }
+                            case "Player Dying":
+                                StartCoroutine(PauseGameAfterDying(clip.length));
+                                break;
                         }
+                    }
                     alive = false;
 
                     // Open dead-panel
@@ -106,7 +119,7 @@ public class Health : MonoBehaviour
                 transform.GetComponent<ExplodingNPCController>().Die();
                 alive = false;
             }
-            if(transform.CompareTag("WaspNPC"))
+            if (transform.CompareTag("WaspNPC"))
             {
                 transform.GetComponent<WaspNPCScript>().Die();
                 alive = false;
@@ -116,12 +129,12 @@ public class Health : MonoBehaviour
         {
             // Take damage
             //Debug.Log(transform.name + " took " + value + " in damage.");
-            
+
             if (transform.CompareTag("ExplodingNPC"))
             {
 
             }
-            else if(transform.CompareTag("WaspNPC"))
+            else if (transform.CompareTag("WaspNPC"))
             {
 
             }
@@ -130,5 +143,51 @@ public class Health : MonoBehaviour
         {
             healthImage.fillAmount = (float)health / maxHealth;
         }
+    }
+
+    #region Ragdoll
+
+    void setRigidbodyState(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody rigidbody in rigidbodies)
+        {
+            rigidbody.isKinematic = state;
+        }
+
+        GetComponent<Rigidbody>().isKinematic = !state;
+    }
+
+    void setColliderState(bool state)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = state;
+        }
+
+        GetComponent<Collider>().enabled = !state;
+    }
+
+    #endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(transform.CompareTag("Player"))
+        {
+            if (collision.relativeVelocity.y > 15)
+            {
+                //ragdoll trigger
+                GetComponent<Animator>().enabled = false;
+                setRigidbodyState(false);
+                setColliderState(true);
+
+               
+            }
+        }
+
+        
     }
 }

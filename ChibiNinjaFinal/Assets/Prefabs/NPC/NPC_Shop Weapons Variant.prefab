@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8348827604744294704
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1199327164037826943, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1122
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199327164037826943, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199327164037826943, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379213995047876484, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -113.905
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -106.161
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.60876137
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7933534
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267273909255015985, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877515, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_Name
+      value: NPC_Shop Weapons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877516, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.data[0].name
+      value: Weapons Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.data[0].destroyOnPurchase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.data[0].price
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.data[0].description
+      value: Increase attack by 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 88178f649f7bd014db0104806da28dd9,
+        type: 3}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.data[0].effect.effectValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786682839403877517, guid: 24236c32272677e43aca55ef21d282d4,
+        type: 3}
+      propertyPath: items.Array.data[0].effect.target
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24236c32272677e43aca55ef21d282d4, type: 3}
