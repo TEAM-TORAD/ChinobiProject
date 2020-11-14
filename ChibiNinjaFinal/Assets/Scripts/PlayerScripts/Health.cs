@@ -20,8 +20,11 @@ public class Health : MonoBehaviour
     void Start()
     {
         //ragdoll states
-        setRigidbodyState(true);
-        setColliderState(false);
+        if(transform.CompareTag("Player"))
+        {
+            setRigidbodyState(true);
+            setColliderState(false);
+        }
 
         if (transform.CompareTag("Player"))
         {
@@ -183,7 +186,7 @@ public class Health : MonoBehaviour
                 GetComponent<Animator>().enabled = false;
                 setRigidbodyState(false);
                 setColliderState(true);
-
+                TakeDamage(maxHealth);
                
             }
         }

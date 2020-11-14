@@ -7,7 +7,7 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance = null;
     public DummyHitDetection dummy;
-    public NPCInteraction interactionsMaster;
+    private NPCInteraction interactionsMaster;
     public bool attackTutorialStarted, waspKillerStarted;
     public bool attackTutorialCompleted, wasKillerCompleted;
     public Transform waspNest;
@@ -18,7 +18,9 @@ public class QuestManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(this);
-        ninjaMasterTarget = GameObject.FindGameObjectWithTag("NinjaMaster").transform.Find("Target").GetComponent<Target>();
+        Transform ninjaMaster = GameObject.FindGameObjectWithTag("NinjaMaster").transform;
+        interactionsMaster = ninjaMaster.GetComponent<NPCInteraction>();
+        ninjaMasterTarget = ninjaMaster.Find("Target").GetComponent<Target>();
         waspNestTarget = waspNest.GetComponent<Target>();
         waspNestTarget.enabled = false;
         waspNest.gameObject.SetActive(false);

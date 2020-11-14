@@ -102,6 +102,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: CenterPieceNew
       objectReference: {fileID: 0}
+    - target: {fileID: 4249969300012249458, guid: d793c5fc1b8a28548b39eb2b4389d815,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000018626449
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249969300012249458, guid: d793c5fc1b8a28548b39eb2b4389d815,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000029802319
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249969300012249458, guid: d793c5fc1b8a28548b39eb2b4389d815,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.036478486
+      objectReference: {fileID: 0}
     - target: {fileID: 4300673684394839288, guid: d793c5fc1b8a28548b39eb2b4389d815,
         type: 3}
       propertyPath: m_Mesh

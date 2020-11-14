@@ -24,10 +24,11 @@ public class WaspNest : MonoBehaviour
     
     
 
-    public NPCInteraction interactionsMaster;
+    private NPCInteraction interactionsMaster;
     // Start is called before the first frame update
     void Start()
     {
+        interactionsMaster = GameObject.FindGameObjectWithTag("NinjaMaster").transform.GetComponent<NPCInteraction>();
         spawnPoint = transform.parent.Find("Wasp Spawnpoint");
         PS = transform.parent.Find("Particle System").GetComponent<ParticleSystem>();
         rb = GetComponent<Rigidbody>();

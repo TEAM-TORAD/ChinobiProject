@@ -5,8 +5,6 @@ using DialogueEditor;
 
 public class ShopKeeperNPC : MonoBehaviour
 {
-    public bool autoStartConversation = false;
-    public NPCConversation conversation;
     public Item[] items;
     public bool passive = true;
     // Start is called before the first frame update

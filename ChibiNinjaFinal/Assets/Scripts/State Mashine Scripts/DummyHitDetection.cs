@@ -7,7 +7,7 @@ using UnityEngine;
 public class DummyHitDetection : MonoBehaviour
 {
     public float hits;
-    public NPCInteraction interactionsMaster;
+    private NPCInteraction interactionsMaster;
     private bool playerClose;
     public bool started, firstHint, secondHint, thirdHint, fourthHint, fifthHint, complete;
     private PlayerInputs playerInputs;
@@ -21,6 +21,7 @@ public class DummyHitDetection : MonoBehaviour
     {
         target = GetComponent<Target>();
         target.enabled = false;
+        interactionsMaster = GameObject.FindGameObjectWithTag("NinjaMaster").transform.GetComponent<NPCInteraction>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         PS = transform.parent.Find("Particle System").GetComponent<ParticleSystem>();
         playerInputs = player.GetComponent<PlayerInputs>();
