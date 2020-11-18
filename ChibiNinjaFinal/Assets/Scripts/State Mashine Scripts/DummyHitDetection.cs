@@ -89,8 +89,7 @@ public class DummyHitDetection : MonoBehaviour
                     Economy.economy.InstantiateServerMessage(currentHint, false);
 
                     // Set new conversation on the master
-                    interactionsMaster.SetConversation("Tutorial Completed");
-                    QuestManager.instance.CompleteAttackTutorial();
+                    QuestManager.instance.CompleteAttackTutorial(false);
                     target.enabled = false;
 
                 }
@@ -139,7 +138,11 @@ public class DummyHitDetection : MonoBehaviour
         if(c.CompareTag("Player"))
         {
             playerClose = false;
-            if (started && !complete) Economy.economy.InstantiateServerMessage("Where are you going? Training isn't completed yet!", true);
+            if (started && !complete)
+            {
+                Economy.economy.InstantiateServerMessage("Where are you going? Training isn't completed yet!", true);
+                Economy.economy.DestroyOldMessages();
+            }
         }
     }
 

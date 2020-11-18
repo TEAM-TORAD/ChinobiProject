@@ -174,17 +174,17 @@ public class ButterflyNPC : MonoBehaviour
                                         closest = distance;
                                         closestIndex = i;
                                     }
-                                    else print("Index " + i + ": " + flowers[i].transform.name + " is " + xZDistance + " away, out of max 0.2 from closest point on the navmesh.");
+                                    //else print("Index " + i + ": " + flowers[i].transform.name + " is " + xZDistance + " away, out of max 0.2 from closest point on the navmesh.");
                                 }
-                                else print("Index " + i + ": " + flowers[i].transform.name + " is outside the navmesh.");
+                                //else print("Index " + i + ": " + flowers[i].transform.name + " is outside the navmesh.");
                             }
-                            else print("Index " + i + ": " + flowers[i].transform.name + " can't be reached by the navmesh agent. No valid path.");
+                            //else print("Index " + i + ": " + flowers[i].transform.name + " can't be reached by the navmesh agent. No valid path.");
                         }
                     }
-                    else print("Index " + i + ": Can't find a landingTarget on " + flowers[i].transform.name + ".");
+                    //else print("Index " + i + ": Can't find a landingTarget on " + flowers[i].transform.name + ".");
                 }
             }
-            else print("Index " + i + ": Can't find a flower script on " + flowers[i].transform.name + ".");
+            //else print("Index " + i + ": Can't find a flower script on " + flowers[i].transform.name + ".");
         }
         // If closestIndex is 0 or greater it means it found a flower close by, now go to it.
         if (closestIndex >= 0)

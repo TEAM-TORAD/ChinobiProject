@@ -22,6 +22,7 @@ public class DeliveryQuestManager : MonoBehaviour
     public float timer;
     private NPCInteraction nPCInteraction;
     private DisplayInteractions displayInteractions;
+    private Transform player;
 
     public static DeliveryQuestManager instance = null;
    
@@ -29,7 +30,7 @@ public class DeliveryQuestManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(this);
-
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         if (transform.GetComponent<NPCInteraction>() != null) nPCInteraction = transform.GetComponent<NPCInteraction>();
 
         if (transform.GetComponent<DisplayInteractions>() != null) displayInteractions = transform.GetComponent<DisplayInteractions>();
@@ -120,7 +121,7 @@ public class DeliveryQuestManager : MonoBehaviour
         ChooseDeliveryLocation();
         PlaceDeliveryItemOnPlayer();
         deliveryQuestActive = true;
-        deliveryDistance = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(locations[index].transform.position.x, locations[index].transform.position.z));
+        
     }
     public void DeactivateDelivery()
     {
@@ -134,6 +135,7 @@ public class DeliveryQuestManager : MonoBehaviour
         locations[index].SetActive(true);
         currentLocation = locations[index];
         currentLocation.transform.GetComponent<DeliveryLocationManager>().SetAsLocation();
+        deliveryDistance = Vector2.Distance(new Vector2(player.position.x, player.position.z), new Vector2(currentLocation.transform.position.x, currentLocation.transform.position.z));
     }
 
     public void PlaceDeliveryItemOnPlayer()
@@ -150,8 +152,8 @@ public class DeliveryQuestManager : MonoBehaviour
         RemoveDeliveryItemFromPlayer();
         deliveryQuestActive = false;
         // Calculate the reward based on the average speed + a bonus based on the distance
+        
         float myRweard = (deliveryDistance / timer) * goldRate + (deliveryDistance / bonusRate);
-        print("reward before rounding = " + myRweard);
         reward = Mathf.RoundToInt(myRweard);
         if (reward <= 0) reward = 1;
         Economy.economy.InstantiateServerMessage("You completed the delivery. Your reward is: " + reward + "!", true);

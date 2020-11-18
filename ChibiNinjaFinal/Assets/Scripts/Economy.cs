@@ -34,11 +34,8 @@ public enum ItemEffectTarget
 
 public class Economy : MonoBehaviour
 {
-
-    public KeyCode storeButton = KeyCode.P;
     private GameObject player;
     public static Economy economy;
-    public GameObject inventoryGoldPrefab;
     public int gold;
     Transform goldPanel;
     [HideInInspector]
@@ -102,6 +99,7 @@ public class Economy : MonoBehaviour
                 //print("You payed " + _item.price.ToString() + ".");
                 if (serverMessagePanel != null)
                 {
+                    DestroyOldMessages();
                     InstantiateServerMessage("Health incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
@@ -113,6 +111,7 @@ public class Economy : MonoBehaviour
                 SpendGold(_item.price);
                 if (serverMessagePanel != null)
                 {
+                    DestroyOldMessages();
                     InstantiateServerMessage("Max health incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
@@ -124,6 +123,7 @@ public class Economy : MonoBehaviour
                 SpendGold(_item.price);
                 if (serverMessagePanel != null)
                 {
+                    DestroyOldMessages();
                     InstantiateServerMessage("Stamina incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
@@ -135,6 +135,7 @@ public class Economy : MonoBehaviour
                 SpendGold(_item.price);
                 if (serverMessagePanel != null)
                 {
+                    DestroyOldMessages();
                     InstantiateServerMessage("Max stamina incresed with " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
@@ -146,6 +147,7 @@ public class Economy : MonoBehaviour
                 SpendGold(_item.price);
                 if (serverMessagePanel != null)
                 {
+                    DestroyOldMessages();
                     InstantiateServerMessage("Attack increased by " + _item.effect.effectValue.ToString() + "!", true);
                 }
             }
@@ -177,6 +179,7 @@ public class Economy : MonoBehaviour
             // You don't have enough gold.
             if (serverMessagePanel != null)
             {
+                DestroyOldMessages();
                 InstantiateServerMessage("You don't have enough gold to buy this item!", true);
             }
         }
@@ -185,10 +188,8 @@ public class Economy : MonoBehaviour
     {
         foreach (Transform t in serverMessagePanel)
         {
-            if (!t.GetComponent<ServerMessageScript>().autoDestroy)
-            {
-                Destroy(t.gameObject);
-            }
+            
+            Destroy(t.gameObject);
         }
     }
     public void InstantiateServerMessage(string message, bool destroy)

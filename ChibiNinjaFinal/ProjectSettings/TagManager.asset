@@ -19,6 +19,7 @@ TagManager:
   - ShopKeeper
   - NinjaMaster
   - Flower
+  - Dragon
   layers:
   - Default
   - TransparentFX
