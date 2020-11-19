@@ -24,6 +24,11 @@ public class DeliveryQuestManager : MonoBehaviour
     private DisplayInteractions displayInteractions;
     private Transform player;
 
+    //bag equip particles and sounds
+    public ParticleSystem bagExplode;
+    public AudioSource source;
+    public AudioClip bagEquipSound;
+
     public static DeliveryQuestManager instance = null;
    
     public void Start()
@@ -81,6 +86,7 @@ public class DeliveryQuestManager : MonoBehaviour
                     deliveryQuestActive = false;
                     quitWorkConversation = false;
                     RemoveDeliveryItemFromPlayer();
+                    
 
                 }
                 if (Input.GetKeyDown(KeyCode.N))
@@ -141,11 +147,15 @@ public class DeliveryQuestManager : MonoBehaviour
     public void PlaceDeliveryItemOnPlayer()
     {
         sushiBag.SetActive(true);
-        
+        bagExplode.Play();
+        source.PlayOneShot(bagEquipSound);
+
     }
     public void RemoveDeliveryItemFromPlayer()
     {
         sushiBag.SetActive(false);
+        bagExplode.Play();
+        source.PlayOneShot(bagEquipSound);
     }
     public void SushiDelivered()
     {

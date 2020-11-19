@@ -30,9 +30,6 @@ public class Sound_Manager : MonoBehaviour
     public AudioClip shieldBreak;
     public AudioClip shieldBreak_Scream;
     public AudioClip rolling;
-    
-    
-
 
     #region Player
     // Start is called before the first frame update
