@@ -12,12 +12,28 @@ public class CoinScript : MonoBehaviour
     private bool pickedUp = false;
     Hashtable hash;
     Transform mesh;
+
+    //magnet coins
+    Transform player;
+    public float distance;
+    Rigidbody rb;
+    public float magnetDistance;
+    public AudioSource koban;
+    public AudioClip coinSound;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        //magnet coins
+        rb = GetComponent<Rigidbody>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+
         mesh = transform.Find("Mesh");
         Rotate();
-        foreach(ParticleSystem p in activeOnAwake)
+        foreach (ParticleSystem p in activeOnAwake)
         {
             p.Play();
         }
@@ -32,16 +48,24 @@ public class CoinScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //magnet coins
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance < magnetDistance)
+        {
+            rb.AddForce((player.transform.position - transform.position) * (26));
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.CompareTag("Player") && !pickedUp) {
+        if (other.transform.CompareTag("Player") && !pickedUp)
+        {
             Economy.economy.AddGold(goldValue);
             pickedUp = true;
             StartCoroutine(PickupCoin(destroySecondsAferPickup));
+            koban.PlayOneShot(coinSound);
         }
     }
+
     IEnumerator PickupCoin(float value)
     {
         foreach (ParticleSystem p in activeOnAwake)
