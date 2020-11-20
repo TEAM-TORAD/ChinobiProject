@@ -66,7 +66,7 @@ public class DummyHitDetection : MonoBehaviour
             else if(fourthHint && !fifthHint)
             {
                 // Check if player is holding down the middle mouse button and the animator state is in the third combo
-                if (Input.GetButton(playerInputs.middleMouse) && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Kick3"))
+                if (Input.GetButton(playerInputs.kick) && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Kick3"))
                 {
                     timer = 0;
                     fifthHint = true;
@@ -97,7 +97,7 @@ public class DummyHitDetection : MonoBehaviour
         }
         else if(!playerClose && started && !complete && !CursorScript.instance.conversationOpen)
         {
-            if(Input.GetButtonDown(playerInputs.leftMouse) || Input.GetButtonDown(playerInputs.middleMouse) || Input.GetButtonDown(playerInputs.rightMouse))
+            if(Input.GetButtonDown(playerInputs.leftMouse) || Input.GetButtonDown(playerInputs.kick) || Input.GetButtonDown(playerInputs.block))
             {
                 Economy.economy.InstantiateServerMessage("Get closer to the dummy!", true);
             }

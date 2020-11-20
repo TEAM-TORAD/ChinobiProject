@@ -100,18 +100,8 @@ public class Health : MonoBehaviour
                     GetComponent<Animator>().enabled = false;
                     setRigidbodyState(false);
                     setColliderState(true);
-
-                    AnimationClip[] clips = playerAnim.runtimeAnimatorController.animationClips;
-                    foreach (AnimationClip clip in clips)
-                    {
-                        switch (clip.name)
-                        {
-                            // Find the name of the dying animation (Name of the clip itself, not the state)
-                            case "Player Dying":
-                                StartCoroutine(PauseGameAfterDying(clip.length));
-                                break;
-                        }
-                    }
+                    StartCoroutine(PauseGameAfterDying(5));
+                    
                     alive = false;
 
                     // Open dead-panel

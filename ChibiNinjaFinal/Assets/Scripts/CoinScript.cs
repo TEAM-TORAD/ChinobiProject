@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinScript : MonoBehaviour
 {
     public int goldValue = 10;
+    public GameObject pickupEffectPrefab;
     public float destroySecondsAferPickup = 2.0f;
     public ParticleSystem[] activeOnAwake;
     public ParticleSystem[] activeOnPickup;
@@ -61,13 +62,15 @@ public class CoinScript : MonoBehaviour
         {
             Economy.economy.AddGold(goldValue);
             pickedUp = true;
-            StartCoroutine(PickupCoin(destroySecondsAferPickup));
+            StartCoroutine(PickupCoin(destroySecondsAferPickup, other.transform));
             koban.PlayOneShot(coinSound);
         }
     }
 
-    IEnumerator PickupCoin(float value)
+    IEnumerator PickupCoin(float destroyAfter, Transform pickupTransform)
     {
+        
+
         foreach (ParticleSystem p in activeOnAwake)
         {
             p.Stop();
@@ -78,9 +81,12 @@ public class CoinScript : MonoBehaviour
         {
             p.Play();
         }
+
         transform.Find("Mesh").gameObject.SetActive(false);
-        yield return new WaitForSeconds(value);
+        GameObject pickupEffect = Instantiate(pickupEffectPrefab, pickupTransform.position, Quaternion.identity, pickupTransform);
+        yield return new WaitForSeconds(destroyAfter);
         Destroy(transform.gameObject);
+        Destroy(pickupEffect);
     }
     void Rotate()
     {

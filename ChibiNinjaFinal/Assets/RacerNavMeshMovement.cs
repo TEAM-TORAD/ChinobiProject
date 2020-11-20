@@ -6,47 +6,53 @@ using UnityEngine.AI;
 
 public class RacerNavMeshMovement : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
     //public LayerMask whatIsGround, whatIsPlayer;
 
-    public Animator anim;
-    public Rigidbody rb;
+    private Animator anim;
+    private Rigidbody rb;
+
+    public bool active = false;
 
     //waypoints
     [SerializeField]
     Transform[] waypoints;
-    int waypointIndex = 0;
+    public int waypointIndex = 0;
 
     //To add multiple checkpoint destinations
-    //public Transform startPoint;
-    public Transform endPoint;
-    private Vector3 distanceToDestination;
-    private bool destinationReached;
+    private float distanceToDestination;
+    public bool raceFinished;
 
 
     private void Start()
     {
-        anim = gameObject.GetComponentInChildren<Animator>();
-        rb = gameObject.GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = 0;
+        agent.destination = waypoints[waypointIndex].transform.position;
+        print("Distance to next target: " + DistanceToAgentTarget());
     }
     private void Update()
     {
-        CheckDistance();
-
-        //if(!destinationReached) MoveToDestination();
-
-        anim.SetFloat("Speed", agent.velocity.magnitude);
-
-        if (!destinationReached || !agent.pathPending)
-            MoveToDestination();
+        if(active)
+        {
+            CheckDistance();
+            if (!agent.pathPending) MoveToDestination();
+            else print("Path is penging");
+            anim.SetFloat("Speed", agent.velocity.magnitude);
+        }
+        
 
     }
     private void MoveToDestination()
     {
-        agent.speed = 6.5f;
-        agent.destination = waypoints[waypointIndex].transform.position;
-        waypointIndex = (waypointIndex += 1);
+        if (!raceFinished) agent.speed = 6.5f;
+        else
+        {
+            agent.speed = 0;
+
+        }
         //waypoints
         /*transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, agent.speed * Time.deltaTime);
 
@@ -61,7 +67,7 @@ public class RacerNavMeshMovement : MonoBehaviour
         }*/
         //agent.SetDestination(endPoint.position);
 
-        FaceDestination();
+        //FaceDestination();
     }
 
     float DistanceToAgentTarget()
@@ -71,19 +77,29 @@ public class RacerNavMeshMovement : MonoBehaviour
 
     private void FaceDestination()
     {
-        Vector3 relativePos = endPoint.position - transform.position;
+        Vector3 relativePos = waypoints[waypointIndex].transform.position - transform.position;
         Quaternion toRotation = Quaternion.LookRotation(relativePos);
         transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 1 * Time.deltaTime);
     }
 
     void CheckDistance()
     {
-        distanceToDestination = transform.position - endPoint.position;
-        if (distanceToDestination.magnitude < 1f)
+        if (DistanceToAgentTarget() < 1.0f)
         {
-            destinationReached = true;
             Debug.Log("Destination Reached");
-            agent.isStopped = true;
+            if ( waypointIndex < waypoints.Length - 1 )
+            {
+                waypointIndex += 1;
+                agent.destination = waypoints[waypointIndex].transform.position;
+                print("Distance to next target: " + DistanceToAgentTarget());
+            }
+            else
+            {
+                // Race over
+                print("Completed the race. I assume you lost.");
+                raceFinished = true;
+            }
+            
         }
     }
 

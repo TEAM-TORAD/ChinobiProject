@@ -36,8 +36,15 @@ public class ProjectileScript : MonoBehaviour
         speed = _speed;
         destroyAfterSeconds = _destroyAfterSeconds;
         friendly = _friendly;
-        if (_target.Find("EnemyRayTarget") != null) target = _target.Find("EnemyRayTarget").position;
-        else target = _target.position;
+        if(_target != null)
+        {
+            if (_target.Find("EnemyRayTarget") != null) target = _target.Find("EnemyRayTarget").position;
+            else target = _target.position;
+        }
+        else
+        {
+            target = _attacker.transform.forward * 10;
+        }
         transform.LookAt(target);
         attacker = _attacker;
     }

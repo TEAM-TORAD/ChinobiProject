@@ -9,8 +9,9 @@ public class PlayerInputs : MonoBehaviour
     #region Button String Assignments
     public string jumpButton = "Jump";              
     public string leftMouse = "Fire1";
-    public string rightMouse = "Aim";
-    public string middleMouse = "Fire3";
+    public string block = "Block";
+    public string aim = "Aim";
+    public string kick = "Kick";
     public string sprintButton = "Sprint";
     #endregion
 
@@ -29,7 +30,7 @@ public class PlayerInputs : MonoBehaviour
     // Component
     #region Components Used
     private Animator anim;
-
+    private SmartCrosshair smartCrosshair;
     private Stamina stamina;
     #endregion
 
@@ -39,6 +40,7 @@ public class PlayerInputs : MonoBehaviour
         #region Locate Initial Component
         anim = gameObject.GetComponent<Animator>();
         stamina = GetComponent<Stamina>();
+        smartCrosshair = Camera.main.transform.GetComponent<SmartCrosshair>();
         #endregion
     }
     private void Update()
@@ -54,11 +56,20 @@ public class PlayerInputs : MonoBehaviour
             {
                 anim.SetTrigger("JumpPressed");
             }
-            if (Input.GetButtonUp(jumpButton))
+            else if (Input.GetButtonUp(jumpButton))
             {
                 isHoldingJump = false;
                 anim.SetBool("JumpHeld", false);
                 anim.ResetTrigger("JumpPressed");
+            }
+            if (Input.GetButtonDown(aim))
+            {
+                anim.SetBool("Aim", true);
+            }
+            else if (Input.GetButtonUp(aim))
+            {
+                anim.SetBool("Aim", false);
+                smartCrosshair.ResetCrosshair();
             }
             #endregion
             #region Attack Button - LeftMouse
@@ -79,7 +90,7 @@ public class PlayerInputs : MonoBehaviour
             #endregion
             #region Block Button - RightMouse
 
-            if (Input.GetButtonDown(rightMouse))
+            if (Input.GetButtonDown(block))
             {
                 anim.SetTrigger("BlockPressed");
                 HoldingBlock();
@@ -89,7 +100,7 @@ public class PlayerInputs : MonoBehaviour
             {
                 HoldingBlock();
             }*/
-            if (Input.GetButtonUp(rightMouse))
+            if (Input.GetButtonUp(block))
             {
                 StopBlocking();
             }
@@ -100,15 +111,15 @@ public class PlayerInputs : MonoBehaviour
             }
             #endregion
             #region Kick Button - MiddleMouse
-            if (Input.GetButton(middleMouse))
+            if (Input.GetButton(kick))
             {
                 HoldingKick();
             }
-            if (Input.GetButtonDown(middleMouse))
+            if (Input.GetButtonDown(kick))
             {
                 anim.SetTrigger("KickPressed");
             }
-            if (Input.GetButtonUp(middleMouse))
+            if (Input.GetButtonUp(kick))
             {
                 isHoldingKick = false;
                 anim.SetBool("KickHeld", false);

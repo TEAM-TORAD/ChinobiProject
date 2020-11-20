@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class FadeScript : MonoBehaviour
 {
     public Transform fadePanel;
-    bool active;
+    public bool active;
     Image image;
     Color curColor;
     [Range(0, 1)]
@@ -45,7 +45,7 @@ public class FadeScript : MonoBehaviour
             curColor.a += fadePerFrame * Time.deltaTime;
 
             image.color = curColor;
-            Debug.Log("Timer: " + timer + " Alpha: " + image.color.a);
+            //Debug.Log("Timer: " + timer + " Alpha: " + image.color.a);
             if (timer >= fadeTime)
             {
                 AfterFade.Invoke();

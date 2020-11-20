@@ -17,7 +17,7 @@ public class SmartCrosshair : MonoBehaviour
             public float maxSpread = 100;
             public float minSpread = 1;
             public float spreadPerSecond = 20;
-            public float decreasePerSecond = 5;
+            public float decreasePerSecond = 20;
         }
 
         public Spreading spread = new Spreading();
@@ -35,7 +35,12 @@ public class SmartCrosshair : MonoBehaviour
             lineStyle = new GUIStyle();
             lineStyle.normal.background = tex;
         }
-
+        
+    public void ResetCrosshair()
+    {
+        spread = new Spreading();
+    }
+        // Find center on the screen (when GUI is loading)
         void OnGUI()
         {
             Vector2 centerPoint = new Vector2(Screen.width / 2, Screen.height / 2);
