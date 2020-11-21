@@ -21,6 +21,7 @@ public class CoinScript : MonoBehaviour
     public float magnetDistance;
     public AudioSource koban;
     public AudioClip coinSound;
+    public float magnetSpeed;
 
 
 
@@ -53,7 +54,7 @@ public class CoinScript : MonoBehaviour
         distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance < magnetDistance)
         {
-            rb.AddForce((player.transform.position - transform.position) * (26));
+            rb.AddForce((player.transform.position - transform.position) * magnetSpeed);
         }
     }
     private void OnTriggerEnter(Collider other)

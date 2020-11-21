@@ -12211,6 +12211,7 @@ MonoBehaviour:
   magnetDistance: 3
   koban: {fileID: 1796569690}
   coinSound: {fileID: 8300000, guid: 988408d86f101984ca7c97e37689d200, type: 3}
+  magnetSpeed: 126
 --- !u!65 &448354019673955439
 BoxCollider:
   m_ObjectHideFlags: 0
