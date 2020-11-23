@@ -37,7 +37,6 @@ public class ExplodingNPCController : MonoBehaviour
     public float detectionAngle = 35.0f;
     [Tooltip("The patrol points the NPC will travel between. Starts at the first, goes to the second until last element in the array. Then it will go back to the first element in the array.")]
     public Transform[] patrolPoints;
-
     // Handled by logic
     [HideInInspector]
     public bool aware;
@@ -53,6 +52,8 @@ public class ExplodingNPCController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         RB = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
+        health.onDeath.AddListener(Die);
+        health.friendly = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rayTarget = player.transform.Find("EnemyRayTarget");
         rayOrigin = transform.Find("RaycastOrigin");
@@ -166,14 +167,12 @@ public class ExplodingNPCController : MonoBehaviour
                         else Debug.LogError("Some scripts are missing. Make sure Health.cs, Stamina.cs and PlayerInputs.cs are attatched to the player!");
 
                     }
-                    else if (c.transform.CompareTag("WaspNPC"))
+                    else if (c.transform.CompareTag("WaspNPC") || c.transform.CompareTag("Dragon"))
                     {
-                        //Effects on wasp
-                        Debug.Log("wasp hit by explosion");
-                        Health waspHealth = null;
-                        if (c.GetComponent<Health>() != null) waspHealth = c.GetComponent<Health>();
-                        else if (c.transform.parent.GetComponent<Health>() != null) waspHealth = c.transform.parent.GetComponent<Health>();
-                        if(waspHealth != null) waspHealth.TakeDamage(explosionDamageValue * 2);
+                        Health healthOther = null;
+                        if (c.GetComponent<Health>() != null) healthOther = c.GetComponent<Health>();
+                        else if (c.transform.parent.GetComponent<Health>() != null) healthOther = c.transform.parent.GetComponent<Health>();
+                        if(healthOther != null) healthOther.TakeDamage(explosionDamageValue);
                     }
                     else if (c.transform.CompareTag("ExplodingNPC") && c.transform != transform)
                     {

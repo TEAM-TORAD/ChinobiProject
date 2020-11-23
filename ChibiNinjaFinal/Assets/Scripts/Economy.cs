@@ -66,7 +66,6 @@ public class Economy : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-
         serverMessagePanel = GameObject.FindGameObjectWithTag("MessagePanel").transform;
 
         storePanel = GameObject.FindGameObjectWithTag("StorePanel").transform;

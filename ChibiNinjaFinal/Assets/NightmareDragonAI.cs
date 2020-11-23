@@ -39,6 +39,10 @@ public class NightmareDragonAI : MonoBehaviour
  
     private Animator anim;
     private Rigidbody rb;
+    private Health health;
+
+    public Collider[] aliveColliders;
+    public Collider[] deadColliders;
 
     public bool enemyCanFly;
 
@@ -48,33 +52,67 @@ public class NightmareDragonAI : MonoBehaviour
         agent = gameObject.GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
+        health = GetComponent<Health>();
+        health.onTakeDamage.AddListener(TakeDamage);
+        health.onDeath.AddListener(Die);
+        aliveColliders = GetComponents<Collider>();
+        deadColliders = transform.Find("Root_Pelvis").GetComponents<Collider>();
+    }
+    public void SetColliders(Collider[] colliders, bool value)
+    {
+        foreach(Collider c in colliders)
+        {
+            c.enabled = value;
+        }
     }
     public void Update()
     {
-        rbSpeed = agent.velocity.magnitude;
-        anim.SetFloat("Speed", rbSpeed);
-
-        SightChecker();
-        //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        playerInRangedAttackRange = Physics.CheckSphere(transform.position, rangedAttackRange, whatIsPlayer);
-
-        if (playerInSight)
+        if(health.alive)
         {
-            if (playerInAttackRange) MeleeAttack();
-            else if (playerInRangedAttackRange) RangedAttack();
-            else  ChasePlayer();
+            rbSpeed = agent.velocity.magnitude;
+            anim.SetFloat("Speed", rbSpeed);
+
+            SightChecker();
+            //Check for sight and attack range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            playerInRangedAttackRange = Physics.CheckSphere(transform.position, rangedAttackRange, whatIsPlayer);
+
+            if (playerInSight)
+            {
+                chaseTime = 0;
+                if (playerInAttackRange) MeleeAttack();
+                else if (playerInRangedAttackRange) RangedAttack();
+                else ChasePlayer();
+            }
+            else if (chaseTime <= maxChaseTime)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                Patroling();
+            }
         }
-        else
-        {
-            Patroling();
-        }
+        
     }
-    
+    public void Die()
+    {
+        anim.SetBool("Alive", false);
+        anim.SetTrigger("TakeDamage");
+        agent.enabled = false;
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        //rb.constraints = RigidbodyConstraints.None;
+        SetColliders(aliveColliders, false);
+        SetColliders(deadColliders, true);
+    }
+    public void TakeDamage()
+    {
+        anim.SetTrigger("TakeDamage");
+    }
     private void Patroling()
     {
-        chaseTime = 0;
         patrolTime += Time.deltaTime;
         agent.speed = walkSpeed;
 
@@ -107,21 +145,18 @@ public class NightmareDragonAI : MonoBehaviour
         TurnToLookAt();
         agent.speed = runSpeed;
 
-        if (chaseTime > maxChaseTime) EnemyFrustrated();
+        if (chaseTime >= maxChaseTime) EnemyFrustrated();
     }
     private void EnemyFrustrated()
     {
         agent.SetDestination(transform.position);
-        chaseTime = 0;
         TurnToLookAt();
-        if (enemyCanFly) Invoke(nameof(RangedAttack), 1f);
-        else anim.SetTrigger("Scream");
-   
+        //if (enemyCanFly) Invoke(nameof(RangedAttack), 1f);
+        //else 
+        anim.SetTrigger("Scream");
     }
     private void MeleeAttack()
     {
-        chaseTime = 0;
-
         //Make sure enemy doesn't move
         TurnToLookAt();
         agent.SetDestination(transform.position);
@@ -135,11 +170,11 @@ public class NightmareDragonAI : MonoBehaviour
     }
     private void RangedAttack()
     {
-        chaseTime = 0;
-        agent.SetDestination(transform.position);
+        agent.SetDestination(player.position);
         TurnToLookAt();
         anim.SetTrigger("RangedAttack");
-        
+        anim.SetBool("TargetInRange", true);
+
         // Add projectile effect here
 
         if (!alreadyAttacked)
@@ -147,7 +182,6 @@ public class NightmareDragonAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-       
     }
 
     private void SightChecker()
@@ -159,12 +193,10 @@ public class NightmareDragonAI : MonoBehaviour
         if (angleToPlayer >= -60 && angleToPlayer <= 60 && playerInSightRange) // 120° FOV
         {
             playerInSight = true;
-            Debug.Log("Player in sight!");
         }
         else
         {
             playerInSight = false;
-            Debug.Log("Player not in sight!");
         }
     }
     private void ResetAttack()
@@ -178,9 +210,7 @@ public class NightmareDragonAI : MonoBehaviour
     {
         Vector3 relativePos = player.position - transform.position;
         Quaternion toRotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 1 * Time.deltaTime);
-       
-   
+        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 2 * Time.deltaTime);
     }
 
 
