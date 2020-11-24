@@ -7,7 +7,7 @@ public class DeliveryLocationManager : MonoBehaviour
     public bool active;
     public bool conversationOpen;
     private Target target;
-    private Renderer renderer;
+    private new Renderer renderer;
     private DisplayInteractions displayInteractions;
     private bool askedAboutSushi, replied;
     private TMP_Text text;

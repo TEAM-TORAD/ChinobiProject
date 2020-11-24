@@ -12,7 +12,7 @@ public class WaspNPCScript : MonoBehaviour
     private Health health;
     private Transform rayTarget, rayOrigin;
 
-    private AudioSource audio;
+    public new AudioSource audio;
 
     // Public variables
     public float walkSpeed = 2, runSpeed = 5, detectionDistance = 3, reachedTargetDistance = 0.3f, hooverDistanceMax = 2.5f, hooverDistanceMin = 1.5f;
