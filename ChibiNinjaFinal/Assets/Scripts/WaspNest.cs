@@ -12,8 +12,9 @@ public class WaspNest : MonoBehaviour
     private Transform spawnPoint;
     public GameObject waspPrefab;
     public Transform[] patrolPoints;
-    private ParticleSystem PS;
+    public ParticleSystem PS;
     private Rigidbody rb;
+    [SerializeField]
     private bool rewardGiven;
 
     public AudioSource waspNest;
@@ -30,7 +31,7 @@ public class WaspNest : MonoBehaviour
     {
         interactionsMaster = GameObject.FindGameObjectWithTag("NinjaMaster").transform.GetComponent<NPCInteraction>();
         spawnPoint = transform.parent.Find("Wasp Spawnpoint");
-        PS = transform.parent.Find("Particle System").GetComponent<ParticleSystem>();
+       // PS = transform.parent.Find("Particle System").GetComponent<ParticleSystem>();
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
     }
@@ -43,6 +44,11 @@ public class WaspNest : MonoBehaviour
         {
             SpawnWasps(false);
             timer = 0;
+        }
+        if (hits >= 10 && !rewardGiven)
+        {
+            StartCoroutine(DestroyNest());
+
         }
     }
     private void OnCollisionEnter(Collision c)
@@ -68,11 +74,7 @@ public class WaspNest : MonoBehaviour
             }
 
             //Destroy the wasps-nest if the player hits it 10 times.
-            if (hits >= 10 && !rewardGiven)
-            {
-                StartCoroutine(DestroyNest());
-                
-            }
+           
         }
     }
     IEnumerator DestroyNest()

@@ -1488,6 +1488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadePanel: {fileID: 1591343273}
+  active: 0
   targetAlpha: 1
   startAlpha: 0
   fadeTime: 2
