@@ -20,9 +20,11 @@ public class QuestManager : MonoBehaviour
     private bool sprintTutorialActive;
     private Animator playerAnimator;
     private bool jumpTutorialStarted;
-
+    
+    
     private void Awake()
     {
+        
         if (instance == null) instance = this;
         else Destroy(this);
         Transform ninjaMaster = GameObject.FindGameObjectWithTag("NinjaMaster").transform;
@@ -34,13 +36,14 @@ public class QuestManager : MonoBehaviour
         sprintTutorialTrigger.SetActive(false);
         playerAnimator = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<Animator>();
     }
+
     private void Start()
     {
-        StartConversation(startDialog, null);
-
+        Invoke("StartTut", 1);
     }
     private void Update()
     {
+       
         if(mouseTutorialActive)
         {
             float xAxis = Input.GetAxis("Mouse X");
@@ -105,6 +108,11 @@ public class QuestManager : MonoBehaviour
         }
 
 
+    }
+
+    public void StartTut()
+    {
+        StartConversation(startDialog, null);
     }
     public void StartSprintTutorial()
     {

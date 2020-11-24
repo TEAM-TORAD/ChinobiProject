@@ -10,7 +10,7 @@ public class RacerNavMeshMovement : MonoBehaviour
     //public LayerMask whatIsGround, whatIsPlayer;
 
     private Animator anim;
-    private Rigidbody rb;
+    //private Rigidbody rb;
 
     public bool active = false;
 
@@ -20,18 +20,18 @@ public class RacerNavMeshMovement : MonoBehaviour
     public int waypointIndex = 0;
 
     //To add multiple checkpoint destinations
-    private float distanceToDestination;
+   // private float distanceToDestination;
     public bool raceFinished;
 
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 0;
         agent.destination = waypoints[waypointIndex].transform.position;
-        print("Distance to next target: " + DistanceToAgentTarget());
+        //print("Distance to next target: " + DistanceToAgentTarget());
     }
     private void Update()
     {
@@ -39,7 +39,7 @@ public class RacerNavMeshMovement : MonoBehaviour
         {
             CheckDistance();
             if (!agent.pathPending) MoveToDestination();
-            else print("Path is penging");
+           
             anim.SetFloat("Speed", agent.velocity.magnitude);
         }
         
@@ -74,29 +74,29 @@ public class RacerNavMeshMovement : MonoBehaviour
     {
         return Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(agent.destination.x, agent.destination.z));
     }
-
-    private void FaceDestination()
-    {
-        Vector3 relativePos = waypoints[waypointIndex].transform.position - transform.position;
-        Quaternion toRotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 1 * Time.deltaTime);
-    }
+    ////This could be used after race to face player
+    //public void FaceDestination()
+    //{
+    //    Vector3 relativePos = waypoints[waypointIndex].transform.position - transform.position;
+    //    Quaternion toRotation = Quaternion.LookRotation(relativePos);
+    //    transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 1 * Time.deltaTime);
+    //}
 
     void CheckDistance()
     {
         if (DistanceToAgentTarget() < 1.0f)
         {
-            Debug.Log("Destination Reached");
+            //Debug.Log("Destination Reached");
             if ( waypointIndex < waypoints.Length - 1 )
             {
                 waypointIndex += 1;
                 agent.destination = waypoints[waypointIndex].transform.position;
-                print("Distance to next target: " + DistanceToAgentTarget());
+            //    print("Distance to next target: " + DistanceToAgentTarget());
             }
             else
             {
                 // Race over
-                print("Completed the race. I assume you lost.");
+            //    print("Completed the race. I assume you lost.");
                 raceFinished = true;
             }
             

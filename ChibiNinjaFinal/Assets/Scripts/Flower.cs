@@ -13,7 +13,7 @@ public class Flower : MonoBehaviour
     private void Awake()
     {
         if (transform.Find("LandingTarget") != null) landingTarget = transform.Find("LandingTarget");
-        else print(transform.name + " doesn't have a landing target!");
+       // else print(transform.name + " doesn't have a landing target!");
     }
     // Update is called once per frame
     void Update()

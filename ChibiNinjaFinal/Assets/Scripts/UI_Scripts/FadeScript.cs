@@ -14,13 +14,14 @@ public class FadeScript : MonoBehaviour
     public float targetAlpha = 0;
     [Range(0, 1)]
     public float startAlpha = 1;
-    public float fadeTime = 2.0f;
+    public float fadeTime = 5.0f;
     // https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html
     UnityEvent AfterFade;
     float timer, fadePerFrame;
     // Start is called before the first frame update
     void Start()
     {
+        if (!gameObject.activeInHierarchy) gameObject.SetActive(true);
         if (AfterFade == null) AfterFade = new UnityEvent();
 
 

@@ -79,7 +79,7 @@ public class HostileNPC : MonoBehaviour
 
         Animations();
         DistanceCalculations();
-        Debug.Log(aggroDistance);
+
     }
 
     IEnumerator AttackMode()

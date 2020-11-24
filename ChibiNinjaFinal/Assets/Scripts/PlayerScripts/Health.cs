@@ -22,8 +22,8 @@ public class Health : MonoBehaviour
         //ragdoll states
         if(transform.CompareTag("Player"))
         {
-            setRigidbodyState(true);
-            setColliderState(false);
+            SetRigidBodyState(true);
+            SetColliderState(false);
         }
 
         if (transform.CompareTag("Player"))
@@ -98,8 +98,8 @@ public class Health : MonoBehaviour
 
                     //ragdoll trigger
                     GetComponent<Animator>().enabled = false;
-                    setRigidbodyState(false);
-                    setColliderState(true);
+                    SetRigidBodyState(false);
+                    SetColliderState(true);
                     StartCoroutine(PauseGameAfterDying(5));
                     
                     alive = false;
@@ -140,7 +140,7 @@ public class Health : MonoBehaviour
 
     #region Ragdoll
 
-    void setRigidbodyState(bool state)
+    void SetRigidBodyState(bool state)
     {
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
 
@@ -152,7 +152,7 @@ public class Health : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = !state;
     }
 
-    void setColliderState(bool state)
+    private void SetColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
 
@@ -174,8 +174,8 @@ public class Health : MonoBehaviour
             {
                 //ragdoll trigger
                 GetComponent<Animator>().enabled = false;
-                setRigidbodyState(false);
-                setColliderState(true);
+                SetRigidBodyState(false);
+                SetColliderState(true);
                 TakeDamage(maxHealth);
                
             }

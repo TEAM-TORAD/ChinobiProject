@@ -351,6 +351,7 @@ namespace DialogueEditor
             m_pendingDialogue = m_conversation.Root;
             SetState(eState.TransitioningDialogueBoxOn);
             if (CursorScript.instance != null) CursorScript.instance.conversationOpen = true;
+            Debug.Log("StartConversationManager");
         }
 
         public void EndConversation()

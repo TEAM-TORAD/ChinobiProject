@@ -83,7 +83,7 @@ public class ButterflyNPC : MonoBehaviour
             // Butterfly has reached its' target
             if(distanceToTarget < 0.33f)
             {
-                print("Target reached.");
+                
                 // The butterfly is decending towards the local offset 
                 if (Vector3.Distance(rig.position, targetFlower.landingTarget.position) > 0.05f)
                 {
@@ -92,7 +92,7 @@ public class ButterflyNPC : MonoBehaviour
                 // The butterlfy has reached the flower
                 else
                 {
-                    print("Drink nectar.");
+                    
                     DrinkNectar();
                 }
             }
@@ -164,8 +164,8 @@ public class ButterflyNPC : MonoBehaviour
                             if (path.status == NavMeshPathStatus.PathComplete)
                             {
                                 // Check that the point is actually on the mesh (and not slightly outside)
-                                NavMeshHit hit;
-                                if (NavMesh.SamplePosition(flowers[i].transform.position, out hit, 0.5f, NavMesh.AllAreas))
+                                //NavMeshHit hit;
+                                if (NavMesh.SamplePosition(flowers[i].transform.position, out NavMeshHit hit, 0.5f, NavMesh.AllAreas))
                                 {
                                     // CHeck distance in x and z (not height)
                                     float xZDistance = Vector2.Distance(new Vector2(flowers[i].transform.position.x, flowers[i].transform.position.z), new Vector2(hit.position.x, hit.position.z));
@@ -196,7 +196,7 @@ public class ButterflyNPC : MonoBehaviour
         else
         {
             WaitHere();
-            print(transform.name + " can't find any flower to drink from.");
+           // print(transform.name + " can't find any flower to drink from.");
         }
     }
     #endregion

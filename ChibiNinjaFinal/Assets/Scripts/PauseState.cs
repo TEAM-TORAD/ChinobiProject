@@ -16,7 +16,7 @@ public class PauseState : MonoBehaviour
 
     public AudioMixer audioMixerMusic;
 
-    private PlayerInputs playerInputs;
+    //private PlayerInputs playerInputs;
 
     public Slider BGMusicSlider;
 
@@ -30,7 +30,7 @@ public class PauseState : MonoBehaviour
         deadMenu.SetActive(false);
         pauseMenuActive = false;
 
-        playerInputs = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputs>();
+       // playerInputs = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputs>();
     }
 
     // Update is called once per frame
