@@ -352,11 +352,11 @@ MonoBehaviour:
   reachedTargetDistance: 0.5
   hooverDistanceMax: 2.5
   hooverDistanceMin: 1.5
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  attackValue: 0
+  patrolPoints: []
   aliveCollider: {fileID: 7776176870537947618}
   deadCollider: {fileID: 7776176869272797106}
+  attackScript: {fileID: 816299621}
   aware: 0
   alive: 1
   isAttacking: 0
@@ -380,6 +380,13 @@ MonoBehaviour:
   online: 0
   greyColor: {r: 0, g: 0, b: 0, a: 0}
   redColor: {r: 0, g: 0, b: 0, a: 0}
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  friendly: 0
 --- !u!1001 &8029069020654585471
 PrefabInstance:
   m_ObjectHideFlags: 0

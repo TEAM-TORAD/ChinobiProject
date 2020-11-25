@@ -12,12 +12,14 @@ public class WaspNPCScript : MonoBehaviour
     private Health health;
     private Transform rayTarget, rayOrigin;
 
-    public new AudioSource audio;
+    private AudioSource audio;
 
     // Public variables
     public float walkSpeed = 2, runSpeed = 5, detectionDistance = 3, reachedTargetDistance = 0.3f, hooverDistanceMax = 2.5f, hooverDistanceMin = 1.5f;
+    public int attackValue;
     public Transform[] patrolPoints;
     public Collider aliveCollider, deadCollider;
+    public Attack attackScript;
 
     // Handled by logic
     [HideInInspector]
@@ -43,6 +45,10 @@ public class WaspNPCScript : MonoBehaviour
         RB = GetComponentInChildren<Rigidbody>();
         audio = GetComponent<AudioSource>();
         health = GetComponent<Health>();
+        health.onDeath.AddListener(Die);
+        health.friendly = false;
+        if (attackScript != null) attackScript.SetStartValues(attackValue, false);
+        else Debug.LogError(transform.name + " does not have a Attack script assigned.");
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rayTarget = player.transform.Find("EnemyRayTarget");
         rayOrigin = transform.Find("RaycastOrigin");

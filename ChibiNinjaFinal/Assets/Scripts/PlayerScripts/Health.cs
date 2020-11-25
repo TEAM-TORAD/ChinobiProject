@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 //Health fix
 public class Health : MonoBehaviour
 {
+    public bool friendly;
     public int health = 100;
     public int maxHealth = 100;
     public bool healthCriticalRunning = false, online = false;
@@ -13,17 +15,22 @@ public class Health : MonoBehaviour
     private Image healthImage, healthImageBG;
     private Color lerpedColor;
     public Color greyColor, redColor;
-    private bool alive = true;
+    [HideInInspector]
+    public bool alive = true;
+    public UnityEvent onTakeDamage;
+    public UnityEvent onDeath;
 
  
 
     void Start()
     {
+        if (onTakeDamage == null) onTakeDamage = new UnityEvent();
+        if (onDeath == null) onDeath = new UnityEvent();
         //ragdoll states
         if(transform.CompareTag("Player"))
         {
-            SetRigidBodyState(true);
-            SetColliderState(false);
+            setRigidbodyState(true);
+            setColliderState(false);
         }
 
         if (transform.CompareTag("Player"))
@@ -37,7 +44,6 @@ public class Health : MonoBehaviour
     {
         if (transform.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.O)) TakeDamage(10);
             if ((float)health / maxHealth < 0.2f)
             {
                 lerpedColor = Color.Lerp(greyColor, redColor, Mathf.PingPong(Time.time, 1.25f));
@@ -57,7 +63,6 @@ public class Health : MonoBehaviour
         {
             healthImage.fillAmount = (float)health / maxHealth;
         }
-
     }
     public void ResetHealth(int _health, int _maxHealth)
     {
@@ -87,9 +92,11 @@ public class Health : MonoBehaviour
         {
             health = 0;
             // Death effect
-            if (transform.CompareTag("Player"))
+            if(alive)
             {
-                if (alive)
+                alive = false;
+
+                if (transform.CompareTag("Player"))
                 {
                     CursorScript.instance.playerDead = true;
                     // death animation
@@ -98,24 +105,12 @@ public class Health : MonoBehaviour
 
                     //ragdoll trigger
                     GetComponent<Animator>().enabled = false;
-                    SetRigidBodyState(false);
-                    SetColliderState(true);
+                    setRigidbodyState(false);
+                    setColliderState(true);
                     StartCoroutine(PauseGameAfterDying(5));
-                    
-                    alive = false;
-
                     // Open dead-panel
                 }
-            }
-            if (transform.CompareTag("ExplodingNPC"))
-            {
-                transform.GetComponent<ExplodingNPCController>().Die();
-                alive = false;
-            }
-            if (transform.CompareTag("WaspNPC"))
-            {
-                transform.GetComponent<WaspNPCScript>().Die();
-                alive = false;
+                onDeath.Invoke();
             }
         }
         else
@@ -123,14 +118,7 @@ public class Health : MonoBehaviour
             // Take damage
             //Debug.Log(transform.name + " took " + value + " in damage.");
 
-            if (transform.CompareTag("ExplodingNPC"))
-            {
-
-            }
-            else if (transform.CompareTag("WaspNPC"))
-            {
-
-            }
+            onTakeDamage.Invoke();
         }
         if (transform.CompareTag("Player"))
         {
@@ -140,7 +128,7 @@ public class Health : MonoBehaviour
 
     #region Ragdoll
 
-    void SetRigidBodyState(bool state)
+    void setRigidbodyState(bool state)
     {
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
 
@@ -152,7 +140,7 @@ public class Health : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = !state;
     }
 
-    private void SetColliderState(bool state)
+    void setColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
 
@@ -174,8 +162,8 @@ public class Health : MonoBehaviour
             {
                 //ragdoll trigger
                 GetComponent<Animator>().enabled = false;
-                SetRigidBodyState(false);
-                SetColliderState(true);
+                setRigidbodyState(false);
+                setColliderState(true);
                 TakeDamage(maxHealth);
                
             }
