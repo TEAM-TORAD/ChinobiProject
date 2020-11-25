@@ -346,13 +346,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078a89080b10c6843a5b609a606fd458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chanceOfDropPercent: 20
   walkSpeed: 2
   runSpeed: 5
   detectionDistance: 10
   reachedTargetDistance: 0.5
   hooverDistanceMax: 2.5
   hooverDistanceMin: 1.5
-  attackValue: 0
+  attackValue: 15
   patrolPoints: []
   aliveCollider: {fileID: 7776176870537947618}
   deadCollider: {fileID: 7776176869272797106}
@@ -374,19 +375,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb01d65dc8d6f84b9d1409e89cb1903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendly: 0
   health: 20
   maxHealth: 20
   healthCriticalRunning: 0
   online: 0
   greyColor: {r: 0, g: 0, b: 0, a: 0}
   redColor: {r: 0, g: 0, b: 0, a: 0}
+  alive: 1
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
-  friendly: 0
+  damageColorIntensity: 100
+  damageColorDuration: 0.2
 --- !u!1001 &8029069020654585471
 PrefabInstance:
   m_ObjectHideFlags: 0

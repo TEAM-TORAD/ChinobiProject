@@ -40,7 +40,7 @@ public class RacerNavMeshMovement : MonoBehaviour
             CheckDistance();
             if (!agent.pathPending) MoveToDestination();
            
-            anim.SetFloat("Speed", agent.velocity.magnitude);
+            anim.SetFloat("Blend", agent.velocity.magnitude);
         }
         
 

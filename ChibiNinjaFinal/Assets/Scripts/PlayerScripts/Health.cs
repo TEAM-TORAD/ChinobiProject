@@ -19,8 +19,10 @@ public class Health : MonoBehaviour
     public bool alive = true;
     public UnityEvent onTakeDamage;
     public UnityEvent onDeath;
+    public float damageColorIntensity = 100f, damageColorDuration = .2f;
 
- 
+
+
 
     void Start()
     {
@@ -94,6 +96,7 @@ public class Health : MonoBehaviour
             // Death effect
             if(alive)
             {
+                DamageEffect();
                 alive = false;
 
                 if (transform.CompareTag("Player"))
@@ -117,7 +120,7 @@ public class Health : MonoBehaviour
         {
             // Take damage
             //Debug.Log(transform.name + " took " + value + " in damage.");
-
+            DamageEffect();
             onTakeDamage.Invoke();
         }
         if (transform.CompareTag("Player"))
@@ -139,7 +142,50 @@ public class Health : MonoBehaviour
 
         GetComponent<Rigidbody>().isKinematic = !state;
     }
+    private void DamageEffect()
+    {
+        Renderer[] rendererList = GetComponentsInChildren<Renderer>();
+        List<Material> materialList = new List<Material>();
 
+        foreach (Renderer r in rendererList)
+        {
+            Material[] mList = r.materials;
+            foreach (Material m in mList)
+            {
+                materialList.Add(m);
+                print(m);
+            }
+        }
+
+        foreach (Material m in materialList)
+        {
+            m.EnableKeyword("_EMISSION");
+            Color color = Color.red * damageColorIntensity;
+            m.SetColor("_EmissionColor", color);
+            Invoke("ResetDamageEffect", damageColorDuration);
+        }
+
+    }
+    private void ResetDamageEffect()
+    {
+        Renderer[] rendererList = GetComponentsInChildren<Renderer>();
+        List<Material> materialList = new List<Material>();
+        foreach (Renderer r in rendererList)
+        {
+            Material[] mList = r.materials;
+            foreach (Material m in mList)
+            {
+                materialList.Add(m);
+            }
+        }
+
+        foreach (Material m in materialList)
+        {
+            Color color = Color.red * 0f;
+            m.SetColor("_EmissionColor", color);
+        }
+
+    }
     void setColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();

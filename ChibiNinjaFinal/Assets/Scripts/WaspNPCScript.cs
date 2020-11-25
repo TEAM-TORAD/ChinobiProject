@@ -11,6 +11,8 @@ public class WaspNPCScript : MonoBehaviour
     private Rigidbody RB;
     private Health health;
     private Transform rayTarget, rayOrigin;
+    [Range(0, 100)]
+    public int chanceOfDropPercent = 25;
 
     private AudioSource audio;
 
@@ -158,9 +160,12 @@ public class WaspNPCScript : MonoBehaviour
     void DropItem()
     {
         RandomReward RR = RandomReward.RR;
-
-        int num = Random.Range(0, RR.itemDrops.Count);
-        Instantiate(RR.itemDrops[num], transform.position, transform.rotation);
+        int dropping = Random.Range(0, 100);
+        if(dropping > (100 - chanceOfDropPercent))
+        {
+            int num = Random.Range(0, RR.itemDrops.Count);
+            Instantiate(RR.itemDrops[num], transform.position, transform.rotation);
+        }
         Destroy(transform.gameObject);
     }
     public void TakeDamage(int value)

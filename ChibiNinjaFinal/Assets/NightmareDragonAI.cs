@@ -53,7 +53,7 @@ public class NightmareDragonAI : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
         health = GetComponent<Health>();
-        health.onTakeDamage.AddListener(TakeDamage);
+        //health.onTakeDamage.AddListener(TakeDamage);
         health.onDeath.AddListener(Die);
         aliveColliders = GetComponents<Collider>();
         deadColliders = transform.Find("Root_Pelvis").GetComponents<Collider>();

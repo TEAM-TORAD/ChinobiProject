@@ -6,7 +6,6 @@ public class WaspNest : MonoBehaviour
 {
     // texture from https://hillsteadblog.files.wordpress.com/2009/11/img_23021.jpg
     public int hits;
-    public int maxWasps = 6;
     public float spawnEveryXSeconds = 30.0f;
     private float timer;
     private Transform spawnPoint;
@@ -118,20 +117,9 @@ public class WaspNest : MonoBehaviour
     }
     void SpawnWasps(bool _aware)
     {
-        int spawnedWasps = 0;
-        foreach (Transform t in transform)
-        {
-            if (t.CompareTag("WaspNPC"))
-            {
-                ++spawnedWasps;
-            }
-        }
-        if (spawnedWasps < maxWasps)
-        {
-            GameObject newWasp = Instantiate(waspPrefab, spawnPoint.position, spawnPoint.rotation, transform);
-            WaspNPCScript wasp = newWasp.GetComponent<WaspNPCScript>();
-            wasp.patrolPoints = patrolPoints;
-            wasp.aware = _aware;
-        }
+        GameObject newWasp = Instantiate(waspPrefab, spawnPoint.position, spawnPoint.rotation, null);
+        WaspNPCScript wasp = newWasp.GetComponent<WaspNPCScript>();
+        wasp.patrolPoints = patrolPoints;
+        wasp.aware = _aware;
     }
 }
