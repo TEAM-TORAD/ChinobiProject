@@ -188,7 +188,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000009632549, y: 0.061233878, z: 0.0009925339}
+  m_ConnectedAnchor: {x: -0.000000012883902, y: 0.06123435, z: 0.0009942633}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -390,7 +390,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.063885085, y: -0.03362589, z: 0.0025723835}
+  m_ConnectedAnchor: {x: 0.06388505, y: -0.03362578, z: 0.002571399}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -499,7 +499,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000011364464, y: 0.20851675, z: 0.00000005587936}
+  m_ConnectedAnchor: {x: 0.00000030035153, y: 0.20851763, z: 0.000000016763808}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -716,7 +716,7 @@ Transform:
   m_LocalPosition: {x: 0.6157248, y: -0.022346497, z: 0.26567364}
   m_LocalScale: {x: 2.0964613, y: 2.0964613, z: 2.0964615}
   m_Children:
-  - {fileID: 8441101347689631347}
+  - {fileID: 5584241798205664346}
   m_Father: {fileID: 1676309308894172691}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 34.618, z: -88.984}
@@ -796,7 +796,7 @@ Transform:
   m_LocalPosition: {x: 0.68372464, y: 0.024653435, z: 0.17967415}
   m_LocalScale: {x: 2.3376632, y: 2.3376632, z: 2.3376637}
   m_Children:
-  - {fileID: 8426009926262114858}
+  - {fileID: 5527277686104762371}
   m_Father: {fileID: 1676309308894172691}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -20.213001, y: -26.089, z: -65.692}
@@ -1047,7 +1047,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.120936364, y: 0.2452886, z: -0.048090156}
+  m_ConnectedAnchor: {x: 0.12093688, y: 0.24528855, z: -0.04809217}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1393,120 +1393,6 @@ Transform:
   m_Father: {fileID: 9172399690509700396}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2041975983174730574
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8441101347689631347}
-  - component: {fileID: 8319367242407762046}
-  - component: {fileID: 3542209234138702535}
-  m_Layer: 0
-  m_Name: AddHealthTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8441101347689631347
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041975983174730574}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 862058248116770666}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8319367242407762046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041975983174730574}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.125, y: 0.125, z: 0.125}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3542209234138702535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041975983174730574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ddeba6a2552bf4a88197c4b9d6b646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &2133982499974022935
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8426009926262114858}
-  - component: {fileID: 8268529736677071911}
-  - component: {fileID: 3522825456664077982}
-  m_Layer: 0
-  m_Name: AddHealthTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8426009926262114858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133982499974022935}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 916451939940440416}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8268529736677071911
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133982499974022935}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.125, y: 0.125, z: 0.125}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3522825456664077982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133982499974022935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ddeba6a2552bf4a88197c4b9d6b646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2134058407880413301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,7 +1530,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.12093636, y: 0.24540816, z: -0.042311214}
+  m_ConnectedAnchor: {x: -0.12093691, y: 0.24540815, z: -0.042312093}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1678,6 +1564,120 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &2597847947092762983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5584241798205664346}
+  - component: {fileID: 5417745457542543959}
+  - component: {fileID: 681048635588296942}
+  m_Layer: 0
+  m_Name: AddHealthTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5584241798205664346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597847947092762983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 862058248116770666}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5417745457542543959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597847947092762983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.125, y: 0.125, z: 0.125}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &681048635588296942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597847947092762983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ddeba6a2552bf4a88197c4b9d6b646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2722016272918865214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5527277686104762371}
+  - component: {fileID: 5396527706770210318}
+  - component: {fileID: 628377154414511287}
+  m_Layer: 0
+  m_Name: AddHealthTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5527277686104762371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722016272918865214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 916451939940440416}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5396527706770210318
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722016272918865214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.125, y: 0.125, z: 0.125}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &628377154414511287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722016272918865214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ddeba6a2552bf4a88197c4b9d6b646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2844355920546277718
 GameObject:
   m_ObjectHideFlags: 0
@@ -7786,7 +7786,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.063886076, y: -0.033933945, z: 0.00027622705}
+  m_ConnectedAnchor: {x: -0.06388507, y: -0.03393345, z: 0.0002798932}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8020,7 +8020,7 @@ Transform:
   m_LocalPosition: {x: 0.59672475, y: 0.06665373, z: 0.41967392}
   m_LocalScale: {x: 1.7552, y: 1.7551999, z: 1.7552}
   m_Children:
-  - {fileID: 826846066502941610}
+  - {fileID: 3684624792274950531}
   m_Father: {fileID: 1676309308894172691}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 7.0420003, y: 158.781, z: 120.37}
@@ -18161,6 +18161,7 @@ Transform:
   - {fileID: 7083621063050850437}
   - {fileID: 58142272002759454}
   - {fileID: 7413642708630153935}
+  - {fileID: 2855726896006576088}
   m_Father: {fileID: 7041974669030116621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 170.852, z: 0}
@@ -18325,12 +18326,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb01d65dc8d6f84b9d1409e89cb1903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendly: 0
   health: 100
   maxHealth: 100
   healthCriticalRunning: 0
   online: 0
   greyColor: {r: 1, g: 1, b: 1, a: 0}
   redColor: {r: 0.8396226, g: 0.5029815, b: 0.5029815, a: 0}
+  alive: 1
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5659276166230270947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18767,7 +18776,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000029667285, y: 0.20791823, z: 0.00000027939677}
+  m_ConnectedAnchor: {x: -0.00000012200327, y: 0.20791812, z: -0.00000016670674}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -18865,6 +18874,63 @@ Transform:
   m_Father: {fileID: 68852749318388715}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6507758771735598270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3684624792274950531}
+  - component: {fileID: 3851402470740037518}
+  - component: {fileID: 8588028924083828023}
+  m_Layer: 0
+  m_Name: AddHealthTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3684624792274950531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6507758771735598270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5411766759597529285}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3851402470740037518
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6507758771735598270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.125, y: 0.125, z: 0.125}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8588028924083828023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6507758771735598270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ddeba6a2552bf4a88197c4b9d6b646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6574301116107147421
 GameObject:
   m_ObjectHideFlags: 0
@@ -19016,70 +19082,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7041974669030116622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.187134, y: 5.144994, z: -84.8455}
+  m_LocalPosition: {x: -0.54197764, y: -0.76, z: -3.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6602153224755011034}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7064972129498363543
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 826846066502941610}
-  - component: {fileID: 948298559104937383}
-  - component: {fileID: 5725526935983396638}
-  m_Layer: 0
-  m_Name: AddHealthTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &826846066502941610
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064972129498363543}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5411766759597529285}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &948298559104937383
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064972129498363543}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.125, y: 0.125, z: 0.125}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5725526935983396638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064972129498363543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ddeba6a2552bf4a88197c4b9d6b646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7080874567700684375
 GameObject:
   m_ObjectHideFlags: 0
@@ -45968,7 +45977,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000034144645, y: 0.3223485, z: 0.00000088289937}
+  m_ConnectedAnchor: {x: 0.000000022351763, y: 0.32234874, z: -0.00000013038598}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -46392,7 +46401,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000017271486, y: 0.36401376, z: -0.021314053}
+  m_ConnectedAnchor: {x: -0.000000037702193, y: 0.3640135, z: -0.021314977}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -52177,3 +52186,78 @@ Transform:
   m_Father: {fileID: 5986553272610173535}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2605993897348538474
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6602153224755011034}
+    m_Modifications:
+    - target: {fileID: 255524162448889777, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_Name
+      value: Swimming_Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4697d4d8c51f8764990c03e0335bfeea, type: 3}
+--- !u!4 &2855726896006576088 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 255524162448889778, guid: 4697d4d8c51f8764990c03e0335bfeea,
+    type: 3}
+  m_PrefabInstance: {fileID: 2605993897348538474}
+  m_PrefabAsset: {fileID: 0}

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Toon_Water
+  m_Shader: {fileID: -6465566751694194690, guid: 1bd732dcea6d08049a81b530866a7cc7,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_32E5B050: 3.8
+    - Vector1_3FBD362: 0.5
+    - Vector1_4CED9C44: 0.55
+    - Vector1_6FEFD8A3: 0.7
+    - Vector1_8DC81442: 2.5
+    - Vector1_ADB41E8: 0.1
+    - Vector1_BA4F8B7B: 30
+    - Vector1_C3266F26: 0.1
+    m_Colors:
+    - Color_73747143: {r: 5.2164755, g: 5.2164755, b: 5.2164755, a: 0}
+    - Color_A4671A7: {r: 1, g: 1, b: 1, a: 0}
+    - Color_B9BC27FF: {r: 0, g: 0.20195055, b: 1, a: 0}
+    - Color_C436D301: {r: 0.16727945, g: 1.0319883, b: 1.363971, a: 0}
+    - Vector2_ADF79D8D: {r: 0.05, g: -0.01, b: 0, a: 0}
