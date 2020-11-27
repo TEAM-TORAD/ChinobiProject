@@ -151,7 +151,7 @@ public class HostileNPC : MonoBehaviour
         int newWaitTime = Random.Range(minWaitTime, maxWaitTime);
         waitTime = newWaitTime;
 
-        print("random position = " + randomPosition);
-        print("wait time = " + waitTime);
+        //print("random position = " + randomPosition);
+        //print("wait time = " + waitTime);
     }
 }

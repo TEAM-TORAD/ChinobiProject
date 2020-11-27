@@ -3,6 +3,8 @@ using System.Collections.Generic;
 //using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
+using DialogueEditor;
 
 public class RacerNavMeshMovement : MonoBehaviour
 {
@@ -12,79 +14,129 @@ public class RacerNavMeshMovement : MonoBehaviour
     private Animator anim;
     //private Rigidbody rb;
 
-    public bool active = false;
+
+    private TMP_Text text;
+    private DisplayInteractions displayInteractions;
+
+    public bool raceActive = false, active = true;
+    public int waypointIndex = 0;
+    public bool conversationOpen;
+    public bool playerFinished = false;
+    public RacerTarget firstRaceTarget;
+    public float runSpeed = 5.0f;
 
     //waypoints
     [SerializeField]
     Transform[] waypoints;
-    public int waypointIndex = 0;
 
     //To add multiple checkpoint destinations
    // private float distanceToDestination;
     public bool raceFinished;
 
+    private void Awake()
+    {
+
+        text = transform.GetComponentInChildren<TMP_Text>();
+    }
 
     private void Start()
     {
+        displayInteractions = GetComponent<DisplayInteractions>();
         anim = GetComponentInChildren<Animator>();
        // rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 0;
         agent.destination = waypoints[waypointIndex].transform.position;
         //print("Distance to next target: " + DistanceToAgentTarget());
+        displayInteractions.OnSpeachBubbleOpen.AddListener(ActivateQuestion);
+        displayInteractions.OnSpeachBubbleClose.AddListener(EndConversation);
     }
     private void Update()
     {
-        if(active)
+        if(conversationOpen)
+        {
+            if(!raceActive)
+            {
+                if(Input.GetKeyDown(KeyCode.Y))
+                {
+                    text.text = "Alright! Get ready! \n Follow the orange targets!";
+                    StartCoroutine(StartRace());
+                }
+                else if(Input.GetKeyDown(KeyCode.N))
+                {
+                    text.text = "To bad. I thought you where though.";
+                }
+            }
+        }
+        if(raceActive)
         {
             CheckDistance();
             if (!agent.pathPending) MoveToDestination();
-           
-            anim.SetFloat("Blend", agent.velocity.magnitude);
         }
-        
+        anim.SetFloat("Blend", agent.velocity.magnitude);
 
+
+    }
+    private void LateUpdate()
+    {
+        if(raceActive && !raceFinished)
+        {
+            if (conversationOpen) ConversationManager.Instance.EndConversation();
+            else if (displayInteractions.hintButtonPrefab.activeSelf) displayInteractions.hintButtonPrefab.SetActive(false);
+        }
+    }
+    public void ActivateQuestion()
+    {
+        if (active)
+        {
+            if (!raceActive)
+            {
+                text.text = "Wanna race around the bay? \n Y or N";
+                conversationOpen = true;
+            }
+            else
+            {
+                if (playerFinished) text.text = "Well... I guess you won...";
+                else text.text = "Ha! You never stood a chance!";
+            }
+        }
+    }
+    public void EndConversation()
+    {
+        conversationOpen = false;
+    }
+    IEnumerator StartRace()
+    {
+        CursorScript.instance.eventStoppingPlayer = true;
+        Economy.economy.InstantiateServerMessage("3", true);
+        yield return new WaitForSeconds(1);
+        Economy.economy.InstantiateServerMessage("2", true);
+        yield return new WaitForSeconds(1);
+        Economy.economy.InstantiateServerMessage("1", true);
+        yield return new WaitForSeconds(1);
+        Economy.economy.InstantiateServerMessage("GO!", true);
+        CursorScript.instance.eventStoppingPlayer = false;
+        raceActive = true;
+        transform.GetComponent<NPCInteraction>().passive = false;
+        firstRaceTarget.gameObject.SetActive(true);
     }
     private void MoveToDestination()
     {
-        if (!raceFinished) agent.speed = 6.5f;
+        if (!raceFinished) agent.speed = runSpeed;
         else
         {
             agent.speed = 0;
-
         }
-        //waypoints
-        /*transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, agent.speed * Time.deltaTime);
-
-        if (transform.position == waypoints[waypointIndex].transform.position)
-        {
-            waypointIndex += 1;
-        }
-
-        if (waypointIndex == waypoints.Length)
-        {
-            destinationReached = true;
-        }*/
-        //agent.SetDestination(endPoint.position);
-
-        //FaceDestination();
     }
 
     float DistanceToAgentTarget()
     {
         return Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(agent.destination.x, agent.destination.z));
     }
-    ////This could be used after race to face player
-    //public void FaceDestination()
-    //{
-    //    Vector3 relativePos = waypoints[waypointIndex].transform.position - transform.position;
-    //    Quaternion toRotation = Quaternion.LookRotation(relativePos);
-    //    transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 1 * Time.deltaTime);
-    //}
 
     void CheckDistance()
     {
-        if (DistanceToAgentTarget() < 1.0f)
+        if (DistanceToAgentTarget() < 1.75f)
         {
             //Debug.Log("Destination Reached");
             if ( waypointIndex < waypoints.Length - 1 )
@@ -95,9 +147,24 @@ public class RacerNavMeshMovement : MonoBehaviour
             }
             else
             {
-                // Race over
-            //    print("Completed the race. I assume you lost.");
-                raceFinished = true;
+                if(!raceFinished)
+                {
+                    // Race over
+                    raceFinished = true;
+                    transform.GetComponent<NPCInteraction>().passive = true;
+                    if (playerFinished)
+                    {
+                        // NPC lost
+                        Economy.economy.InstantiateServerMessage("Congrats! You won the race. Have some gold", true);
+                        Economy.economy.AddGold(15);
+                    }
+                    else
+                    {
+                        //NPC won
+                        Economy.economy.InstantiateServerMessage("Ough! You lost the race. A well, you can always race with the chickens.", true);
+                    }
+                }
+                
             }
             
         }

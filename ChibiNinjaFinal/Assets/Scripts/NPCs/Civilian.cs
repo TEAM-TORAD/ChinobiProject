@@ -18,7 +18,6 @@ public class Civilian : MonoBehaviour
     private Rigidbody RB;
     public bool overrideRun = false;
     public float velocityPerSecond = 0;
-    public float deleteMe;
 
     // Start is called before the first frame update
     void Awake()

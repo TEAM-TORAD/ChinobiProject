@@ -11,7 +11,8 @@ using UnityEngine.Events;
 public class DisplayInteractions : MonoBehaviour
 {
     #region Public Variables
-    private GameObject hintButtonPrefab;
+    [HideInInspector]
+    public GameObject hintButtonPrefab;
     private GameObject speechBubble;
     [HideInInspector]
     public TMP_Text text;
@@ -150,7 +151,7 @@ public class DisplayInteractions : MonoBehaviour
         speechBubble.gameObject.SetActive(true);
         speechBubbleShowing = true;
     }
-    void HideSpeechBubble()
+    public void HideSpeechBubble()
     {
         ShowHintButton();
         speechBubble.gameObject.SetActive(false);
