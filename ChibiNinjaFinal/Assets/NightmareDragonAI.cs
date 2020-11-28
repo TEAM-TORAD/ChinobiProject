@@ -45,6 +45,7 @@ public class NightmareDragonAI : MonoBehaviour
     public Collider[] deadColliders;
 
     public bool enemyCanFly;
+    bool unknownAttacker = false;
 
     private void Awake()
     {
@@ -53,7 +54,7 @@ public class NightmareDragonAI : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
         health = GetComponent<Health>();
-        //health.onTakeDamage.AddListener(TakeDamage);
+        health.onTakeDamage.AddListener(TakeDamage);
         health.onDeath.AddListener(Die);
         aliveColliders = GetComponents<Collider>();
         deadColliders = transform.Find("Root_Pelvis").GetComponents<Collider>();
@@ -77,22 +78,29 @@ public class NightmareDragonAI : MonoBehaviour
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
             playerInRangedAttackRange = Physics.CheckSphere(transform.position, rangedAttackRange, whatIsPlayer);
-
-            if (playerInSight)
-            {
-                chaseTime = 0;
-                if (playerInAttackRange) MeleeAttack();
-                else if (playerInRangedAttackRange) RangedAttack();
-                else ChasePlayer();
-            }
-            else if (chaseTime <= maxChaseTime)
+            if(unknownAttacker)
             {
                 ChasePlayer();
             }
             else
             {
-                Patroling();
+                if (playerInSight)
+                {
+                    chaseTime = 0;
+                    if (playerInAttackRange) MeleeAttack();
+                    else if (playerInRangedAttackRange) RangedAttack();
+                    else ChasePlayer();
+                }
+                else if (chaseTime <= maxChaseTime)
+                {
+                    ChasePlayer();
+                }
+                else
+                {
+                    Patroling();
+                }
             }
+            
         }
         
     }
@@ -109,7 +117,11 @@ public class NightmareDragonAI : MonoBehaviour
     }
     public void TakeDamage()
     {
-        anim.SetTrigger("TakeDamage");
+        //anim.SetTrigger("TakeDamage");
+        if(!playerInSight)
+        {
+            unknownAttacker = true;
+        }
     }
     private void Patroling()
     {
@@ -193,6 +205,7 @@ public class NightmareDragonAI : MonoBehaviour
         if (angleToPlayer >= -60 && angleToPlayer <= 60 && playerInSightRange) // 120° FOV
         {
             playerInSight = true;
+            if (unknownAttacker) unknownAttacker = false;
         }
         else
         {
