@@ -48,7 +48,7 @@ public class DummyHitDetection : MonoBehaviour
                 if (Input.GetButton(playerInputs.leftMouse) && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
                 {
                         thirdHint = true;
-                        currentHint = "Nice! Click the middle mouse button to kick.";
+                        currentHint = "Nice! Press 'F'-key to kick.";
                         Economy.economy.DestroyOldMessages();
                         Economy.economy.InstantiateServerMessage(currentHint, false);
                 }
@@ -58,7 +58,7 @@ public class DummyHitDetection : MonoBehaviour
                 if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Kick1"))
                 {
                     fourthHint = true;
-                    currentHint = "Hold the middle-mouse-button to do a kick-combo.";
+                    currentHint = "Hold 'F'-key to do a kick-combo.";
                     Economy.economy.DestroyOldMessages();
                     Economy.economy.InstantiateServerMessage(currentHint, false);
                 }
@@ -70,7 +70,7 @@ public class DummyHitDetection : MonoBehaviour
                 {
                     timer = 0;
                     fifthHint = true;
-                    currentHint = "Hold the right mouse button while standing still to block.";
+                    currentHint = "Hold 'Q'-key while standing still to block.";
                     Economy.economy.DestroyOldMessages();
                     Economy.economy.InstantiateServerMessage("You are just like Daniel LaRusso!", true);
                     Economy.economy.InstantiateServerMessage(currentHint, false);

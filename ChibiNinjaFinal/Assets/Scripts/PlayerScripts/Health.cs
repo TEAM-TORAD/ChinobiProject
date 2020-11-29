@@ -153,7 +153,6 @@ public class Health : MonoBehaviour
             foreach (Material m in mList)
             {
                 materialList.Add(m);
-                print(m);
             }
         }
 

@@ -67,7 +67,7 @@ public class ExplodingNPCController : MonoBehaviour
     {
         animator.SetBool("Moving", true);
         //if (Input.GetKeyDown(KeyCode.B)) Die();
-        if (!isTakingDamage && !isAttacking)
+        if (!isTakingDamage && !isAttacking && !hasExploded)
         {
             if (!aware)
             {
@@ -193,8 +193,10 @@ public class ExplodingNPCController : MonoBehaviour
     }
     public void Die()
     {
-        if (!hasExploded)
+
+        if (!hasExploded && !animator.GetBool("Attacking"))
         {
+            print("Animator state info dying: " + animator.GetCurrentAnimatorStateInfo(0).ToString());
             float velocity = RB.velocity.magnitude;
             if (velocity < 2.5f) velocity = 2.5f;
 
