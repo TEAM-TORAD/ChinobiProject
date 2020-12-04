@@ -547,13 +547,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751704928268491166}
-  m_LocalRotation: {x: 0.6051654, y: 0.03233157, z: 0.007733099, w: 0.7954054}
-  m_LocalPosition: {x: 9.313211e-10, y: 0.34620947, z: 0.0000000055879346}
+  m_LocalRotation: {x: -0.31425565, y: -0.0701349, z: 0.18350933, w: 0.9287889}
+  m_LocalPosition: {x: -0.09536546, y: -0.08902172, z: 0.041091446}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5018359897223694245}
-  m_Father: {fileID: 2440860597923913687}
-  m_RootOrder: 0
+  m_Father: {fileID: 3770053002388021667}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2478926958669477519
 GameObject:
@@ -913,8 +913,7 @@ Transform:
   m_LocalRotation: {x: -0.19975963, y: -0.057413906, z: -0.020109862, w: 0.9779547}
   m_LocalPosition: {x: -0.000000001396983, y: 0.32177436, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7326309209317062513}
+  m_Children: []
   m_Father: {fileID: 2054218038113608013}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1872,7 +1871,6 @@ MonoBehaviour:
   - {fileID: 0}
   overrideRun: 0
   velocityPerSecond: 0
-  deleteMe: 0
 --- !u!136 &7916613477759095049
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2065,6 +2063,7 @@ MonoBehaviour:
   - interactionName: Dissed
     conversation: {fileID: 0}
     completed: 0
+  bubbleTextStart: 
   conversationIndex: 0
 --- !u!114 &905211659
 MonoBehaviour:
@@ -2078,11 +2077,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6780af687d071c40b7516cafd695a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hintButtonPrefab: {fileID: 0}
   text: {fileID: 0}
   hintButtonShowing: 0
   speechBubbleShowing: 0
   interactionOpen: 0
   OnSpeachBubbleOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSpeachBubbleClose:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7122573236722355975
@@ -2455,6 +2458,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6180311686364882037}
+  - {fileID: 7326309209317062513}
   m_Father: {fileID: 5568111320092954428}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

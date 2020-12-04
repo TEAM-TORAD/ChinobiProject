@@ -2799,7 +2799,6 @@ MonoBehaviour:
   patrolPoints: []
   overrideRun: 0
   velocityPerSecond: 0
-  deleteMe: 0
 --- !u!135 &7411072719095947760
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2962,6 +2961,7 @@ MonoBehaviour:
   - interactionName: Rude class mate
     conversation: {fileID: 0}
     completed: 0
+  bubbleTextStart: 
   conversationIndex: 0
 --- !u!1 &7414499148597527868
 GameObject:
@@ -3808,21 +3808,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974065438949193920, guid: 9351a4b6a28436c4b90043853651ab66,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974065438949193920, guid: 9351a4b6a28436c4b90043853651ab66,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974065438949193920, guid: 9351a4b6a28436c4b90043853651ab66,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7974065438949193921, guid: 9351a4b6a28436c4b90043853651ab66,
         type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7974065438949193920}
   - component: {fileID: 4267038333900160890}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InteractionPopups
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7974065438949193921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.055710312, y: 0.055710305, z: 0.055710312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5199451408218791989}
   - {fileID: 5829961183140103739}
@@ -53,6 +53,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7974065438949193920}
     m_Modifications:
+    - target: {fileID: 4683710131067890555, guid: 1abeef48f45695a498be27dde2240d32,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683710131117420993, guid: 1abeef48f45695a498be27dde2240d32,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683710131214500396, guid: 1abeef48f45695a498be27dde2240d32,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683710131236767632, guid: 1abeef48f45695a498be27dde2240d32,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4683710132038717888, guid: 1abeef48f45695a498be27dde2240d32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123,6 +143,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HintButtonPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4683710132038717889, guid: 1abeef48f45695a498be27dde2240d32,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1abeef48f45695a498be27dde2240d32, type: 3}
 --- !u!4 &5829961183140103739 stripped
@@ -168,6 +193,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2774705307508219627, guid: e0db1e40c11160b4d970ff30b6de345a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2774705308040028056, guid: e0db1e40c11160b4d970ff30b6de345a,
         type: 3}
       propertyPath: m_text
@@ -177,6 +207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSize
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774705308040028058, guid: e0db1e40c11160b4d970ff30b6de345a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2774705308040028059, guid: e0db1e40c11160b4d970ff30b6de345a,
         type: 3}
@@ -267,6 +302,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpeechBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774705308549842917, guid: e0db1e40c11160b4d970ff30b6de345a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0db1e40c11160b4d970ff30b6de345a, type: 3}
