@@ -12,6 +12,11 @@ public class DragonAttackScript : MonoBehaviour
     public float projectileSpeed = 3.0f;
     public bool isFriendly = false;
     private Transform player;
+
+    public AudioSource dragonAudio;
+    public AudioClip spit;
+
+
     private void Start()
     {
         meleeTrigger = mouth.Find("MeleeAttack").gameObject;
@@ -31,5 +36,6 @@ public class DragonAttackScript : MonoBehaviour
     {
         GameObject fireBall = Instantiate(projectile, mouth.position, Quaternion.identity, null);
         fireBall.GetComponent<ProjectileScript>().SetStartValues(projectileAttack, projectileSpeed, 5.0f, isFriendly, player, transform.gameObject);
+        dragonAudio.PlayOneShot(spit);
     }
 }
