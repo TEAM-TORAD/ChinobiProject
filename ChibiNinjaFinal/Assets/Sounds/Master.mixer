@@ -25,7 +25,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sound Effects
+  m_Name: SoundEffects
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: f7cf544ac50c2df48b9de054be49ad01
   m_Children: []
@@ -83,11 +83,11 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: de6a88ebacc09ce43b905fc3237f4982
-    name: BG Music
+    name: BGMusic
   - guid: c903f1cfa07360045bc4a4d0aa77e478
     name: Master
   - guid: afb542943337dbf49bf5e624d6a9f471
-    name: Sound Effects
+    name: SoundEffects
   - guid: 0bdac7197ab31874da3baa1a7b098f08
     name: UI
   m_AudioMixerGroupViews:
@@ -146,7 +146,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 7606e4ce363c0a04296d1e27d7f54644
   m_FloatValues:
     0bdac7197ab31874da3baa1a7b098f08: 0
-    de6a88ebacc09ce43b905fc3237f4982: 0
+    de6a88ebacc09ce43b905fc3237f4982: 0.04
     c903f1cfa07360045bc4a4d0aa77e478: 0.04171297
   m_TransitionOverrides: {}
 --- !u!243 &588630881583662660
@@ -155,7 +155,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BG Music
+  m_Name: BGMusic
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 5307b610d84520743b19e76629998770
   m_Children: []
